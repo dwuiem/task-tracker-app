@@ -1,6 +1,6 @@
 # Network task-manager application on C++
 
-## Alert !!!
+## Pay attention
 Now this project is still under active development. Please check back regularly for updates.
 
 ## Introduction
