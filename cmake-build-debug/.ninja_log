@@ -1,0 +1,9 @@
+# ninja log v5
+17	4349	7423196855370264	Server/CMakeFiles/Server.dir/main.cpp.obj	705a33cf08f4c716
+21	6829	7423196417071490	Networking/CMakeFiles/Networking.dir/src/server/Connection.cpp.obj	290bb4382d444b82
+10406	11901	7423196467819297	Client/Client.exe	c3da542655f843d8
+14	7022	7423196419005512	Networking/CMakeFiles/Networking.dir/src/server/Server.cpp.obj	13c8ff928a3164b4
+4349	5607	7423196867922917	Server/Server.exe	f3a138c8ae42df4c
+7748	10406	7423196452927750	Networking/libNetworking.a	1a72400956b945fb
+26	7748	7423196426200851	Networking/CMakeFiles/Networking.dir/src/client/Client.cpp.obj	9986889648746b2f
+32	6453	7423196413325272	Client/CMakeFiles/Client.dir/main.cpp.obj	96a117cba279931c
