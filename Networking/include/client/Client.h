@@ -18,13 +18,15 @@ namespace TCP {
     public:
         Client(const std::string& address, int port);
 
+        void startRunning();
+
         void run(std::promise<int>& promise);
         void stop();
+        void reset();
 
         void send(const std::string& message);
 
     private:
-
         void asyncWrite();
         void asyncRead();
 
@@ -38,6 +40,18 @@ namespace TCP {
         io::ip::tcp::resolver::results_type _endpoints;
 
         io::streambuf _streamBuffer;
+
+        std::thread _runningThread;
+    };
+
+    class FailedConnect : public std::exception {
+    public:
+        explicit FailedConnect(std::string message) : _message(std::move(message)) {}
+        const char* what() const noexcept override {
+            return _message.c_str();
+        }
+    private:
+        std::string _message;
     };
 
 }

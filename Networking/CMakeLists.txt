@@ -13,7 +13,12 @@ add_library(${PROJECT_NAME} ${SOURCES}
         src/server/Connection.cpp
         include/server/Connection.h
         src/client/Client.cpp
-        include/client/Client.h)
+        include/client/Client.h
+        src/client/UserInterface.cpp
+        include/client/UserInterface.h
+        src/client/Application.cpp
+        include/client/Application.h
+)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
         $<INSTALL_INTERFACE:include>

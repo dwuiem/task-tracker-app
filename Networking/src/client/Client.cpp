@@ -8,7 +8,6 @@
 TCP::Client::Client(const std::string& address, int port) : _socket(_ioContext) {
     io::ip::tcp::resolver resolver{_ioContext};
     _endpoints = resolver.resolve(address, std::to_string(port));
-    _connected = false;
 }
 
 void TCP::Client::run(std::promise<int>& promise) {
@@ -17,8 +16,6 @@ void TCP::Client::run(std::promise<int>& promise) {
         _endpoints,
         [this, &promise](boost::system::error_code ec, io::ip::tcp::endpoint ep) {
             if (ec) {
-                _ioContext.stop();
-                _socket.close();
                 promise.set_value(false);
                 return;
             }
@@ -37,11 +34,16 @@ void TCP::Client::stop() {
     boost::system::error_code ec;
     _ioContext.stop();
     _socket.close(ec);
-    _connected = false;
     if (ec) {
         std::cerr << "Closed with an error\n";
     }
+    _runningThread.join();
 }
+void TCP::Client::reset() {
+    _ioContext.reset();
+    _socket = io::ip::tcp::socket(_ioContext);
+}
+
 void TCP::Client::asyncWrite() {
     io::async_write(_socket,
         io::buffer(_outgoingMessages.front() + "\n"),
@@ -72,4 +74,17 @@ void TCP::Client::onRead() {
     std::stringstream message;
     message << std::istream(&_streamBuffer).rdbuf();
     std::cout << message.str();
+}
+void TCP::Client::startRunning() {
+    std::promise<int> promise;
+    std::future<int> future = promise.get_future();
+
+    _runningThread = std::thread([this, &promise] {
+        this->run(promise);
+    });
+
+    bool connected = future.get();
+    if (!connected) {
+        throw FailedConnect("Failed to connect manager. Retrying ...");
+    }
 }
