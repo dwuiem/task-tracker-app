@@ -8,30 +8,41 @@
 Application::Application(TCP::Client& client) : _client(client) {}
 
 void Application::run() {
-    UserInterface::askToJoin();
-    UserInterface::tryConnect();
+    UserInterface::start();
+    UserInterface::tryConnectAlert();
 
     while(true) {
         try {
             _client.startRunning();
             break;
         } catch (const TCP::FailedConnect& e) {
-            _client.stop();
-            _client.reset();
             std::cerr << e.what() << std::endl;
+            stop();
+            _client.reset();
         }
     }
-    readMessages();
+
+    try {
+        readMessages();
+    } catch (const TCP::LostConnection& e) {
+        stop();
+        return;
+    }
+
+    stop();
     UserInterface::disconnectAlert();
 }
 
 void Application::readMessages() {
-    std::cin.ignore();
     std::string message = UserInterface::readLine();
     if (message == QUIT) {
-        _client.stop();
         return;
     }
     _client.send(message);
     readMessages();
+}
+
+void Application::stop() {
+    _client.stop();
+    _client.finishThread();
 }

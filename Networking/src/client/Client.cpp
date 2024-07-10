@@ -26,6 +26,9 @@ void TCP::Client::run(std::promise<int>& promise) {
 }
 
 void TCP::Client::send(const std::string& message) {
+    if (!_socket.is_open()) {
+        throw LostConnection();
+    }
     _outgoingMessages.push(message);
     asyncWrite();
 }
@@ -37,7 +40,6 @@ void TCP::Client::stop() {
     if (ec) {
         std::cerr << "Closed with an error\n";
     }
-    _runningThread.join();
 }
 void TCP::Client::reset() {
     _ioContext.reset();
@@ -49,8 +51,6 @@ void TCP::Client::asyncWrite() {
         io::buffer(_outgoingMessages.front() + "\n"),
         [this](boost::system::error_code ec, size_t bytesTransferred){
             if (ec) {
-                std::cerr << ec.what() << std::endl;
-                stop();
                 return;
             }
             _outgoingMessages.pop();
@@ -62,7 +62,7 @@ void TCP::Client::asyncWrite() {
 void TCP::Client::asyncRead() {
     io::async_read_until(_socket, _streamBuffer, "\n", [this](boost::system::error_code ec, size_t bytesTransferred) {
         if (ec) {
-            stop();
+            throw LostConnection("Connection has lost. Press enter to restart");
             return;
         }
         onRead();
@@ -76,15 +76,25 @@ void TCP::Client::onRead() {
     std::cout << message.str();
 }
 void TCP::Client::startRunning() {
-    std::promise<int> promise;
-    std::future<int> future = promise.get_future();
+    std::promise<int> promiseConnect;
+    std::future<int> futureConnect = promiseConnect.get_future();
 
-    _runningThread = std::thread([this, &promise] {
-        this->run(promise);
+    _runningThread = std::thread([this, &promiseConnect] {
+        try {
+            this->run(promiseConnect);
+        } catch (const LostConnection& e) {
+            std::cerr << e.what() << std::endl;
+            stop();
+        }
     });
 
-    bool connected = future.get();
+    bool connected = futureConnect.get();
     if (!connected) {
         throw FailedConnect("Failed to connect manager. Retrying ...");
+    }
+}
+void TCP::Client::finishThread() {
+    if (_runningThread.joinable()) {
+        _runningThread.join();
     }
 }

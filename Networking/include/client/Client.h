@@ -24,6 +24,8 @@ namespace TCP {
         void stop();
         void reset();
 
+        void finishThread();
+
         void send(const std::string& message);
 
     private:
@@ -47,6 +49,17 @@ namespace TCP {
     class FailedConnect : public std::exception {
     public:
         explicit FailedConnect(std::string message) : _message(std::move(message)) {}
+        const char* what() const noexcept override {
+            return _message.c_str();
+        }
+    private:
+        std::string _message;
+    };
+
+    class LostConnection : public std::exception {
+    public:
+        LostConnection() = default;
+        explicit LostConnection(std::string message) : _message(std::move(message)) {}
         const char* what() const noexcept override {
             return _message.c_str();
         }

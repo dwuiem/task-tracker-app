@@ -9,7 +9,7 @@
 
 std::string UserInterface::readCommand() {
     std::string command;
-    std::cin >> command;
+    std::getline(std::cin, command);
     return command;
 }
 std::string UserInterface::readLine() {
@@ -18,7 +18,7 @@ std::string UserInterface::readLine() {
     return message;
 }
 
-void UserInterface::askToJoin() {
+void UserInterface::start() {
     std::cout << "Enter \"" << JOIN << "\" to connect manager\n";
     confirmJoin();
 }
@@ -35,7 +35,7 @@ void UserInterface::confirmJoin() {
     }
 }
 
-void UserInterface::tryConnect() {
+void UserInterface::tryConnectAlert() {
     std::cout << "Connecting ...\n";
 }
 void UserInterface::disconnectAlert() {

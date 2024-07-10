@@ -24,9 +24,9 @@ private:
 class UserInterface {
 public:
 
-    static void askToJoin();
+    static void start();
     static void confirmJoin();
-    static void tryConnect();
+    static void tryConnectAlert();
     static void disconnectAlert();
 
     static std::string readCommand();
