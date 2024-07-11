@@ -57,14 +57,6 @@ void TCP::Connection::asyncRead() {
         });
 }
 
-void TCP::Connection::onRead() {
-    std::stringstream message;
-    message << std::istream(&_streamBuffer).rdbuf();
-    _streamBuffer.consume(_streamBuffer.size());
-
-    EventHandler::onClientMessage(_clientAddress, message.str());
-}
-
 void TCP::Connection::send(const std::string& message) {
     _outgoingText.push(message);
     asyncWrite();

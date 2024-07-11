@@ -41,8 +41,6 @@ class Connection : public std::enable_shared_from_this<Connection> {
         void asyncWrite();
         void asyncRead();
 
-        void onRead();
-
         void close();
 
         std::string _clientAddress;
