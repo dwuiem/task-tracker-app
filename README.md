@@ -4,7 +4,7 @@
 Now this project is still under active development. Please check back regularly for updates.
 
 ## Introduction
-This project is a TCP/IP application written in C++ using the Boost.Asio library. App is designed to provide effective task tracking between remote users for network working.
+This project is a TCP/IP application written in C++ using the Boost.Asio library. App is designed to provide effective networking task tracking between remote users.
 
 ## Features
 - **Asynchronous I/O operations** using Boost.Asio.
@@ -26,7 +26,7 @@ cd network-task-manager
 ```
 
 ### Step 2
-Download a boost library from website for use it
+Download a boost library from https://www.boost.org/users/download/
 
 ### Step 3
 Use CMake to build project
