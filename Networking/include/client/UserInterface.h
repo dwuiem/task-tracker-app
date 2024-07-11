@@ -1,4 +1,3 @@
-#include <utility>
 
 //
 // Created by denis on 10.07.2024.
@@ -6,6 +5,8 @@
 
 #ifndef CLIENT_NETWORKING_INCLUDE_CLIENT_USERINTERFACE_H_
 #define CLIENT_NETWORKING_INCLUDE_CLIENT_USERINTERFACE_H_
+
+#include <utility>
 
 const std::string JOIN = "join";
 const std::string QUIT = "\\q";
