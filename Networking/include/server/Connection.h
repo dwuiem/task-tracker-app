@@ -5,8 +5,6 @@
 #ifndef CLIENT_NETWORKING_INCLUDE_SERVER_CONNECTION_H_
 #define CLIENT_NETWORKING_INCLUDE_SERVER_CONNECTION_H_
 
-#pragma once
-
 #include <boost/asio.hpp>
 #include <memory>
 #include <queue>
