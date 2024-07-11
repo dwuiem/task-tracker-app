@@ -3,7 +3,6 @@
 //
 
 #include "server/Server.h"
-#include "server/Connection.h"
 
 #include <iostream>
 
@@ -30,7 +29,10 @@ void TCP::Server::accept() {
     _acceptor.async_accept(*_socket, [this] (const boost::system::error_code ec) {
         if (!ec) {
             auto connection = Connection::create(std::move(*_socket));
-            connection->start();
+
+            session_ptr session = UserSession::create(connection);
+            _sessions.emplace(session);
+            session->start();
         }
         accept();
     });

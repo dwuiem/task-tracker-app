@@ -18,6 +18,10 @@ add_library(${PROJECT_NAME} ${SOURCES}
         include/client/UserInterface.h
         src/client/Application.cpp
         include/client/Application.h
+        src/server/EventHandler.cpp
+        include/server/EventHandler.h
+        src/server/UserSession.cpp
+        include/server/UserSession.h
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC

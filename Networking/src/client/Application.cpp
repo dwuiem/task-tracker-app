@@ -8,6 +8,7 @@
 Application::Application(TCP::Client& client) : _client(client) {}
 
 void Application::run() {
+
     UserInterface::start();
     UserInterface::tryConnectAlert();
 
@@ -29,8 +30,8 @@ void Application::run() {
         return;
     }
 
-    stop();
     UserInterface::disconnectAlert();
+    stop();
 }
 
 void Application::readMessages() {

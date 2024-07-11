@@ -7,7 +7,11 @@
 
 #pragma once
 
+#include "server/Connection.h"
+#include "server/UserSession.h"
+
 #include <boost/asio.hpp>
+#include "unordered_set"
 
 namespace TCP {
 
@@ -17,6 +21,8 @@ namespace TCP {
     };
 
     namespace io = boost::asio;
+
+    using session_ptr = std::shared_ptr<UserSession>;
 
     class Server {
     public:
@@ -28,6 +34,8 @@ namespace TCP {
 
         IPV _ipVersion;
         int _port;
+
+        std::unordered_set<session_ptr> _sessions;
 
         io::io_context _ioContext;
         io::ip::tcp::acceptor _acceptor;

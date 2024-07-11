@@ -8,7 +8,6 @@
 int main() {
     while (true) {
         TCP::Client client{"localhost", 1337};
-
         Application app(client);
         app.run();
     }

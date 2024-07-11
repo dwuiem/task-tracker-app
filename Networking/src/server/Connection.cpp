@@ -2,9 +2,7 @@
 // Created by denis on 07.07.2024.
 //
 
-#include <iostream>
-
-#include "server/Connection.h"
+#include <server/Connection.h>
 
 TCP::Connection::Connection(boost::asio::ip::tcp::socket&& socket) : _socket(std::move(socket)){
     try {
@@ -17,25 +15,23 @@ TCP::Connection::Connection(boost::asio::ip::tcp::socket&& socket) : _socket(std
 }
 
 void TCP::Connection::start() {
-    // On connection handler
-    std::cout << "User " << _clientAddress << " has joined" << std::endl;
-    send("You have successfully joined to server. Enter \\q to leave");
-    // Reading messages
+    EventHandler::onConnect(_clientAddress);
+//    send("You have successfully joined to server. Enter \\q to leave");
+
     asyncRead();
 }
 
 void TCP::Connection::asyncWrite() {
     io::async_write(_socket,
-        io::buffer(_outgointText.front() + "\n"),
-        [this](boost::system::error_code ec, size_t byteTransferred) {
+        io::buffer(_outgoingText.front() + "\n"),
+        [self = shared_from_this()](boost::system::error_code ec, size_t byteTransferred) {
             if (ec) {
-                _socket.close();
-                std::cout << "User " << _clientAddress << " has left" << std::endl;
+                self->close();
                 return;
             }
-            _outgointText.pop();
-            if (!_outgointText.empty()) {
-                asyncWrite();
+            self->_outgoingText.pop();
+            if (!self->_outgoingText.empty()) {
+                self->asyncWrite();
             }
         });
 }
@@ -45,14 +41,19 @@ void TCP::Connection::asyncRead() {
         _socket,
         _streamBuffer,
         "\n",
-        [self = shared_from_this(), this] (boost::system::error_code ec, size_t bytesTransferred) {
+        [self = shared_from_this()] (boost::system::error_code ec, size_t bytesTransferred) {
             if (ec) {
-                _socket.close();
-                std::cout << "User " << _clientAddress << " has left" << std::endl;
+                self->close();
                 return;
             }
-            self->onRead();
-            asyncRead();
+            std::stringstream message;
+            message << std::istream(&self->_streamBuffer).rdbuf();
+            self->_streamBuffer.consume(self->_streamBuffer.size());
+            if (self->onReadHandler) {
+                self->onReadHandler(message.str());
+            }
+            EventHandler::onClientMessage(self->_clientAddress, message.str());
+            self->asyncRead();
         });
 }
 
@@ -60,11 +61,20 @@ void TCP::Connection::onRead() {
     std::stringstream message;
     message << std::istream(&_streamBuffer).rdbuf();
     _streamBuffer.consume(_streamBuffer.size());
-    std::cout << "Message from " << _clientAddress << " : " << message.str();
+
+    EventHandler::onClientMessage(_clientAddress, message.str());
 }
 
 void TCP::Connection::send(const std::string& message) {
-    _outgointText.push(message);
+    _outgoingText.push(message);
     asyncWrite();
+}
+
+void TCP::Connection::close() {
+    EventHandler::onDisconnect(_clientAddress);
+    _socket.close();
+}
+std::string TCP::Connection::getClientAddress() const noexcept {
+    return _clientAddress;
 }
 
