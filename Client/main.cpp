@@ -1,9 +1,9 @@
 #include <iostream>
 #include <thread>
 
-#include "client/Client.h"
-#include "client/UserInterface.h"
-#include "client/Application.h"
+#include "client/client.h"
+#include "client/user_interface.h"
+#include "client/application.h"
 
 int main() {
     while (true) {

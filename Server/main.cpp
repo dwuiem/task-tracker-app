@@ -2,7 +2,7 @@
 
 #include <boost/asio.hpp>
 
-#include "server/Server.h"
+#include "server/server.h"
 
 int main() {
     TCP::Server server(TCP::IPV::V4, 1337);

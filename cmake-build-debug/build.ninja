@@ -77,57 +77,65 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
 build cmake_object_order_depends_target_Networking: phony || Networking/CMakeFiles/Networking.dir
 
-build Networking/CMakeFiles/Networking.dir/src/server/Server.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-manager/Networking/src/server/Server.cpp || cmake_object_order_depends_target_Networking
+build Networking/CMakeFiles/Networking.dir/src/server/server.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-manager/Networking/src/server/server.cpp || cmake_object_order_depends_target_Networking
   DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\server\Server.cpp.obj.d
+  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\server\server.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-manager/Networking/include" -IC:/libraries/boost_1_85_0
   OBJECT_DIR = Networking\CMakeFiles\Networking.dir
   OBJECT_FILE_DIR = Networking\CMakeFiles\Networking.dir\src\server
 
-build Networking/CMakeFiles/Networking.dir/src/server/Connection.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-manager/Networking/src/server/Connection.cpp || cmake_object_order_depends_target_Networking
+build Networking/CMakeFiles/Networking.dir/src/server/connection.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-manager/Networking/src/server/connection.cpp || cmake_object_order_depends_target_Networking
   DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\server\Connection.cpp.obj.d
+  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\server\connection.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-manager/Networking/include" -IC:/libraries/boost_1_85_0
   OBJECT_DIR = Networking\CMakeFiles\Networking.dir
   OBJECT_FILE_DIR = Networking\CMakeFiles\Networking.dir\src\server
 
-build Networking/CMakeFiles/Networking.dir/src/client/Client.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-manager/Networking/src/client/Client.cpp || cmake_object_order_depends_target_Networking
+build Networking/CMakeFiles/Networking.dir/src/client/client.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-manager/Networking/src/client/client.cpp || cmake_object_order_depends_target_Networking
   DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\client\Client.cpp.obj.d
+  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\client\client.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-manager/Networking/include" -IC:/libraries/boost_1_85_0
   OBJECT_DIR = Networking\CMakeFiles\Networking.dir
   OBJECT_FILE_DIR = Networking\CMakeFiles\Networking.dir\src\client
 
-build Networking/CMakeFiles/Networking.dir/src/client/UserInterface.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-manager/Networking/src/client/UserInterface.cpp || cmake_object_order_depends_target_Networking
+build Networking/CMakeFiles/Networking.dir/src/client/user_interface.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-manager/Networking/src/client/user_interface.cpp || cmake_object_order_depends_target_Networking
   DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\client\UserInterface.cpp.obj.d
+  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\client\user_interface.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-manager/Networking/include" -IC:/libraries/boost_1_85_0
   OBJECT_DIR = Networking\CMakeFiles\Networking.dir
   OBJECT_FILE_DIR = Networking\CMakeFiles\Networking.dir\src\client
 
-build Networking/CMakeFiles/Networking.dir/src/client/Application.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-manager/Networking/src/client/Application.cpp || cmake_object_order_depends_target_Networking
+build Networking/CMakeFiles/Networking.dir/src/client/application.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-manager/Networking/src/client/application.cpp || cmake_object_order_depends_target_Networking
   DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\client\Application.cpp.obj.d
+  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\client\application.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-manager/Networking/include" -IC:/libraries/boost_1_85_0
   OBJECT_DIR = Networking\CMakeFiles\Networking.dir
   OBJECT_FILE_DIR = Networking\CMakeFiles\Networking.dir\src\client
 
-build Networking/CMakeFiles/Networking.dir/src/server/EventHandler.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-manager/Networking/src/server/EventHandler.cpp || cmake_object_order_depends_target_Networking
+build Networking/CMakeFiles/Networking.dir/src/server/event_handler.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-manager/Networking/src/server/event_handler.cpp || cmake_object_order_depends_target_Networking
   DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\server\EventHandler.cpp.obj.d
+  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\server\event_handler.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-manager/Networking/include" -IC:/libraries/boost_1_85_0
   OBJECT_DIR = Networking\CMakeFiles\Networking.dir
   OBJECT_FILE_DIR = Networking\CMakeFiles\Networking.dir\src\server
 
-build Networking/CMakeFiles/Networking.dir/src/server/UserSession.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-manager/Networking/src/server/UserSession.cpp || cmake_object_order_depends_target_Networking
+build Networking/CMakeFiles/Networking.dir/src/server/user_session.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-manager/Networking/src/server/user_session.cpp || cmake_object_order_depends_target_Networking
   DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\server\UserSession.cpp.obj.d
+  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\server\user_session.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-manager/Networking/include" -IC:/libraries/boost_1_85_0
+  OBJECT_DIR = Networking\CMakeFiles\Networking.dir
+  OBJECT_FILE_DIR = Networking\CMakeFiles\Networking.dir\src\server
+
+build Networking/CMakeFiles/Networking.dir/src/server/user.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-manager/Networking/src/server/user.cpp || cmake_object_order_depends_target_Networking
+  DEFINES = -D_WIN32_WINNT=0x0601
+  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\server\user.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-manager/Networking/include" -IC:/libraries/boost_1_85_0
   OBJECT_DIR = Networking\CMakeFiles\Networking.dir
@@ -141,7 +149,7 @@ build Networking/CMakeFiles/Networking.dir/src/server/UserSession.cpp.obj: CXX_C
 #############################################
 # Link the static library Networking\libNetworking.a
 
-build Networking/libNetworking.a: CXX_STATIC_LIBRARY_LINKER__Networking_Debug Networking/CMakeFiles/Networking.dir/src/server/Server.cpp.obj Networking/CMakeFiles/Networking.dir/src/server/Connection.cpp.obj Networking/CMakeFiles/Networking.dir/src/client/Client.cpp.obj Networking/CMakeFiles/Networking.dir/src/client/UserInterface.cpp.obj Networking/CMakeFiles/Networking.dir/src/client/Application.cpp.obj Networking/CMakeFiles/Networking.dir/src/server/EventHandler.cpp.obj Networking/CMakeFiles/Networking.dir/src/server/UserSession.cpp.obj
+build Networking/libNetworking.a: CXX_STATIC_LIBRARY_LINKER__Networking_Debug Networking/CMakeFiles/Networking.dir/src/server/server.cpp.obj Networking/CMakeFiles/Networking.dir/src/server/connection.cpp.obj Networking/CMakeFiles/Networking.dir/src/client/client.cpp.obj Networking/CMakeFiles/Networking.dir/src/client/user_interface.cpp.obj Networking/CMakeFiles/Networking.dir/src/client/application.cpp.obj Networking/CMakeFiles/Networking.dir/src/server/event_handler.cpp.obj Networking/CMakeFiles/Networking.dir/src/server/user_session.cpp.obj Networking/CMakeFiles/Networking.dir/src/server/user.cpp.obj
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = Networking\CMakeFiles\Networking.dir
   POST_BUILD = cd .

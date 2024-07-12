@@ -8,20 +8,22 @@ find_package(Boost 1.85.0 REQUIRED)
 file(GLOB SOURCES src/*)
 
 add_library(${PROJECT_NAME} ${SOURCES}
-        src/server/Server.cpp
-        include/server/Server.h
-        src/server/Connection.cpp
-        include/server/Connection.h
-        src/client/Client.cpp
-        include/client/Client.h
-        src/client/UserInterface.cpp
-        include/client/UserInterface.h
-        src/client/Application.cpp
-        include/client/Application.h
-        src/server/EventHandler.cpp
-        include/server/EventHandler.h
-        src/server/UserSession.cpp
-        include/server/UserSession.h
+        src/server/server.cpp
+        include/server/server.h
+        src/server/connection.cpp
+        include/server/connection.h
+        src/client/client.cpp
+        include/client/client.h
+        src/client/user_interface.cpp
+        include/client/user_interface.h
+        src/client/application.cpp
+        include/client/application.h
+        src/server/event_handler.cpp
+        include/server/event_handler.h
+        src/server/user_session.cpp
+        include/server/user_session.h
+        src/server/user.cpp
+        include/server/user.h
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC
