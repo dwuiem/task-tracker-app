@@ -26,7 +26,7 @@ void UserSession::start() {
             case MAIN:
 
                 break;
-            case ENTER_TASK_NAME:
+            case ENTER_NEW_TASK_NAME:
 
                 break;
         }

@@ -26,7 +26,7 @@ private:
     enum State {
         AUTHORIZATION,
         MAIN,
-        ENTER_TASK_NAME
+        ENTER_NEW_TASK_NAME
     };
 
     static inline const std::string ON_JOIN_MESSAGE = "You have successfully connected to system";
@@ -38,7 +38,7 @@ private:
         {MAIN, "[MENU]: Select one of the following items (enter number):\n"
                " - (1) Create a new task"},
 
-        {ENTER_TASK_NAME, "[CREATING]: Choose name for new task"}
+        {ENTER_NEW_TASK_NAME, "[CREATING]: Choose name for new task"}
     };
 
     UserSession(tcp::socket&& socket);
