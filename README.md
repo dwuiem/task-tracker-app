@@ -10,6 +10,7 @@ This project is a TCP/IP application written in C++ using the Boost.Asio library
 - **Asynchronous I/O operations** using Boost.Asio.
 - **High performance** with low latency.
 - **Console UI** to interact with app
+- **CRUD operations** using database
 
 ## Requirements
 - C++20 (or higher)
