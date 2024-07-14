@@ -1,7 +1,7 @@
 # Network task-manager application on C++
 
 ## Pay attention
-Now this project is still under active development. Please check back regularly for updates.
+This project is under active development yet. Please check back regularly for updates.
 
 ## Introduction
 This project is a TCP/IP application written in C++ using the Boost.Asio library. App is designed to provide effective networking task tracking between remote users.
