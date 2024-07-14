@@ -125,9 +125,9 @@ build Networking/CMakeFiles/Networking.dir/src/server/event_handler.cpp.obj: CXX
   OBJECT_DIR = Networking\CMakeFiles\Networking.dir
   OBJECT_FILE_DIR = Networking\CMakeFiles\Networking.dir\src\server
 
-build Networking/CMakeFiles/Networking.dir/src/server/user_session.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-manager/Networking/src/server/user_session.cpp || cmake_object_order_depends_target_Networking
+build Networking/CMakeFiles/Networking.dir/src/server/client_session.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-manager/Networking/src/server/client_session.cpp || cmake_object_order_depends_target_Networking
   DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\server\user_session.cpp.obj.d
+  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\server\client_session.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-manager/Networking/include" -IC:/libraries/boost_1_85_0
   OBJECT_DIR = Networking\CMakeFiles\Networking.dir
@@ -149,7 +149,7 @@ build Networking/CMakeFiles/Networking.dir/src/server/user.cpp.obj: CXX_COMPILER
 #############################################
 # Link the static library Networking\libNetworking.a
 
-build Networking/libNetworking.a: CXX_STATIC_LIBRARY_LINKER__Networking_Debug Networking/CMakeFiles/Networking.dir/src/server/server.cpp.obj Networking/CMakeFiles/Networking.dir/src/server/connection.cpp.obj Networking/CMakeFiles/Networking.dir/src/client/client.cpp.obj Networking/CMakeFiles/Networking.dir/src/client/user_interface.cpp.obj Networking/CMakeFiles/Networking.dir/src/client/application.cpp.obj Networking/CMakeFiles/Networking.dir/src/server/event_handler.cpp.obj Networking/CMakeFiles/Networking.dir/src/server/user_session.cpp.obj Networking/CMakeFiles/Networking.dir/src/server/user.cpp.obj
+build Networking/libNetworking.a: CXX_STATIC_LIBRARY_LINKER__Networking_Debug Networking/CMakeFiles/Networking.dir/src/server/server.cpp.obj Networking/CMakeFiles/Networking.dir/src/server/connection.cpp.obj Networking/CMakeFiles/Networking.dir/src/client/client.cpp.obj Networking/CMakeFiles/Networking.dir/src/client/user_interface.cpp.obj Networking/CMakeFiles/Networking.dir/src/client/application.cpp.obj Networking/CMakeFiles/Networking.dir/src/server/event_handler.cpp.obj Networking/CMakeFiles/Networking.dir/src/server/client_session.cpp.obj Networking/CMakeFiles/Networking.dir/src/server/user.cpp.obj
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = Networking\CMakeFiles\Networking.dir
   POST_BUILD = cd .

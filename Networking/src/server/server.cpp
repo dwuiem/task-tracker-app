@@ -25,7 +25,7 @@ void TCP::Server::accept() {
     acceptor_.async_accept(*socket_, [this] (const boost::system::error_code ec) {
         if (!ec) {
 //            auto connection = Connection::create(std::move(*socket_));
-            session_ptr session = UserSession::create(std::move(*socket_));
+            session_ptr session = ClientSession::create(std::move(*socket_));
             sessions_.emplace(session);
             session->start();
         }

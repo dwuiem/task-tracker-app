@@ -20,8 +20,8 @@ add_library(${PROJECT_NAME} ${SOURCES}
         include/client/application.h
         src/server/event_handler.cpp
         include/server/event_handler.h
-        src/server/user_session.cpp
-        include/server/user_session.h
+        src/server/client_session.cpp
+        include/server/client_session.h
         src/server/user.cpp
         include/server/user.h
 )

@@ -80,4 +80,7 @@ void TCP::Connection::close() {
 std::string TCP::Connection::get_client_address() const noexcept {
     return client_address_;
 }
+void TCP::Connection::set_on_read(std::function<void(std::string)> callback) {
+    on_read = callback;
+}
 

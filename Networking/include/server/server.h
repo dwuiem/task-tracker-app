@@ -4,7 +4,7 @@
 #include <boost/asio.hpp>
 
 #include "server/connection.h"
-#include "server/user_session.h"
+#include "server/client_session.h"
 
 #include <unordered_set>
 
@@ -16,7 +16,7 @@ namespace TCP {
 
     namespace io = boost::asio;
 
-    using session_ptr = std::shared_ptr<UserSession>;
+    using session_ptr = std::shared_ptr<ClientSession>;
 
     class Server {
     public:

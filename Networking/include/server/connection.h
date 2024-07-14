@@ -26,6 +26,8 @@ class Connection : public std::enable_shared_from_this<Connection> {
         void start();
         void send(const std::string& message);
 
+        void set_on_read(std::function<void(std::string)> callback);
+
         std::string get_client_address() const noexcept;
 
         std::function<void()> on_connect;
