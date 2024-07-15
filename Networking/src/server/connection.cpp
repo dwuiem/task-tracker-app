@@ -1,5 +1,7 @@
 #include <server/connection.h>
 
+#include <utility>
+
 TCP::Connection::Connection(boost::asio::ip::tcp::socket&& socket) : socket_(std::move(socket)){
     try {
         std::stringstream address;
@@ -80,7 +82,7 @@ void TCP::Connection::close() {
 std::string TCP::Connection::get_client_address() const noexcept {
     return client_address_;
 }
-void TCP::Connection::set_on_read(std::function<void(std::string)> callback) {
-    on_read = callback;
+void TCP::Connection::set_on_read(std::function<void(const std::string&)> callback) {
+    on_read = std::move(callback);
 }
 

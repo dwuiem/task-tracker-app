@@ -26,17 +26,18 @@ class Connection : public std::enable_shared_from_this<Connection> {
         void start();
         void send(const std::string& message);
 
-        void set_on_read(std::function<void(std::string)> callback);
+        void set_on_read(std::function<void(const std::string&)> callback);
 
         std::string get_client_address() const noexcept;
 
         std::function<void()> on_connect;
         std::function<void()> on_disconnect;
-        std::function<void(std::string)> on_read;
 
     private:
 
         Connection(io::ip::tcp::socket&& socket);
+
+        std::function<void(const std::string&)> on_read;
 
         void async_write();
         void async_read();

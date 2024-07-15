@@ -8,6 +8,7 @@ std::string UserInterface::read_command() {
     std::getline(std::cin, command);
     return command;
 }
+
 std::string UserInterface::read_line() {
     std::string message;
     std::getline(std::cin, message);
@@ -34,6 +35,7 @@ void UserInterface::confirm_join() {
 void UserInterface::connection_alert() {
     std::cout << "Connecting ...\n";
 }
+
 void UserInterface::disconnection_alert() {
     std::cout << "You have left from the server\n";
 }
