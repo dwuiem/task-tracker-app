@@ -5,7 +5,8 @@
 #include "server/server.h"
 
 int main() {
-    TCP::Server server(TCP::IPV::V4, 1337);
+    const int default_port = 1337;
+    TCP::Server server(TCP::IPV::V4, default_port);
     server.run();
     return 0;
 }
