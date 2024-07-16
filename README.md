@@ -22,8 +22,8 @@ This project is a TCP/IP application written in C++ using the Boost.Asio library
 ### Step 1
 Clone repository
 ```sh
-git clone https://github.com/dwuiem/network-Task-manager.git
-cd network-Task-manager
+git clone https://github.com/dwuiem/network-task-tracking.git
+cd network-task-tracking
 ```
 
 ### Step 2
