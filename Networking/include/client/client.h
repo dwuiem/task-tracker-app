@@ -3,6 +3,7 @@
 
 #include <boost/asio.hpp>
 #include <queue>
+#include <iostream>
 
 namespace TCP {
 

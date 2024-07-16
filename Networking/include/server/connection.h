@@ -5,6 +5,7 @@
 
 #include <server/event_handler.h>
 
+#include <utility>
 #include <memory>
 #include <queue>
 

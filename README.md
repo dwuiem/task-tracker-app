@@ -1,10 +1,10 @@
-# Network task-manager application on C++
+# Network Task-manager application on C++
 
 ## Pay attention
 Now this project is still under active development. Please check back regularly for updates.
 
 ## Introduction
-This project is a TCP/IP application written in C++ using the Boost.Asio library. App is designed to provide effective networking task tracking between remote users.
+This project is a TCP/IP application written in C++ using the Boost.Asio library. App is designed to provide effective networking Task tracking between remote users.
 
 ## Features
 - **Asynchronous I/O operations** using Boost.Asio.
@@ -22,8 +22,8 @@ This project is a TCP/IP application written in C++ using the Boost.Asio library
 ### Step 1
 Clone repository
 ```sh
-git clone https://github.com/dwuiem/network-task-manager.git
-cd network-task-manager
+git clone https://github.com/dwuiem/network-Task-manager.git
+cd network-Task-manager
 ```
 
 ### Step 2

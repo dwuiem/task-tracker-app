@@ -14,6 +14,14 @@ using connection_ptr = std::shared_ptr<TCP::Connection>;
 
 class ClientSession {
 public:
+    using session_ptr = std::shared_ptr<ClientSession>;
+    static session_ptr create(tcp::socket&& socket) {
+        return session_ptr(new ClientSession(std::move(socket)));
+    }
+
+    void start();
+    void send(std::string text);
+private:
     static inline const std::string ON_JOIN = "You have successfully joined";
     static inline const std::string ASK_TO_AUTH = "Please, enter your username";
     static inline const std::string ON_AUTH_MESSAGE = "You are welcome";
@@ -22,18 +30,19 @@ public:
 
     static inline const char DELIM = ' ';
 
-    using session_ptr = std::shared_ptr<ClientSession>;
-    static session_ptr create(tcp::socket&& socket) {
-        return session_ptr(new ClientSession(std::move(socket)));
-    }
-    void start();
-    void send(std::string text);
-private:
     explicit ClientSession(tcp::socket&& socket);
+
     void change_action(void (ClientSession::*callback)(const std::string&));
     void authorize_user(const std::string& name);
     void display_commands();
     void parse_command(const std::string& line);
+    void create_task(const std::vector<std::string>& args);
+    void display_all_tasks() const;
+
+    std::unordered_map<std::string, std::function<void(const std::vector<std::string>&)>> commands = {
+        {"create", [this](auto && PH1) { create_task(std::forward<decltype(PH1)>(PH1)); } }
+    };
+
     connection_ptr connection_;
     std::string ip_address_;
     std::shared_ptr<User> user_;

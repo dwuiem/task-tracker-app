@@ -24,6 +24,8 @@ add_library(${PROJECT_NAME} ${SOURCES}
         include/server/client_session.h
         src/server/user.cpp
         include/server/user.h
+        src/server/task.cpp
+        include/server/task.h
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC

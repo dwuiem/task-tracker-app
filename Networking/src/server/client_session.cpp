@@ -56,13 +56,23 @@ void ClientSession::parse_command(const std::string& line) {
         std::vector<std::string> args;
         std::string arg;
         std::stringstream ss(line);
-
         std::getline(ss, command, DELIM);
         while (std::getline(ss, arg, DELIM)) {
             args.push_back(arg);
         }
+        commands[command](args);
     } catch (...) {
         send("Command is incorrect");
+        display_commands();
     }
+}
+
+void ClientSession::create_task(const std::vector<std::string>& args) {
+    user_->add_task(std::make_shared<Task>(args));
+    send("Task has created");
+}
+
+void ClientSession::display_all_tasks() const {
+
 }
 

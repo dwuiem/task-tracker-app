@@ -1,4 +1,3 @@
-#include <iostream>
 #include "client/client.h"
 
 TCP::Client::Client(const std::string& address, int port) : socket_(io_context_) {

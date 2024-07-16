@@ -1,7 +1,5 @@
 #include <server/connection.h>
 
-#include <utility>
-
 TCP::Connection::Connection(boost::asio::ip::tcp::socket&& socket) : socket_(std::move(socket)){
     try {
         std::stringstream address;

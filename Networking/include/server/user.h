@@ -3,13 +3,19 @@
 
 #include <iostream>
 #include <utility>
+#include <memory>
+#include <vector>
+
+#include "task.h"
 
 class User {
 public:
     User() = default;
-    User(std::string  name);
+    explicit User(std::string  name);
+    void add_task(const std::shared_ptr<Task>& task);
 private:
     std::string name_;
+    std::vector<std::shared_ptr<Task>> tasks_{};
 };
 
 #endif //CLIENT_NETWORKING_INCLUDE_SERVER_USER_H_

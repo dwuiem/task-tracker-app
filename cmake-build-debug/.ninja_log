@@ -21,3 +21,16 @@
 23	11073	7425089323164309	Networking/CMakeFiles/Networking.dir/src/client/client.cpp.obj	9f077c5124ffb92e
 41	1775	7425089230222455	Networking/CMakeFiles/Networking.dir/src/server/user.cpp.obj	848274db3a144b68
 16	7883	7426624023976466	Networking/CMakeFiles/Networking.dir/src/server/client_session.cpp.obj	9960957d250dbe19
+38	1309	7428456573697622	Networking/CMakeFiles/Networking.dir/src/server/task.cpp.obj	a0bb52fc65b54323
+41	1512	7428456575733722	Networking/CMakeFiles/Networking.dir/src/server/user.cpp.obj	848274db3a144b68
+31	5687	7428456617451076	Networking/CMakeFiles/Networking.dir/src/client/user_interface.cpp.obj	e7e59668d0cda319
+34	5694	7428456617500243	Networking/CMakeFiles/Networking.dir/src/client/application.cpp.obj	a189657d15608bc4
+45	6226	7428456622815045	Server/CMakeFiles/Server.dir/main.cpp.obj	705a33cf08f4c716
+13	6519	7428456625721708	Networking/CMakeFiles/Networking.dir/src/server/connection.cpp.obj	6f06702e7cb5a890
+23	6945	7428456630016461	Networking/CMakeFiles/Networking.dir/src/server/server.cpp.obj	179ef7d8bff8a084
+27	7443	7428456634930824	Networking/CMakeFiles/Networking.dir/src/client/client.cpp.obj	9f077c5124ffb92e
+19	8329	7428456643772651	Networking/CMakeFiles/Networking.dir/src/server/client_session.cpp.obj	9960957d250dbe19
+8329	13658	7428456697207589	Networking/libNetworking.a	3bf5825a9b16c6a7
+13658	17300	7428456733528824	Server/Server.exe	f3a138c8ae42df4c
+22	4105	7428456844320006	Client/CMakeFiles/Client.dir/main.cpp.obj	96a117cba279931c
+4105	5665	7428456859895819	Client/Client.exe	c3da542655f843d8
