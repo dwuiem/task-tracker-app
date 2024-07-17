@@ -21,7 +21,7 @@ void ClientSession::start() {
     change_action(&ClientSession::authorize_user);
 }
 
-void ClientSession::send(std::string text) {
+void ClientSession::send(const std::string& text) const {
     std::stringstream message;
     message << text;
     connection_->send(message.str());
@@ -72,7 +72,9 @@ void ClientSession::create_task(const std::vector<std::string>& args) {
     send("Task has created");
 }
 
-void ClientSession::display_all_tasks() const {
-
+void ClientSession::display_tasks(const std::vector<std::string>& args) const {
+    for (const Task& task : user_->get_all_tasks()) {
+        send(task.get_info());
+    }
 }
 

@@ -5,7 +5,7 @@ Task::Task(std::string title) : title_(std::move(title)), id_(counter++) {
     date_ = "-";
 }
 
-Task::Task(const std::vector<std::string>& args) {
+Task::Task(const std::vector<std::string>& args) : id_(counter++) {
     switch (args.size()) {
         case 1:
             title_ = args[0];
@@ -17,7 +17,7 @@ Task::Task(const std::vector<std::string>& args) {
         case 3:
             title_ = args[0];
             description_ = args[1];
-            date_ = args[3];
+            date_ = args[2];
             break;
         default:
             throw std::invalid_argument("No such amount of args");
@@ -37,6 +37,6 @@ std::string Task::get_info() const {
     std::string s = "Task ID: " + std::to_string(id_) + "\n"
                     "Title: " + title_ + "\n"
                     "Description: " + description_ + "\n"
-                    "Deadline: " + date_ + "\n";
+                    "Deadline: " + date_;
     return s;
 }

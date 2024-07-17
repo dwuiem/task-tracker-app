@@ -1,8 +1,8 @@
-# Install script for directory: D:/my folder/c/c++ clion projects/network-task-manager/Client
+# Install script for directory: D:/my folder/c/c++ clion projects/network-task-tracking/Client
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/network_task_manager")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/Client")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

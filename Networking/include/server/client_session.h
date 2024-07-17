@@ -20,7 +20,7 @@ public:
     }
 
     void start();
-    void send(std::string text);
+    void send(const std::string& text) const;
 private:
     static inline const std::string ON_JOIN = "You have successfully joined";
     static inline const std::string ASK_TO_AUTH = "Please, enter your username";
@@ -37,10 +37,11 @@ private:
     void display_commands();
     void parse_command(const std::string& line);
     void create_task(const std::vector<std::string>& args);
-    void display_all_tasks() const;
+    void display_tasks(const std::vector<std::string>& args) const;
 
     std::unordered_map<std::string, std::function<void(const std::vector<std::string>&)>> commands = {
-        {"create", [this](auto && PH1) { create_task(std::forward<decltype(PH1)>(PH1)); } }
+        {"create", [this](auto && PH1) { create_task(std::forward<decltype(PH1)>(PH1)); } },
+        {"display", [this](auto && PH1) { display_tasks(std::forward<decltype(PH1)>(PH1)); } }
     };
 
     connection_ptr connection_;

@@ -13,6 +13,7 @@ public:
     User() = default;
     explicit User(std::string  name);
     void add_task(const std::shared_ptr<Task>& task);
+    std::vector<Task> get_all_tasks();
 private:
     std::string name_;
     std::vector<std::shared_ptr<Task>> tasks_{};
