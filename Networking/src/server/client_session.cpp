@@ -54,12 +54,35 @@ void ClientSession::parse_command(const std::string& line) {
     try {
         std::string command;
         std::vector<std::string> args;
-        std::string arg;
-        std::stringstream ss(line);
-        std::getline(ss, command, DELIM);
-        while (std::getline(ss, arg, DELIM)) {
-            args.push_back(arg);
+        std::vector<std::string> tokens;
+
+        std::string current;
+        bool in_quotes = false;
+
+        for (char c : line) {
+            switch (c) {
+                case '"':
+                    in_quotes = !in_quotes;
+                    break;
+                case ' ':
+                    if (!in_quotes && !current.empty()) {
+                        tokens.push_back(current);
+                        current.clear();
+                    } else {
+                        current += c;
+                    }
+                    break;
+                default:
+                    current += c;
+                    break;
+            }
         }
+        if (!current.empty()) {
+            tokens.push_back(current);
+        }
+        command = tokens[0];
+        tokens.erase(tokens.begin());
+        args = tokens;
         commands[command](args);
     } catch (...) {
         send("Command is incorrect");
