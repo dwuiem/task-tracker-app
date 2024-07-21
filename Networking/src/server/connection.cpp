@@ -20,12 +20,12 @@ void TCP::Connection::start() {
 void TCP::Connection::async_write() {
     io::async_write(socket_,
         io::buffer(outgoing_text_.front() + "\n"),
-        [self = shared_from_this()](boost::system::error_code ec, size_t byteTransferred) {
+        [this](boost::system::error_code ec, size_t byteTransferred) {
             if (ec) {
-                self->close();
+                close();
                 return;
             }
-            self->on_write();
+            on_write();
         });
 }
 void TCP::Connection::on_write() {
@@ -40,26 +40,26 @@ void TCP::Connection::async_read() {
         socket_,
         stream_buffer_,
         "\n",
-        [self = shared_from_this()] (boost::system::error_code ec, size_t bytesTransferred) {
+        [this] (boost::system::error_code ec, size_t bytesTransferred) {
             if (ec) {
-                self->close();
+                close();
                 return;
             }
 
             std::stringstream line;
-            line << std::istream(&self->stream_buffer_).rdbuf();
+            line << std::istream(&stream_buffer_).rdbuf();
 
             std::string message;
             std::getline(line, message);
 
-            if (self->on_read) {
-                self->on_read(message);
+            if (on_read) {
+                on_read(message);
             }
 
-            EventHandler::on_command(self->client_address_, message);
+            EventHandler::on_command(client_address_, message);
 
-            self->stream_buffer_.consume(self->stream_buffer_.size());
-            self->async_read();
+            stream_buffer_.consume(stream_buffer_.size());
+            async_read();
         });
 }
 

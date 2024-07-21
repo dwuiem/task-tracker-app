@@ -10,8 +10,6 @@
 
 using tcp = boost::asio::ip::tcp;
 
-using connection_ptr = std::shared_ptr<TCP::Connection>;
-
 class ClientSession {
 public:
     using session_ptr = std::shared_ptr<ClientSession>;
@@ -20,7 +18,7 @@ public:
     }
 
     void start();
-    void send(const std::string& text) const;
+    void send(const std::string& text);
 private:
     static inline const std::string ON_JOIN = "You have successfully joined";
     static inline const std::string ASK_TO_AUTH = "Please, enter your username";
@@ -37,15 +35,14 @@ private:
     void display_commands();
     void parse_command(const std::string& line);
     void create_task(const std::vector<std::string>& args);
-    void display_tasks(const std::vector<std::string>& args) const;
+    void display_tasks(const std::vector<std::string>& args);
 
     std::unordered_map<std::string, std::function<void(const std::vector<std::string>&)>> commands = {
         {"create", [this](auto && PH1) { create_task(std::forward<decltype(PH1)>(PH1)); } },
         {"display", [this](auto && PH1) { display_tasks(std::forward<decltype(PH1)>(PH1)); } }
     };
 
-    connection_ptr connection_;
-    std::string ip_address_;
+    TCP::Connection connection_;
     std::shared_ptr<User> user_;
 };
 

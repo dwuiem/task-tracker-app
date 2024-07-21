@@ -1,34 +1,31 @@
 #include "server/client_session.h"
 
-ClientSession::ClientSession(tcp::socket&& socket) {
-    connection_ = TCP::Connection::create(std::move(socket));
-    ip_address_ = connection_->get_client_address();
-}
+ClientSession::ClientSession(tcp::socket&& socket) : connection_(std::move(socket)) {}
 
 void ClientSession::start() {
-    connection_->on_connect = [this]() {
-        EventHandler::on_connect(ip_address_);
+    connection_.on_connect = [this]() {
+        EventHandler::on_connect(connection_.get_client_address());
         send(ON_JOIN);
     };
 
-    connection_->on_disconnect = [this]() {
-        EventHandler::on_disconnect(ip_address_);
+    connection_.on_disconnect = [this]() {
+        EventHandler::on_disconnect(connection_.get_client_address());
     };
 
-    connection_->start();
+    connection_.start();
 
     send(ASK_TO_AUTH);
     change_action(&ClientSession::authorize_user);
 }
 
-void ClientSession::send(const std::string& text) const {
+void ClientSession::send(const std::string& text) {
     std::stringstream message;
     message << text;
-    connection_->send(message.str());
+    connection_.send(message.str());
 }
 
 void ClientSession::change_action(void (ClientSession::*callback)(const std::string&)) {
-    connection_->set_on_read(std::bind(callback, this, std::placeholders::_1));
+    connection_.set_on_read(std::bind(callback, this, std::placeholders::_1));
 }
 
 void ClientSession::authorize_user(const std::string& name) {
@@ -64,7 +61,7 @@ void ClientSession::parse_command(const std::string& line) {
                 case '"':
                     in_quotes = !in_quotes;
                     break;
-                case ' ':
+                case DELIM:
                     if (!in_quotes && !current.empty()) {
                         tokens.push_back(current);
                         current.clear();
@@ -80,6 +77,7 @@ void ClientSession::parse_command(const std::string& line) {
         if (!current.empty()) {
             tokens.push_back(current);
         }
+        if (in_quotes) throw std::runtime_error("");
         command = tokens[0];
         tokens.erase(tokens.begin());
         args = tokens;
@@ -95,8 +93,9 @@ void ClientSession::create_task(const std::vector<std::string>& args) {
     send("Task has created");
 }
 
-void ClientSession::display_tasks(const std::vector<std::string>& args) const {
+void ClientSession::display_tasks(const std::vector<std::string>& args) {
     for (const Task& task : user_->get_all_tasks()) {
+        send("-------------------");
         send(task.get_info());
     }
 }

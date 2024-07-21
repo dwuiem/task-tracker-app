@@ -15,14 +15,9 @@ namespace TCP {
 
     namespace io = boost::asio;
 
-class Connection : public std::enable_shared_from_this<Connection> {
+class Connection {
     public:
-
-        using connection_ptr = std::shared_ptr<Connection>;
-
-        static connection_ptr create(io::ip::tcp::socket&& socket) {
-            return connection_ptr(new Connection(std::move(socket)));
-        }
+        explicit Connection(io::ip::tcp::socket&& socket);
 
         void start();
         void send(const std::string& message);
@@ -35,8 +30,6 @@ class Connection : public std::enable_shared_from_this<Connection> {
         std::function<void()> on_disconnect;
 
     private:
-
-        Connection(io::ip::tcp::socket&& socket);
 
         std::function<void(const std::string&)> on_read;
 
