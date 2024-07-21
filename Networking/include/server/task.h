@@ -11,7 +11,7 @@ class Task {
 public:
     Task() = default;
     explicit Task(std::string title);
-    Task(const std::vector<std::string>& args);
+    Task(std::vector<std::string> args);
 
     void set_title(const std::string& title);
     void set_description(const std::string& description);

@@ -26,6 +26,8 @@ namespace TCP {
     private:
         void accept();
 
+        std::unordered_map<std::string, std::shared_ptr<User>> user_map_;
+
         IPV ip_version_;
         int port_;
 

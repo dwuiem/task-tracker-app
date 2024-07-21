@@ -8,13 +8,15 @@
 #include <boost/asio.hpp>
 #include <regex>
 
+#include "task_distributor.h"
+
 using tcp = boost::asio::ip::tcp;
 
 class ClientSession {
 public:
     using session_ptr = std::shared_ptr<ClientSession>;
-    static session_ptr create(tcp::socket&& socket) {
-        return session_ptr(new ClientSession(std::move(socket)));
+    static session_ptr create(tcp::socket&& socket, std::unordered_map<std::string, std::shared_ptr<User>>& user_map) {
+        return session_ptr(new ClientSession(std::move(socket), user_map));
     }
 
     void start();
@@ -28,7 +30,7 @@ private:
 
     static inline const char DELIM = ' ';
 
-    explicit ClientSession(tcp::socket&& socket);
+    explicit ClientSession(tcp::socket&& socket, std::unordered_map<std::string, std::shared_ptr<User>>& user_map);
 
     void change_action(void (ClientSession::*callback)(const std::string&));
     void authorize_user(const std::string& name);
@@ -37,18 +39,25 @@ private:
     void create_task(const std::vector<std::string>& args);
     void display_tasks(const std::vector<std::string>& args);
 
+    std::shared_ptr<User> get_user(const std::string&);
+    bool user_exists(const std::string& name) const;
+
+    std::unordered_map<std::string, std::shared_ptr<User>>& user_map_;
+
     std::unordered_map<std::string, std::function<void(const std::vector<std::string>&)>> commands = {
         {"create", [this](auto && PH1) { create_task(std::forward<decltype(PH1)>(PH1)); } },
         {"display", [this](auto && PH1) { display_tasks(std::forward<decltype(PH1)>(PH1)); } }
     };
 
+    TaskDistributor& task_distributor_;
+
     TCP::Connection connection_;
     std::shared_ptr<User> user_;
 };
 
-class IncorrectUsername : public std::exception {
+class IncorrectUsernameException : public std::exception {
 public:
-    explicit IncorrectUsername(std::string message) : message_(std::move(message)) {}
+    explicit IncorrectUsernameException(std::string message) : message_(std::move(message)) {}
     const char *what() const noexcept override {
         return message_.c_str();
     }

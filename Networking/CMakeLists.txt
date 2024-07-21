@@ -26,6 +26,8 @@ add_library(${PROJECT_NAME} ${SOURCES}
         include/server/user.h
         src/server/task.cpp
         include/server/task.h
+        src/server/task_distributor.cpp
+        include/server/task_distributor.h
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC

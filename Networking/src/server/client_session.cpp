@@ -1,6 +1,9 @@
 #include "server/client_session.h"
 
-ClientSession::ClientSession(tcp::socket&& socket) : connection_(std::move(socket)) {}
+ClientSession::ClientSession(tcp::socket&& socket, std::unordered_map<std::string, std::shared_ptr<User>>& user_map) :
+    connection_(std::move(socket)),
+    task_distributor_(TaskDistributor::get_instance()),
+    user_map_(user_map) {}
 
 void ClientSession::start() {
     connection_.on_connect = [this]() {
@@ -28,16 +31,31 @@ void ClientSession::change_action(void (ClientSession::*callback)(const std::str
     connection_.set_on_read(std::bind(callback, this, std::placeholders::_1));
 }
 
+std::shared_ptr<User> ClientSession::get_user(const std::string& name) {
+    auto it = user_map_.find(name);
+    if (it != user_map_.end()) {
+        return it->second;
+    } else {
+        auto new_user = std::make_shared<User>(name);
+        user_map_[name] = new_user;
+        return new_user;
+    }
+}
+
+bool ClientSession::user_exists(const std::string& name) const {
+    return user_map_.find(name) != user_map_.end();
+}
+
 void ClientSession::authorize_user(const std::string& name) {
     try {
         std::regex username_pattern("^[a-zA-Z][a-zA-Z0-9_.]{2,15}$");
         if (!std::regex_match(name, username_pattern)) {
-            throw IncorrectUsername(ON_AUTH_FAIL);
+            throw IncorrectUsernameException(ON_AUTH_FAIL);
         }
-        user_ = std::make_shared<User>(name);
+        user_ = get_user(name);
         send(ON_AUTH_MESSAGE + ", " + name);
         display_commands();
-    } catch (const IncorrectUsername& e) {
+    } catch (const IncorrectUsernameException& e) {
         send(e.what());
     }
 }
@@ -49,6 +67,7 @@ void ClientSession::display_commands() {
 
 void ClientSession::parse_command(const std::string& line) {
     try {
+        if (line.empty()) throw std::runtime_error("Line is empty");
         std::string command;
         std::vector<std::string> args;
         std::vector<std::string> tokens;
@@ -77,11 +96,14 @@ void ClientSession::parse_command(const std::string& line) {
         if (!current.empty()) {
             tokens.push_back(current);
         }
-        if (in_quotes) throw std::runtime_error("");
+        if (in_quotes) throw std::runtime_error("Quotes were not closed");
         command = tokens[0];
         tokens.erase(tokens.begin());
         args = tokens;
         commands[command](args);
+    } catch (const std::runtime_error& e) {
+        send(e.what());
+        display_commands();
     } catch (...) {
         send("Command is incorrect");
         display_commands();
@@ -89,14 +111,28 @@ void ClientSession::parse_command(const std::string& line) {
 }
 
 void ClientSession::create_task(const std::vector<std::string>& args) {
-    user_->add_task(std::make_shared<Task>(args));
+    std::vector<std::shared_ptr<User>> users;
+    users.push_back(user_);
+    std::vector<std::string> task_data = {args[0], args[1], args[2]};
+    if (args.size() > 3) {
+        for (size_t i = 3; i < args.size(); i++) {
+            if (!user_exists(args[i])) throw std::runtime_error("User " + args[i] + " doesn't exist");
+            users.push_back(get_user(args[i]));
+        }
+    }
+    task_distributor_.add_task(std::make_shared<Task>(task_data), users);
     send("Task has created");
 }
 
 void ClientSession::display_tasks(const std::vector<std::string>& args) {
-    for (const Task& task : user_->get_all_tasks()) {
+    for (const auto& task : user_->get_all_tasks()) {
         send("-------------------");
-        send(task.get_info());
+        send(task->get_info());
+        std::string names;
+        for (const auto& collaborator : task_distributor_.get_collaborators(task)) {
+            names += collaborator->get_name() + DELIM;
+        }
+        send("Collaborators: " + names);
     }
 }
 
