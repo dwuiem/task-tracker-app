@@ -7,6 +7,7 @@
 
 #include <boost/asio.hpp>
 #include <regex>
+#include <ctime>
 
 #include "task_distributor.h"
 
@@ -55,9 +56,19 @@ private:
     std::shared_ptr<User> user_;
 };
 
-class IncorrectUsernameException : public std::exception {
+class InvalidCommandException : public std::exception {
 public:
-    explicit IncorrectUsernameException(std::string message) : message_(std::move(message)) {}
+    explicit InvalidCommandException(std::string message) : message_(std::move(message)) {}
+    const char *what() const noexcept override {
+        return message_.c_str();
+    }
+private:
+    std::string message_;
+};
+
+class InvalidUsernameException : public std::exception {
+public:
+    explicit InvalidUsernameException(std::string message) : message_(std::move(message)) {}
     const char *what() const noexcept override {
         return message_.c_str();
     }

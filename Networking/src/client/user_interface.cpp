@@ -16,7 +16,7 @@ std::string UserInterface::read_line() {
 }
 
 void UserInterface::start() {
-    std::cout << "Enter \"" << JOIN << "\" to connect manager\n";
+    std::cout << "Enter \"" << JOIN << "\" to connect\n";
     confirm_join();
 }
 

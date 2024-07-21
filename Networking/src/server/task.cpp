@@ -21,9 +21,9 @@ void Task::set_date(const std::string& date) {
     date_ = date;
 }
 std::string Task::get_info() const {
-    std::string s = "Task ID: " + std::to_string(id_) + "\n"
-                    "Title: " + title_ + "\n"
-                    "Description: " + description_ + "\n"
-                    "Deadline: " + date_;
+    std::string s = "### Task ID: " + std::to_string(id_) + "\n"
+                    "### Title: " + title_ + "\n"
+                    "### Description: " + description_ + "\n"
+                    "### Deadline: " + date_;
     return s;
 }

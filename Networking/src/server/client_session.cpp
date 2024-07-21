@@ -22,7 +22,12 @@ void ClientSession::start() {
 }
 
 void ClientSession::send(const std::string& text) {
+    std::time_t now = std::time(nullptr);
+    std::tm* localTime = std::localtime(&now);
     std::stringstream message;
+    message << "[" << std::setw(2) << std::setfill('0') << localTime->tm_hour << ":"
+            << std::setw(2) << std::setfill('0') << localTime->tm_min << ":"
+            << std::setw(2) << std::setfill('0') << localTime->tm_sec << "] ";
     message << text;
     connection_.send(message.str());
 }
@@ -50,12 +55,12 @@ void ClientSession::authorize_user(const std::string& name) {
     try {
         std::regex username_pattern("^[a-zA-Z][a-zA-Z0-9_.]{2,15}$");
         if (!std::regex_match(name, username_pattern)) {
-            throw IncorrectUsernameException(ON_AUTH_FAIL);
+            throw InvalidUsernameException(ON_AUTH_FAIL);
         }
         user_ = get_user(name);
         send(ON_AUTH_MESSAGE + ", " + name);
         display_commands();
-    } catch (const IncorrectUsernameException& e) {
+    } catch (const InvalidUsernameException& e) {
         send(e.what());
     }
 }
@@ -67,7 +72,7 @@ void ClientSession::display_commands() {
 
 void ClientSession::parse_command(const std::string& line) {
     try {
-        if (line.empty()) throw std::runtime_error("Line is empty");
+        if (line.empty()) throw InvalidCommandException("Line is empty");
         std::string command;
         std::vector<std::string> args;
         std::vector<std::string> tokens;
@@ -96,16 +101,17 @@ void ClientSession::parse_command(const std::string& line) {
         if (!current.empty()) {
             tokens.push_back(current);
         }
-        if (in_quotes) throw std::runtime_error("Quotes were not closed");
+        if (in_quotes) throw InvalidCommandException("Quotes were not closed");
         command = tokens[0];
         tokens.erase(tokens.begin());
         args = tokens;
-        commands[command](args);
-    } catch (const std::runtime_error& e) {
+        auto command_handler = commands.at(command);
+        command_handler(args);
+    } catch (const InvalidCommandException& e) {
         send(e.what());
         display_commands();
-    } catch (...) {
-        send("Command is incorrect");
+    } catch (const std::out_of_range& e) {
+        send("Command doesn't exist");
         display_commands();
     }
 }
@@ -116,7 +122,7 @@ void ClientSession::create_task(const std::vector<std::string>& args) {
     std::vector<std::string> task_data = {args[0], args[1], args[2]};
     if (args.size() > 3) {
         for (size_t i = 3; i < args.size(); i++) {
-            if (!user_exists(args[i])) throw std::runtime_error("User " + args[i] + " doesn't exist");
+            if (!user_exists(args[i])) throw InvalidCommandException("User " + args[i] + " doesn't exist");
             users.push_back(get_user(args[i]));
         }
     }
@@ -125,14 +131,13 @@ void ClientSession::create_task(const std::vector<std::string>& args) {
 }
 
 void ClientSession::display_tasks(const std::vector<std::string>& args) {
+    send("Task list\n");
     for (const auto& task : user_->get_all_tasks()) {
-        send("-------------------");
-        send(task->get_info());
         std::string names;
         for (const auto& collaborator : task_distributor_.get_collaborators(task)) {
             names += collaborator->get_name() + DELIM;
         }
-        send("Collaborators: " + names);
+        send(task->get_info() + "\nCollaborators: " + names);
     }
 }
 
