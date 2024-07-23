@@ -6,7 +6,8 @@
 #include <server/user.h>
 
 #include <boost/asio.hpp>
-#include <regex>
+#include <boost/regex.hpp>
+
 #include <ctime>
 
 #include "task_distributor.h"
@@ -22,6 +23,10 @@ public:
 
     void start();
     void send(const std::string& text);
+
+    std::function<void(const std::shared_ptr<User>&, const std::string& message)> send_to_user;
+
+    std::shared_ptr<User> get_user() const;
 private:
     static inline const std::string ON_JOIN = "You have successfully joined";
     static inline const std::string ASK_TO_AUTH = "Please, enter your username";
@@ -34,13 +39,14 @@ private:
     explicit ClientSession(tcp::socket&& socket, std::unordered_map<std::string, std::shared_ptr<User>>& user_map);
 
     void change_action(void (ClientSession::*callback)(const std::string&));
-    void authorize_user(const std::string& name);
+    void authorize_user(const std::string& username);
     void display_commands();
     void parse_command(const std::string& line);
+    void execute_command(const std::string& command, const std::vector<std::string>& args);
     void create_task(const std::vector<std::string>& args);
     void display_tasks(const std::vector<std::string>& args);
 
-    std::shared_ptr<User> get_user(const std::string&);
+    std::shared_ptr<User> get_authorized_user(const std::string& name);
     bool user_exists(const std::string& name) const;
 
     std::unordered_map<std::string, std::shared_ptr<User>>& user_map_;

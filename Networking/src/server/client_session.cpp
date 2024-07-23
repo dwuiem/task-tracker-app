@@ -36,10 +36,9 @@ void ClientSession::change_action(void (ClientSession::*callback)(const std::str
     connection_.set_on_read(std::bind(callback, this, std::placeholders::_1));
 }
 
-std::shared_ptr<User> ClientSession::get_user(const std::string& name) {
-    auto it = user_map_.find(name);
-    if (it != user_map_.end()) {
-        return it->second;
+std::shared_ptr<User> ClientSession::get_authorized_user(const std::string& name) {
+    if (user_exists(name)) {
+        return user_map_.at(name);
     } else {
         auto new_user = std::make_shared<User>(name);
         user_map_[name] = new_user;
@@ -51,14 +50,12 @@ bool ClientSession::user_exists(const std::string& name) const {
     return user_map_.find(name) != user_map_.end();
 }
 
-void ClientSession::authorize_user(const std::string& name) {
+void ClientSession::authorize_user(const std::string& username) {
     try {
-        std::regex username_pattern("^[a-zA-Z][a-zA-Z0-9_.]{2,15}$");
-        if (!std::regex_match(name, username_pattern)) {
-            throw InvalidUsernameException(ON_AUTH_FAIL);
-        }
-        user_ = get_user(name);
-        send(ON_AUTH_MESSAGE + ", " + name);
+        boost::regex username_pattern{"^[a-zA-Z][a-zA-Z0-9_.]{2,15}$"};
+        if (!boost::regex_match(username, username_pattern)) throw InvalidUsernameException(ON_AUTH_FAIL);
+        user_ = get_authorized_user(username);
+        send(ON_AUTH_MESSAGE + ", " + username);
         display_commands();
     } catch (const InvalidUsernameException& e) {
         send(e.what());
@@ -71,15 +68,13 @@ void ClientSession::display_commands() {
 }
 
 void ClientSession::parse_command(const std::string& line) {
+    std::string command;
+    std::vector<std::string> args;
     try {
         if (line.empty()) throw InvalidCommandException("Line is empty");
-        std::string command;
-        std::vector<std::string> args;
         std::vector<std::string> tokens;
-
         std::string current;
         bool in_quotes = false;
-
         for (char c : line) {
             switch (c) {
                 case '"':
@@ -98,35 +93,45 @@ void ClientSession::parse_command(const std::string& line) {
                     break;
             }
         }
-        if (!current.empty()) {
-            tokens.push_back(current);
-        }
+        if (!current.empty()) tokens.push_back(current);
         if (in_quotes) throw InvalidCommandException("Quotes were not closed");
         command = tokens[0];
         tokens.erase(tokens.begin());
         args = tokens;
-        auto command_handler = commands.at(command);
-        command_handler(args);
+        execute_command(command, args);
     } catch (const InvalidCommandException& e) {
         send(e.what());
-        display_commands();
+    }
+    display_commands();
+}
+
+void ClientSession::execute_command(const std::string& command, const std::vector<std::string>& args) {
+    try {
+        auto command_handler = commands.at(command);
+        command_handler(args);
     } catch (const std::out_of_range& e) {
         send("Command doesn't exist");
-        display_commands();
+    } catch (const std::exception& e) {
+        send(e.what());
     }
 }
 
 void ClientSession::create_task(const std::vector<std::string>& args) {
-    std::vector<std::shared_ptr<User>> users;
-    users.push_back(user_);
-    std::vector<std::string> task_data = {args[0], args[1], args[2]};
+    if (args.size() < 3) throw InvalidCommandException("Too few arguments");
+    std::vector<std::shared_ptr<User>> collaborators = {user_};
     if (args.size() > 3) {
         for (size_t i = 3; i < args.size(); i++) {
-            if (!user_exists(args[i])) throw InvalidCommandException("User " + args[i] + " doesn't exist");
-            users.push_back(get_user(args[i]));
+            if (!user_exists(args[i])) throw InvalidCommandException("User \"" + args[i] + "\" doesn't exist");
+            auto user = user_map_.at(args[i]);
+            collaborators.push_back(user);
         }
     }
-    task_distributor_.add_task(std::make_shared<Task>(task_data), users);
+    task_distributor_.add_task(std::make_shared<Task>(args[0], args[1], args[2]), collaborators);
+    for (const auto& collaborator : collaborators) {
+        if (collaborator != user_) {
+            send_to_user(collaborator, "User \"" + user_->get_name() + "\" added a task for you");
+        }
+    }
     send("Task has created");
 }
 
@@ -139,5 +144,8 @@ void ClientSession::display_tasks(const std::vector<std::string>& args) {
         }
         send(task->get_info() + "\nCollaborators: " + names);
     }
+}
+std::shared_ptr<User> ClientSession::get_user() const {
+    return user_;
 }
 

@@ -1,14 +1,12 @@
+#include <utility>
+
 #include "server/task.h"
 
-Task::Task(std::string title) : title_(std::move(title)), id_(counter++) {
-    description_ = "-";
-    date_ = "-";
-}
+Task::Task(std::string title, std::string description, std::string date) : id_(counter++),
+                                                                           title_(std::move(title)),
+                                                                           description_(std::move(description)),
+                                                                           date_(std::move(date)) {
 
-Task::Task(std::vector<std::string> args) : id_(counter++) {
-    title_ = args[0];
-    description_ = args[1];
-    date_ = args[2];
 }
 
 void Task::set_title(const std::string& title) {

@@ -25,6 +25,7 @@ namespace TCP {
         int run();
     private:
         void accept();
+        void post_to_client(const std::shared_ptr<User>& user, const std::string& message);
 
         std::unordered_map<std::string, std::shared_ptr<User>> user_map_;
 

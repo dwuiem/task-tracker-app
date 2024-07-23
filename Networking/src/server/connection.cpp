@@ -10,6 +10,7 @@ TCP::Connection::Connection(boost::asio::ip::tcp::socket&& socket) : socket_(std
     }
 }
 
+
 void TCP::Connection::start() {
     if (on_connect) {
         on_connect();

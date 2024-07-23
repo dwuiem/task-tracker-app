@@ -11,3 +11,6 @@ std::vector<std::shared_ptr<Task>> User::get_all_tasks() const {
 std::string User::get_name() const {
     return name_;
 }
+int User::get_id() const {
+    return id_;
+}

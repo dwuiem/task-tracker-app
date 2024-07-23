@@ -15,6 +15,7 @@ public:
     void add_task(const std::shared_ptr<Task>& task);
     std::vector<std::shared_ptr<Task>> get_all_tasks() const;
     std::string get_name() const;
+    int get_id() const;
 private:
     static inline int counter = 0;
 
