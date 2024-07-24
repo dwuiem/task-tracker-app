@@ -3,7 +3,6 @@
 
 #include <boost/asio.hpp>
 
-#include "server/connection.h"
 #include "server/client_session.h"
 
 #include <unordered_set>
@@ -26,8 +25,6 @@ namespace TCP {
     private:
         void accept();
         void post_to_client(const std::shared_ptr<User>& user, const std::string& message);
-
-        std::unordered_map<std::string, std::shared_ptr<User>> user_map_;
 
         IPV ip_version_;
         int port_;

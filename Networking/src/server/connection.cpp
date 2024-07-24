@@ -11,7 +11,7 @@ TCP::Connection::Connection(boost::asio::ip::tcp::socket&& socket) : socket_(std
 }
 
 
-void TCP::Connection::start() {
+void TCP::Connection::connect() {
     if (on_connect) {
         on_connect();
     }
@@ -64,9 +64,16 @@ void TCP::Connection::async_read() {
         });
 }
 
-void TCP::Connection::send(const std::string& message) {
+void TCP::Connection::send_message(const std::string& message) {
+    std::time_t now = std::time(nullptr);
+    std::tm* localTime = std::localtime(&now);
+    std::stringstream text;
+    text << "[" << std::setw(2) << std::setfill('0') << localTime->tm_hour << ":"
+            << std::setw(2) << std::setfill('0') << localTime->tm_min << ":"
+            << std::setw(2) << std::setfill('0') << localTime->tm_sec << "] ";
+    text << message;
     bool queueIdle = outgoing_text_.empty();
-    outgoing_text_.push(message);
+    outgoing_text_.push(text.str());
     if (queueIdle) {
         async_write();
     }
@@ -80,8 +87,5 @@ void TCP::Connection::close() {
 }
 std::string TCP::Connection::get_client_address() const noexcept {
     return client_address_;
-}
-void TCP::Connection::set_on_read(std::function<void(const std::string&)> callback) {
-    on_read = std::move(callback);
 }
 

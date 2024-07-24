@@ -1,7 +1,5 @@
 #include "server/client_authorization.h"
 
-ClientAuthorization::ClientAuthorization(TCP::Connection connection)  : connection_(connection) {}
-
 void ClientAuthorization::authorize_user(const std::string& username) {
     if (!boost::regex_match(username, username_pattern_)) throw InvalidUsernameException(ON_AUTH_FAIL);
     if (user_exists(username)) {

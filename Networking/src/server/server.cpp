@@ -24,7 +24,7 @@ void TCP::Server::accept() {
 
     acceptor_.async_accept(*socket_, [this] (const boost::system::error_code ec) {
         if (!ec) {
-            session_ptr session = ClientSession::create(std::move(*socket_), user_map_);
+            session_ptr session = ClientSession::create(std::move(*socket_));
             sessions_.emplace(session);
             session->send_to_user = [this] (const std::shared_ptr<User>& user, const std::string& message) {
                 post_to_client(user, message);
@@ -37,7 +37,7 @@ void TCP::Server::accept() {
 void TCP::Server::post_to_client(const std::shared_ptr<User>& user, const std::string& message) {
     for (const auto& session : sessions_) {
         if (session->get_user() == user) {
-            session->send(message);
+            session->send_message(message);
             break;
         }
     }

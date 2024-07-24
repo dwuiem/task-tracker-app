@@ -12,8 +12,8 @@
 
 class ClientAuthorization {
 public:
-    ClientAuthorization(TCP::Connection connection);
-    static std::unordered_map<std::string, std::shared_ptr<User>>& user_map;
+    ClientAuthorization() = default;
+    static inline std::unordered_map<std::string, std::shared_ptr<User>> user_map;
 protected:
     void authorize_user(const std::string& username);
     static bool user_exists(const std::string& username) noexcept;
@@ -21,8 +21,6 @@ protected:
 private:
     const static inline boost::regex username_pattern_{"^[a-zA-Z][a-zA-Z0-9_.]{2,15}$"};
     static inline const std::string ON_AUTH_FAIL = "User name is incorrect. Please retry";
-
-    TCP::Connection connection_;
 };
 
 class InvalidUsernameException : public std::exception {

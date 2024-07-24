@@ -11,38 +11,35 @@
 
 namespace TCP {
 
-    const uint16_t MAX_BUFFER_SIZE = 65535;
+const uint16_t MAX_BUFFER_SIZE = 65535;
 
-    namespace io = boost::asio;
+namespace io = boost::asio;
 
 class Connection {
-    public:
-        explicit Connection(io::ip::tcp::socket&& socket);
+public:
+    explicit Connection(io::ip::tcp::socket&& socket);
 
-        void start();
-        void send(const std::string& message);
+    void connect();
+    void send_message(const std::string& message);
 
-        void set_on_read(std::function<void(const std::string&)> callback);
+    std::string get_client_address() const noexcept;
 
-        std::string get_client_address() const noexcept;
+protected:
+    std::function<void()> on_connect;
+    std::function<void()> on_disconnect;
+    std::function<void(const std::string&)> on_read;
 
-        std::function<void()> on_connect;
-        std::function<void()> on_disconnect;
+private:
+    void async_write();
+    void async_read();
+    void on_write();
+    void close();
 
-    private:
+    std::string client_address_;
+    std::queue<std::string> outgoing_text_;
 
-        std::function<void(const std::string&)> on_read;
-
-        void async_write();
-        void async_read();
-        void on_write();
-        void close();
-
-        std::string client_address_;
-        std::queue<std::string> outgoing_text_;
-
-        io::ip::tcp::socket socket_;
-        io::streambuf stream_buffer_ {MAX_BUFFER_SIZE + 1};
+    io::ip::tcp::socket socket_;
+    io::streambuf stream_buffer_{MAX_BUFFER_SIZE + 1};
 };
 }
 
