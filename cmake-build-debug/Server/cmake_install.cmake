@@ -1,4 +1,4 @@
-# Install script for directory: D:/my folder/c/c++ clion projects/network-task-tracking/Server
+# Install script for directory: D:/my folder/c/c++ clion projects/network-task-tracking/server
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

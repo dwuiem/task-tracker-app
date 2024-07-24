@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: Client
+# Project: client
 # Configurations: Debug
 # =============================================================================
 
@@ -69,120 +69,117 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 
 # =============================================================================
-# Object build statements for STATIC_LIBRARY target Networking
+# Object build statements for STATIC_LIBRARY target networking
 
 
 #############################################
-# Order-only phony target for Networking
+# Order-only phony target for networking
 
-build cmake_object_order_depends_target_Networking: phony || Networking/CMakeFiles/Networking.dir
+build cmake_object_order_depends_target_networking: phony || Networking/CMakeFiles/networking.dir
 
-build Networking/CMakeFiles/Networking.dir/src/server/server.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/Networking/src/server/server.cpp || cmake_object_order_depends_target_Networking
+build Networking/CMakeFiles/networking.dir/src/server/server.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/networking/src/server/server.cpp || cmake_object_order_depends_target_networking
   DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\server\server.cpp.obj.d
+  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\server.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/Networking/include" -IC:/libraries/boost_1_85_0
-  OBJECT_DIR = Networking\CMakeFiles\Networking.dir
-  OBJECT_FILE_DIR = Networking\CMakeFiles\Networking.dir\src\server
-  TARGET_COMPILE_PDB = Networking\CMakeFiles\Networking.dir\Networking.pdb
-  TARGET_PDB = Networking\libNetworking.pdb
+  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/networking/include" -IC:/libraries/boost_1_85_0
+  OBJECT_DIR = Networking\CMakeFiles\networking.dir
+  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
 
-build Networking/CMakeFiles/Networking.dir/src/server/connection.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/Networking/src/server/connection.cpp || cmake_object_order_depends_target_Networking
+build Networking/CMakeFiles/networking.dir/src/server/connection.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/networking/src/server/connection.cpp || cmake_object_order_depends_target_networking
   DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\server\connection.cpp.obj.d
+  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\connection.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/Networking/include" -IC:/libraries/boost_1_85_0
-  OBJECT_DIR = Networking\CMakeFiles\Networking.dir
-  OBJECT_FILE_DIR = Networking\CMakeFiles\Networking.dir\src\server
-  TARGET_COMPILE_PDB = Networking\CMakeFiles\Networking.dir\Networking.pdb
-  TARGET_PDB = Networking\libNetworking.pdb
+  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/networking/include" -IC:/libraries/boost_1_85_0
+  OBJECT_DIR = Networking\CMakeFiles\networking.dir
+  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
 
-build Networking/CMakeFiles/Networking.dir/src/client/client.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/Networking/src/client/client.cpp || cmake_object_order_depends_target_Networking
+build Networking/CMakeFiles/networking.dir/src/client/client.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/networking/src/client/client.cpp || cmake_object_order_depends_target_networking
   DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\client\client.cpp.obj.d
+  DEP_FILE = Networking\CMakeFiles\networking.dir\src\client\client.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/Networking/include" -IC:/libraries/boost_1_85_0
-  OBJECT_DIR = Networking\CMakeFiles\Networking.dir
-  OBJECT_FILE_DIR = Networking\CMakeFiles\Networking.dir\src\client
-  TARGET_COMPILE_PDB = Networking\CMakeFiles\Networking.dir\Networking.pdb
-  TARGET_PDB = Networking\libNetworking.pdb
+  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/networking/include" -IC:/libraries/boost_1_85_0
+  OBJECT_DIR = Networking\CMakeFiles\networking.dir
+  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\client
 
-build Networking/CMakeFiles/Networking.dir/src/client/user_interface.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/Networking/src/client/user_interface.cpp || cmake_object_order_depends_target_Networking
+build Networking/CMakeFiles/networking.dir/src/client/user_interface.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/networking/src/client/user_interface.cpp || cmake_object_order_depends_target_networking
   DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\client\user_interface.cpp.obj.d
+  DEP_FILE = Networking\CMakeFiles\networking.dir\src\client\user_interface.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/Networking/include" -IC:/libraries/boost_1_85_0
-  OBJECT_DIR = Networking\CMakeFiles\Networking.dir
-  OBJECT_FILE_DIR = Networking\CMakeFiles\Networking.dir\src\client
-  TARGET_COMPILE_PDB = Networking\CMakeFiles\Networking.dir\Networking.pdb
-  TARGET_PDB = Networking\libNetworking.pdb
+  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/networking/include" -IC:/libraries/boost_1_85_0
+  OBJECT_DIR = Networking\CMakeFiles\networking.dir
+  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\client
 
-build Networking/CMakeFiles/Networking.dir/src/client/application.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/Networking/src/client/application.cpp || cmake_object_order_depends_target_Networking
+build Networking/CMakeFiles/networking.dir/src/client/application.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/networking/src/client/application.cpp || cmake_object_order_depends_target_networking
   DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\client\application.cpp.obj.d
+  DEP_FILE = Networking\CMakeFiles\networking.dir\src\client\application.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/Networking/include" -IC:/libraries/boost_1_85_0
-  OBJECT_DIR = Networking\CMakeFiles\Networking.dir
-  OBJECT_FILE_DIR = Networking\CMakeFiles\Networking.dir\src\client
-  TARGET_COMPILE_PDB = Networking\CMakeFiles\Networking.dir\Networking.pdb
-  TARGET_PDB = Networking\libNetworking.pdb
+  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/networking/include" -IC:/libraries/boost_1_85_0
+  OBJECT_DIR = Networking\CMakeFiles\networking.dir
+  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\client
 
-build Networking/CMakeFiles/Networking.dir/src/server/event_handler.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/Networking/src/server/event_handler.cpp || cmake_object_order_depends_target_Networking
+build Networking/CMakeFiles/networking.dir/src/server/event_handler.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/networking/src/server/event_handler.cpp || cmake_object_order_depends_target_networking
   DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\server\event_handler.cpp.obj.d
+  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\event_handler.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/Networking/include" -IC:/libraries/boost_1_85_0
-  OBJECT_DIR = Networking\CMakeFiles\Networking.dir
-  OBJECT_FILE_DIR = Networking\CMakeFiles\Networking.dir\src\server
-  TARGET_COMPILE_PDB = Networking\CMakeFiles\Networking.dir\Networking.pdb
-  TARGET_PDB = Networking\libNetworking.pdb
+  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/networking/include" -IC:/libraries/boost_1_85_0
+  OBJECT_DIR = Networking\CMakeFiles\networking.dir
+  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
 
-build Networking/CMakeFiles/Networking.dir/src/server/client_session.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/Networking/src/server/client_session.cpp || cmake_object_order_depends_target_Networking
+build Networking/CMakeFiles/networking.dir/src/server/client_session.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/networking/src/server/client_session.cpp || cmake_object_order_depends_target_networking
   DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\server\client_session.cpp.obj.d
+  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\client_session.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/Networking/include" -IC:/libraries/boost_1_85_0
-  OBJECT_DIR = Networking\CMakeFiles\Networking.dir
-  OBJECT_FILE_DIR = Networking\CMakeFiles\Networking.dir\src\server
-  TARGET_COMPILE_PDB = Networking\CMakeFiles\Networking.dir\Networking.pdb
-  TARGET_PDB = Networking\libNetworking.pdb
+  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/networking/include" -IC:/libraries/boost_1_85_0
+  OBJECT_DIR = Networking\CMakeFiles\networking.dir
+  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
 
-build Networking/CMakeFiles/Networking.dir/src/server/user.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/Networking/src/server/user.cpp || cmake_object_order_depends_target_Networking
+build Networking/CMakeFiles/networking.dir/src/server/user.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/networking/src/server/user.cpp || cmake_object_order_depends_target_networking
   DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\server\user.cpp.obj.d
+  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\user.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/Networking/include" -IC:/libraries/boost_1_85_0
-  OBJECT_DIR = Networking\CMakeFiles\Networking.dir
-  OBJECT_FILE_DIR = Networking\CMakeFiles\Networking.dir\src\server
-  TARGET_COMPILE_PDB = Networking\CMakeFiles\Networking.dir\Networking.pdb
-  TARGET_PDB = Networking\libNetworking.pdb
+  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/networking/include" -IC:/libraries/boost_1_85_0
+  OBJECT_DIR = Networking\CMakeFiles\networking.dir
+  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
 
-build Networking/CMakeFiles/Networking.dir/src/server/task.cpp.obj: CXX_COMPILER__Networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/Networking/src/server/task.cpp || cmake_object_order_depends_target_Networking
+build Networking/CMakeFiles/networking.dir/src/server/task.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/networking/src/server/task.cpp || cmake_object_order_depends_target_networking
   DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\Networking.dir\src\server\task.cpp.obj.d
+  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\task.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/Networking/include" -IC:/libraries/boost_1_85_0
-  OBJECT_DIR = Networking\CMakeFiles\Networking.dir
-  OBJECT_FILE_DIR = Networking\CMakeFiles\Networking.dir\src\server
-  TARGET_COMPILE_PDB = Networking\CMakeFiles\Networking.dir\Networking.pdb
-  TARGET_PDB = Networking\libNetworking.pdb
+  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/networking/include" -IC:/libraries/boost_1_85_0
+  OBJECT_DIR = Networking\CMakeFiles\networking.dir
+  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
+
+build Networking/CMakeFiles/networking.dir/src/server/task_distributor.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/networking/src/server/task_distributor.cpp || cmake_object_order_depends_target_networking
+  DEFINES = -D_WIN32_WINNT=0x0601
+  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\task_distributor.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/networking/include" -IC:/libraries/boost_1_85_0
+  OBJECT_DIR = Networking\CMakeFiles\networking.dir
+  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
+
+build Networking/CMakeFiles/networking.dir/src/server/client_authorization.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/networking/src/server/client_authorization.cpp || cmake_object_order_depends_target_networking
+  DEFINES = -D_WIN32_WINNT=0x0601
+  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\client_authorization.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/networking/include" -IC:/libraries/boost_1_85_0
+  OBJECT_DIR = Networking\CMakeFiles\networking.dir
+  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
 
 
 # =============================================================================
-# Link build statements for STATIC_LIBRARY target Networking
+# Link build statements for STATIC_LIBRARY target networking
 
 
 #############################################
-# Link the static library Networking\libNetworking.a
+# Link the static library Networking\libnetworking.a
 
-build Networking/libNetworking.a: CXX_STATIC_LIBRARY_LINKER__Networking_Debug Networking/CMakeFiles/Networking.dir/src/server/server.cpp.obj Networking/CMakeFiles/Networking.dir/src/server/connection.cpp.obj Networking/CMakeFiles/Networking.dir/src/client/client.cpp.obj Networking/CMakeFiles/Networking.dir/src/client/user_interface.cpp.obj Networking/CMakeFiles/Networking.dir/src/client/application.cpp.obj Networking/CMakeFiles/Networking.dir/src/server/event_handler.cpp.obj Networking/CMakeFiles/Networking.dir/src/server/client_session.cpp.obj Networking/CMakeFiles/Networking.dir/src/server/user.cpp.obj Networking/CMakeFiles/Networking.dir/src/server/task.cpp.obj
+build Networking/libnetworking.a: CXX_STATIC_LIBRARY_LINKER__networking_Debug Networking/CMakeFiles/networking.dir/src/server/server.cpp.obj Networking/CMakeFiles/networking.dir/src/server/connection.cpp.obj Networking/CMakeFiles/networking.dir/src/client/client.cpp.obj Networking/CMakeFiles/networking.dir/src/client/user_interface.cpp.obj Networking/CMakeFiles/networking.dir/src/client/application.cpp.obj Networking/CMakeFiles/networking.dir/src/server/event_handler.cpp.obj Networking/CMakeFiles/networking.dir/src/server/client_session.cpp.obj Networking/CMakeFiles/networking.dir/src/server/user.cpp.obj Networking/CMakeFiles/networking.dir/src/server/task.cpp.obj Networking/CMakeFiles/networking.dir/src/server/task_distributor.cpp.obj Networking/CMakeFiles/networking.dir/src/server/client_authorization.cpp.obj
   LANGUAGE_COMPILE_FLAGS = -g
-  OBJECT_DIR = Networking\CMakeFiles\Networking.dir
+  OBJECT_DIR = Networking\CMakeFiles\networking.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = Networking\CMakeFiles\Networking.dir\Networking.pdb
-  TARGET_FILE = Networking\libNetworking.a
-  TARGET_PDB = Networking\libNetworking.pdb
+  TARGET_FILE = Networking\libnetworking.a
+  TARGET_PDB = networking.a.dbg
 
 
 #############################################
@@ -213,41 +210,38 @@ build Networking/rebuild_cache: phony Networking/CMakeFiles/rebuild_cache.util
 # =============================================================================
 
 # =============================================================================
-# Object build statements for EXECUTABLE target Client
+# Object build statements for EXECUTABLE target client
 
 
 #############################################
-# Order-only phony target for Client
+# Order-only phony target for client
 
-build cmake_object_order_depends_target_Client: phony || cmake_object_order_depends_target_Networking
+build cmake_object_order_depends_target_client: phony || Client/CMakeFiles/client.dir
 
-build Client/CMakeFiles/Client.dir/main.cpp.obj: CXX_COMPILER__Client_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/Client/main.cpp || cmake_object_order_depends_target_Client
-  DEP_FILE = Client\CMakeFiles\Client.dir\main.cpp.obj.d
+build Client/CMakeFiles/client.dir/main.cpp.obj: CXX_COMPILER__client_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/client/main.cpp || cmake_object_order_depends_target_client
+  DEP_FILE = Client\CMakeFiles\client.dir\main.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/Client/Networking" -I"D:/my folder/c/c++ clion projects/network-task-tracking/Networking/include" -IC:/libraries/boost_1_85_0
-  OBJECT_DIR = Client\CMakeFiles\Client.dir
-  OBJECT_FILE_DIR = Client\CMakeFiles\Client.dir
-  TARGET_COMPILE_PDB = Client\CMakeFiles\Client.dir\
-  TARGET_PDB = Client\Client.pdb
+  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/client/Networking"
+  OBJECT_DIR = Client\CMakeFiles\client.dir
+  OBJECT_FILE_DIR = Client\CMakeFiles\client.dir
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target Client
+# Link build statements for EXECUTABLE target client
 
 
 #############################################
-# Link the executable Client\Client.exe
+# Link the executable Client\client.exe
 
-build Client/Client.exe: CXX_EXECUTABLE_LINKER__Client_Debug Client/CMakeFiles/Client.dir/main.cpp.obj | Networking/libNetworking.a || Networking/libNetworking.a
+build Client/client.exe: CXX_EXECUTABLE_LINKER__client_Debug Client/CMakeFiles/client.dir/main.cpp.obj
   FLAGS = -g
-  LINK_LIBRARIES = Networking/libNetworking.a  -lws2_32  -lwsock32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = Client\CMakeFiles\Client.dir
+  LINK_LIBRARIES = -lNetworking  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = Client\CMakeFiles\client.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = Client\CMakeFiles\Client.dir\
-  TARGET_FILE = Client\Client.exe
-  TARGET_IMPLIB = Client\libClient.dll.a
-  TARGET_PDB = Client\Client.pdb
+  TARGET_FILE = Client\client.exe
+  TARGET_IMPLIB = Client\libclient.dll.a
+  TARGET_PDB = client.exe.dbg
 
 
 #############################################
@@ -278,41 +272,38 @@ build Client/rebuild_cache: phony Client/CMakeFiles/rebuild_cache.util
 # =============================================================================
 
 # =============================================================================
-# Object build statements for EXECUTABLE target Server
+# Object build statements for EXECUTABLE target server
 
 
 #############################################
-# Order-only phony target for Server
+# Order-only phony target for server
 
-build cmake_object_order_depends_target_Server: phony || cmake_object_order_depends_target_Networking
+build cmake_object_order_depends_target_server: phony || cmake_object_order_depends_target_networking
 
-build Server/CMakeFiles/Server.dir/main.cpp.obj: CXX_COMPILER__Server_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/Server/main.cpp || cmake_object_order_depends_target_Server
-  DEP_FILE = Server\CMakeFiles\Server.dir\main.cpp.obj.d
+build Server/CMakeFiles/server.dir/main.cpp.obj: CXX_COMPILER__server_unscanned_Debug D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/server/main.cpp || cmake_object_order_depends_target_server
+  DEP_FILE = Server\CMakeFiles\server.dir\main.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/Server/Networking" -I"D:/my folder/c/c++ clion projects/network-task-tracking/Networking/include" -IC:/libraries/boost_1_85_0
-  OBJECT_DIR = Server\CMakeFiles\Server.dir
-  OBJECT_FILE_DIR = Server\CMakeFiles\Server.dir
-  TARGET_COMPILE_PDB = Server\CMakeFiles\Server.dir\
-  TARGET_PDB = Server\Server.pdb
+  INCLUDES = -I"D:/my folder/c/c++ clion projects/network-task-tracking/server/networking" -I"D:/my folder/c/c++ clion projects/network-task-tracking/networking/include" -IC:/libraries/boost_1_85_0
+  OBJECT_DIR = Server\CMakeFiles\server.dir
+  OBJECT_FILE_DIR = Server\CMakeFiles\server.dir
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target Server
+# Link build statements for EXECUTABLE target server
 
 
 #############################################
-# Link the executable Server\Server.exe
+# Link the executable Server\server.exe
 
-build Server/Server.exe: CXX_EXECUTABLE_LINKER__Server_Debug Server/CMakeFiles/Server.dir/main.cpp.obj | Networking/libNetworking.a || Networking/libNetworking.a
+build Server/server.exe: CXX_EXECUTABLE_LINKER__server_Debug Server/CMakeFiles/server.dir/main.cpp.obj | Networking/libnetworking.a || Networking/libnetworking.a
   FLAGS = -g
-  LINK_LIBRARIES = Networking/libNetworking.a  -lws2_32  -lwsock32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = Server\CMakeFiles\Server.dir
+  LINK_LIBRARIES = Networking/libnetworking.a  -lws2_32  -lwsock32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = Server\CMakeFiles\server.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = Server\CMakeFiles\Server.dir\
-  TARGET_FILE = Server\Server.exe
-  TARGET_IMPLIB = Server\libServer.dll.a
-  TARGET_PDB = Server\Server.pdb
+  TARGET_FILE = Server\server.exe
+  TARGET_IMPLIB = Server\libserver.dll.a
+  TARGET_PDB = server.exe.dbg
 
 
 #############################################
@@ -340,17 +331,17 @@ build Server/rebuild_cache: phony Server/CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
-build Client: phony Client/Client.exe
+build client: phony Client/client.exe
 
-build Client.exe: phony Client/Client.exe
+build client.exe: phony Client/client.exe
 
-build Networking: phony Networking/libNetworking.a
+build libnetworking.a: phony Networking/libnetworking.a
 
-build Server: phony Server/Server.exe
+build networking: phony Networking/libnetworking.a
 
-build Server.exe: phony Server/Server.exe
+build server: phony Server/server.exe
 
-build libNetworking.a: phony Networking/libNetworking.a
+build server.exe: phony Server/server.exe
 
 # =============================================================================
 # Folder targets.
@@ -367,21 +358,21 @@ build all: phony Networking/all Client/all Server/all
 #############################################
 # Folder: D:/my folder/c/c++ clion projects/network-task-tracking/cmake-build-debug/Client
 
-build Client/all: phony Client/Client.exe
+build Client/all: phony Client/client.exe
 
 # =============================================================================
 
 #############################################
 # Folder: D:/my folder/c/c++ clion projects/network-task-tracking/cmake-build-debug/Networking
 
-build Networking/all: phony Networking/libNetworking.a
+build Networking/all: phony Networking/libnetworking.a
 
 # =============================================================================
 
 #############################################
 # Folder: D:/my folder/c/c++ clion projects/network-task-tracking/cmake-build-debug/Server
 
-build Server/all: phony Server/Server.exe
+build Server/all: phony Server/server.exe
 
 # =============================================================================
 # Built-in targets
@@ -390,14 +381,14 @@ build Server/all: phony Server/Server.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCCompilerABI.c C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCXXCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCXXCompilerABI.cpp C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCompilerIdDetection.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCXXCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompileFeatures.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineRCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeFindBinUtils.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeParseImplicitIncludeInfo.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeParseImplicitLinkInfo.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeParseLibraryArchitecture.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeRCCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystem.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeTestCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeTestCXXCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeTestCompilerCommon.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeTestRCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/ADSP-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/ARMCC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/ARMClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/AppleClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Borland-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Bruce-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Clang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Clang-DetermineCompilerInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Compaq-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Cray-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Embarcadero-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Fujitsu-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GHS-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-FindBinUtils.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/HP-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/HP-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/IAR-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Intel-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/LCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/MSVC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/NVHPC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/NVIDIA-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/PGI-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/PathScale-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/SCO-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/SDCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/SunPro-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/TI-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Tasking-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Watcom-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/XL-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/XL-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/XLClang-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/zOS-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/FindBoost.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/FindPackageHandleStandardArgs.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/FindPackageMessage.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Internal/FeatureTesting.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-Determine-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeRCCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/CMakeLists.txt D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/Client/CMakeLists.txt D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/Networking/CMakeLists.txt D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/Server/CMakeLists.txt
+build build.ninja: RERUN_CMAKE | C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/FindBoost.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/FindPackageHandleStandardArgs.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/FindPackageMessage.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeRCCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/CMakeLists.txt D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/client/CMakeLists.txt D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/networking/CMakeLists.txt D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/server/CMakeLists.txt
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCCompilerABI.c C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCXXCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCXXCompilerABI.cpp C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCompilerIdDetection.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCXXCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompileFeatures.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineRCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeFindBinUtils.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeParseImplicitIncludeInfo.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeParseImplicitLinkInfo.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeParseLibraryArchitecture.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeRCCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystem.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeTestCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeTestCXXCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeTestCompilerCommon.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeTestRCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/ADSP-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/ARMCC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/ARMClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/AppleClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Borland-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Bruce-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Clang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Clang-DetermineCompilerInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Compaq-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Cray-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Embarcadero-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Fujitsu-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GHS-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-FindBinUtils.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/HP-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/HP-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/IAR-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Intel-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/LCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/MSVC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/NVHPC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/NVIDIA-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/PGI-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/PathScale-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/SCO-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/SDCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/SunPro-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/TI-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Tasking-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/Watcom-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/XL-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/XL-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/XLClang-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/zOS-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/FindBoost.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/FindPackageHandleStandardArgs.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/FindPackageMessage.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Internal/FeatureTesting.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-Determine-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeRCCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/CMakeLists.txt D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/Client/CMakeLists.txt D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/Networking/CMakeLists.txt D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/Server/CMakeLists.txt: phony
+build C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/FindBoost.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/FindPackageHandleStandardArgs.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/FindPackageMessage.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeRCCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/CMakeLists.txt D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/client/CMakeLists.txt D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/networking/CMakeLists.txt D$:/my$ folder/c/c++$ clion$ projects/network-task-tracking/server/CMakeLists.txt: phony
 
 
 #############################################

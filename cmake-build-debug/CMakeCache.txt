@@ -163,7 +163,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=Client
+CMAKE_PROJECT_NAME:STATIC=client
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=C:/Program Files/JetBrains/CLion 2023.3.4/bin/mingw/bin/ranlib.exe
@@ -255,7 +255,7 @@ Client_BINARY_DIR:STATIC=D:/my folder/c/c++ clion projects/network-task-tracking
 Client_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
-Client_SOURCE_DIR:STATIC=D:/my folder/c/c++ clion projects/network-task-tracking/Client
+Client_SOURCE_DIR:STATIC=D:/my folder/c/c++ clion projects/network-task-tracking/client
 
 //Value Computed by CMake
 Networking_BINARY_DIR:STATIC=D:/my folder/c/c++ clion projects/network-task-tracking/cmake-build-debug/Networking
@@ -264,7 +264,7 @@ Networking_BINARY_DIR:STATIC=D:/my folder/c/c++ clion projects/network-task-trac
 Networking_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
-Networking_SOURCE_DIR:STATIC=D:/my folder/c/c++ clion projects/network-task-tracking/Networking
+Networking_SOURCE_DIR:STATIC=D:/my folder/c/c++ clion projects/network-task-tracking/networking
 
 //Value Computed by CMake
 Server_BINARY_DIR:STATIC=D:/my folder/c/c++ clion projects/network-task-tracking/cmake-build-debug/Server
@@ -273,7 +273,34 @@ Server_BINARY_DIR:STATIC=D:/my folder/c/c++ clion projects/network-task-tracking
 Server_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
-Server_SOURCE_DIR:STATIC=D:/my folder/c/c++ clion projects/network-task-tracking/Server
+Server_SOURCE_DIR:STATIC=D:/my folder/c/c++ clion projects/network-task-tracking/server
+
+//Value Computed by CMake
+client_BINARY_DIR:STATIC=D:/my folder/c/c++ clion projects/network-task-tracking/cmake-build-debug/Client
+
+//Value Computed by CMake
+client_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+client_SOURCE_DIR:STATIC=D:/my folder/c/c++ clion projects/network-task-tracking/client
+
+//Value Computed by CMake
+networking_BINARY_DIR:STATIC=D:/my folder/c/c++ clion projects/network-task-tracking/cmake-build-debug/Networking
+
+//Value Computed by CMake
+networking_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+networking_SOURCE_DIR:STATIC=D:/my folder/c/c++ clion projects/network-task-tracking/networking
+
+//Value Computed by CMake
+server_BINARY_DIR:STATIC=D:/my folder/c/c++ clion projects/network-task-tracking/cmake-build-debug/Server
+
+//Value Computed by CMake
+server_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+server_SOURCE_DIR:STATIC=D:/my folder/c/c++ clion projects/network-task-tracking/server
 
 
 ########################
