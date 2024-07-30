@@ -20,16 +20,20 @@ add_library(${PROJECT_NAME} ${SOURCES}
         include/client/application.h
         src/server/event_handler.cpp
         include/server/event_handler.h
-        src/server/client_session.cpp
-        include/server/client_session.h
+        src/server/session.cpp
+        include/server/session.h
         src/server/user.cpp
         include/server/user.h
         src/server/task.cpp
         include/server/task.h
-        src/server/task_distributor.cpp
-        include/server/task_distributor.h
-        src/server/client_authorization.cpp
-        include/server/client_authorization.h
+        src/server/session_authorization.cpp
+        include/server/session_authorization.h
+        src/server/user_storage.cpp
+        include/server/user_storage.h
+        src/server/command_handler.cpp
+        include/server/command_handler.h
+        src/server/message_sender.cpp
+        include/server/message_sender.h
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC

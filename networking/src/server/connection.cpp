@@ -64,7 +64,7 @@ void TCP::Connection::async_read() {
         });
 }
 
-void TCP::Connection::send_message(const std::string& message) {
+void TCP::Connection::send(const std::string& message) {
     std::time_t now = std::time(nullptr);
     std::tm* localTime = std::localtime(&now);
     std::stringstream text;
@@ -77,6 +77,10 @@ void TCP::Connection::send_message(const std::string& message) {
     if (queueIdle) {
         async_write();
     }
+}
+
+void TCP::Connection::send_to_user(std::shared_ptr<User> user, const std::string &message) {
+    post_to_user(user, message);
 }
 
 void TCP::Connection::close() {

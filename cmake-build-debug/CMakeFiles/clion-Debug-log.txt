@@ -1,4 +1,4 @@
-"C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 2023.3.4/bin/ninja/win/x64/ninja.exe" -G Ninja -S "D:\my folder\c\c++ clion projects\network-task-tracking" -B "D:\my folder\c\c++ clion projects\network-task-tracking\cmake-build-debug"
--- Configuring done (0.1s)
--- Generating done (0.0s)
--- Build files have been written to: D:/my folder/c/c++ clion projects/network-task-tracking/cmake-build-debug
+"D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=D:/Programmes/CLion 2024.1.4/bin/ninja/win/x64/ninja.exe" -DCMAKE_TOOLCHAIN_FILE=D:\src\vcpkg\scripts\buildsystems\vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-mingw-dynamic -G Ninja -S "D:\my folder\programming\test\network-task-tracking" -B "D:\my folder\programming\test\network-task-tracking\cmake-build-debug"
+-- Configuring done (0.3s)
+-- Generating done (0.1s)
+-- Build files have been written to: D:/my folder/programming/test/network-task-tracking/cmake-build-debug

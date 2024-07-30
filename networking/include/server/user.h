@@ -1,12 +1,12 @@
 #ifndef CLIENT_NETWORKING_INCLUDE_SERVER_USER_H_
 #define CLIENT_NETWORKING_INCLUDE_SERVER_USER_H_
 
-#include <iostream>
-#include <utility>
 #include <memory>
 #include <vector>
 
 #include "task.h"
+
+class Task;
 
 class User {
 public:

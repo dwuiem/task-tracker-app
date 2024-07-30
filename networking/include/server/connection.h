@@ -3,11 +3,10 @@
 
 #include <boost/asio.hpp>
 
-#include <server/event_handler.h>
-
-#include <utility>
-#include <memory>
 #include <queue>
+
+#include "event_handler.h"
+#include "message_sender.h"
 
 namespace TCP {
 
@@ -15,15 +14,17 @@ const uint16_t MAX_BUFFER_SIZE = 65535;
 
 namespace io = boost::asio;
 
-class Connection {
+class Connection : public MessageSender {
 public:
     explicit Connection(io::ip::tcp::socket&& socket);
 
     void connect();
-    void send_message(const std::string& message);
+    void send(const std::string& message) override;
+    void send_to_user(std::shared_ptr<User> user, const std::string &message) override;
 
     std::string get_client_address() const noexcept;
 
+    std::function<void(const std::shared_ptr<User>&, const std::string& message)> post_to_user;
 protected:
     std::function<void()> on_connect;
     std::function<void()> on_disconnect;

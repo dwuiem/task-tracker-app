@@ -3,7 +3,7 @@
 
 #include <boost/asio.hpp>
 
-#include "server/client_session.h"
+#include "server/session.h"
 
 #include <unordered_set>
 
@@ -15,13 +15,15 @@ namespace TCP {
 
     namespace io = boost::asio;
 
-    using session_ptr = std::shared_ptr<ClientSession>;
+    using session_ptr = std::shared_ptr<Session>;
 
     class Server {
     public:
         Server(IPV ipv, int port);
 
         int run();
+
+        static inline std::unordered_map<std::shared_ptr<Session>, std::shared_ptr<User>> authorized_user_map{};
     private:
         void accept();
         void post_to_client(const std::shared_ptr<User>& user, const std::string& message);
