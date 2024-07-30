@@ -27,7 +27,7 @@ cd network-task-tracking
 ```
 
 ### Step 2
-Download a boost library from https://www.boost.org/users/download/
+Download a boost library from https://www.boost.org/users/download/ or use `vcpkg` package manager
 
 ### Step 3
 Use CMake to build project
@@ -46,7 +46,7 @@ After building project you will have two executable files in `/Server` and in `/
 client/                 # Client main
   main.cpp
   CMakeLists.txt
-networking/             # Networking utilities and components for server and client
+networking/             # Networking utilities and components
   include/ 
     server/             # Headers for server
       ...
