@@ -43,9 +43,9 @@ After building project you will have two executable files in `/Server` and in `/
 ## Project Structure
 ``` graphql
 .idea/                  # IDE configuration files
-Client/                 # Client main
-Networking/             # Networking utilities and components for server and client
-Server/                 # Server main
+сlient/                 # Client main
+networking/             # Networking utilities and components for server and client
+server/                 # Server main
 cmake-build-debug/      # Build output directory
 CMakeLists.txt          # CMake build configuration file
 ```
