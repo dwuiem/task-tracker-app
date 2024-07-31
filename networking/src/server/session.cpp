@@ -6,7 +6,7 @@ Session::Session(tcp::socket&& socket) :
 void Session::start() {
     on_connect = [this]() {
         EventHandler::on_connect(get_client_address());
-        send(ON_JOIN);
+        send("You have successfully joined");
     };
 
     on_disconnect = [this]() {
@@ -15,26 +15,27 @@ void Session::start() {
 
     connect();
 
-    send(ASK_TO_AUTH);
+    send("Please enter your username");
     on_read = [this](const std::string& username) {
         try {
             authorize_user(username);
             display_commands();
         } catch (const InvalidUsernameException& e) {
-            send(e.what());
+            send(e.what(), MessageType::EXCEPTION);
         }
     };
 }
 
 void Session::display_commands() {
-    send(ASK_TO_COMMAND);
+    send("Enter a command");
     on_read = [this](const std::string& command_line) {
         auto self = shared_from_this();
         CommandHandler command_handler(user, self);
         try {
             command_handler.execute(command_line);
         } catch (const InvalidCommandException& e) {
-            send(e.what());
+            send(e.what(), MessageType::EXCEPTION);
+            display_commands();
         }
     };
 }

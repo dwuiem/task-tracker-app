@@ -19,7 +19,7 @@ public:
     explicit Connection(io::ip::tcp::socket&& socket);
 
     void connect();
-    void send(const std::string& message) override;
+    void send(const std::string& message, MessageType message_type = MessageType::INFO) override;
     void send_to_user(std::shared_ptr<User> user, const std::string &message) override;
 
     std::string get_client_address() const noexcept;

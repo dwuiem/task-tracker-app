@@ -64,13 +64,26 @@ void TCP::Connection::async_read() {
         });
 }
 
-void TCP::Connection::send(const std::string& message) {
+void TCP::Connection::send(const std::string& message, MessageType message_type) {
     std::time_t now = std::time(nullptr);
     std::tm* localTime = std::localtime(&now);
     std::stringstream text;
-    text << "[" << std::setw(2) << std::setfill('0') << localTime->tm_hour << ":"
-            << std::setw(2) << std::setfill('0') << localTime->tm_min << ":"
-            << std::setw(2) << std::setfill('0') << localTime->tm_sec << "] ";
+    switch (message_type) {
+        case MessageType::INFO:
+            text << "[" << std::setw(2) << std::setfill('0') << localTime->tm_hour << ":"
+                << std::setw(2) << std::setfill('0') << localTime->tm_min << ":"
+                << std::setw(2) << std::setfill('0') << localTime->tm_sec << " | INFO]";
+            break;
+        case MessageType::NOTIFY:
+            text << "[" << std::setw(2) << std::setfill('0') << localTime->tm_hour << ":"
+                << std::setw(2) << std::setfill('0') << localTime->tm_min << ":"
+                << std::setw(2) << std::setfill('0') << localTime->tm_sec << " | NOTIFY]";
+            break;
+        case MessageType::EXCEPTION:
+            text << "[ERROR]";
+            break;
+    }
+    text << " ";
     text << message;
     bool queueIdle = outgoing_text_.empty();
     outgoing_text_.push(text.str());

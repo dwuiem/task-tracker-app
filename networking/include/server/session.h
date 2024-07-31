@@ -23,16 +23,9 @@ public:
     std::shared_ptr<User> get_user() const;
 private:
 
-    static inline const char DELIM = ' ';
-
     explicit Session(tcp::socket&& socket);
 
     void display_commands();
-
-    static inline const std::string ON_JOIN = "You have successfully joined";
-    static inline const std::string ASK_TO_AUTH = "Please, enter your username";
-    static inline const std::string ON_AUTH_MESSAGE = "You are welcome";
-    static inline const std::string ASK_TO_COMMAND = "Write a command";
 };
 
 #endif //CLIENT_NETWORKING_INCLUDE_SERVER_CLIENT_SESSION_H_

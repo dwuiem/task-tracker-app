@@ -63,18 +63,19 @@ void CommandHandler::create_task(const std::vector<std::string> &args) {
         notifier_->send_to_user(collaborator, "User \"" + user_->get_name() + "\" added a task for you");
     }
     user_->add_task(task);
-    notifier_->send("You have created task");
+    notifier_->send("You have created task", MessageType::INFO);
 }
 
 void CommandHandler::display(const std::vector<std::string> &args) const {
     if (user_->get_all_tasks().empty()) {
-        notifier_->send("There are no any tasks in your list");
+        notifier_->send("There are no any tasks in your list", MessageType::INFO);
         return;
     }
     std::string task_list = "Task list\n";
     for (const auto& task : user_->get_all_tasks()) {
-        task_list += task->get_info() + "\n\n";
+        task_list += task->get_info() + "\n";
+        task_list += "------------------\n";
     }
-    notifier_->send(task_list);
+    notifier_->send(task_list, MessageType::INFO);
 }
 
