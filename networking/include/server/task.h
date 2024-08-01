@@ -21,6 +21,14 @@ public:
 
     void add_collaborator(const std::shared_ptr<User>& collaborator);
 
+    int get_id() const;
+    std::string get_title() const;
+    std::string get_description() const;
+    std::string get_date() const;
+
+    std::shared_ptr<User> get_creator() const;
+    std::unordered_set<std::shared_ptr<User>> get_collaborators() const;
+
     std::string get_info() const;
 private:
     static inline int counter = 0;

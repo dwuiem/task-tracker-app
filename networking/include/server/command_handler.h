@@ -1,17 +1,26 @@
 #ifndef COMMAND_EXECUTOR_H
 #define COMMAND_EXECUTOR_H
 
+#include "user_storage.h"
 #include "message_sender.h"
 
 #include <boost/regex.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
+#include <boost/date_time/gregorian/gregorian.hpp>
 
 class CommandHandler {
 public:
     explicit CommandHandler(const std::shared_ptr<User>& user, const std::shared_ptr<MessageSender>& notifier);
+
+    static boost::gregorian::date parse_date(const std::string &input);
+    static std::pair<boost::posix_time::hours, boost::posix_time::minutes> parse_time(const std::string& input);
+
     static std::pair<std::string, std::vector<std::string>> parse_command(const std::string& input);
+
     void execute(const std::string& command_line);
 private:
     static inline const boost::regex command_pattern{R"((?:[^\s"]+|"[^"]*")+)"};
+
     void create_task(const std::vector<std::string>& args);
     void display(const std::vector<std::string>& args) const;
 

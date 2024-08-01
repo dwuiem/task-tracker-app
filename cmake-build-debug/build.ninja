@@ -63,6 +63,48 @@ build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
 
 build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
+
+#############################################
+# Utility command for list_install_components
+
+build list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build CMakeFiles/install.util: CUSTOM_COMMAND all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build install: phony CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build CMakeFiles/install/local.util: CUSTOM_COMMAND all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build install/local: phony CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build CMakeFiles/install/strip.util: CUSTOM_COMMAND all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build install/strip: phony CMakeFiles/install/strip.util
+
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
 # D:/my folder/programming/test/network-task-tracking/CMakeLists.txt
@@ -77,21 +119,13 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
 build cmake_object_order_depends_target_networking: phony || Networking/CMakeFiles/networking.dir
 
-build Networking/CMakeFiles/networking.dir/src/server/server.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/networking/src/server/server.cpp || cmake_object_order_depends_target_networking
+build Networking/CMakeFiles/networking.dir/src/client/application.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/networking/src/client/application.cpp || cmake_object_order_depends_target_networking
   DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\server.cpp.obj.d
+  DEP_FILE = Networking\CMakeFiles\networking.dir\src\client\application.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/my folder/programming/test/network-task-tracking/networking/include" -ID:/src/vcpkg/installed/x64-mingw-dynamic/include
   OBJECT_DIR = Networking\CMakeFiles\networking.dir
-  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
-
-build Networking/CMakeFiles/networking.dir/src/server/connection.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/networking/src/server/connection.cpp || cmake_object_order_depends_target_networking
-  DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\connection.cpp.obj.d
-  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/my folder/programming/test/network-task-tracking/networking/include" -ID:/src/vcpkg/installed/x64-mingw-dynamic/include
-  OBJECT_DIR = Networking\CMakeFiles\networking.dir
-  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
+  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\client
 
 build Networking/CMakeFiles/networking.dir/src/client/client.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/networking/src/client/client.cpp || cmake_object_order_depends_target_networking
   DEFINES = -D_WIN32_WINNT=0x0601
@@ -109,65 +143,25 @@ build Networking/CMakeFiles/networking.dir/src/client/user_interface.cpp.obj: CX
   OBJECT_DIR = Networking\CMakeFiles\networking.dir
   OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\client
 
-build Networking/CMakeFiles/networking.dir/src/client/application.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/networking/src/client/application.cpp || cmake_object_order_depends_target_networking
+build Networking/CMakeFiles/networking.dir/src/server/command_handler.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/networking/src/server/command_handler.cpp || cmake_object_order_depends_target_networking
   DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\networking.dir\src\client\application.cpp.obj.d
+  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\command_handler.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/my folder/programming/test/network-task-tracking/networking/include" -ID:/src/vcpkg/installed/x64-mingw-dynamic/include
   OBJECT_DIR = Networking\CMakeFiles\networking.dir
-  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\client
+  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
+
+build Networking/CMakeFiles/networking.dir/src/server/connection.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/networking/src/server/connection.cpp || cmake_object_order_depends_target_networking
+  DEFINES = -D_WIN32_WINNT=0x0601
+  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\connection.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I"D:/my folder/programming/test/network-task-tracking/networking/include" -ID:/src/vcpkg/installed/x64-mingw-dynamic/include
+  OBJECT_DIR = Networking\CMakeFiles\networking.dir
+  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
 
 build Networking/CMakeFiles/networking.dir/src/server/event_handler.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/networking/src/server/event_handler.cpp || cmake_object_order_depends_target_networking
   DEFINES = -D_WIN32_WINNT=0x0601
   DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\event_handler.cpp.obj.d
-  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/my folder/programming/test/network-task-tracking/networking/include" -ID:/src/vcpkg/installed/x64-mingw-dynamic/include
-  OBJECT_DIR = Networking\CMakeFiles\networking.dir
-  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
-
-build Networking/CMakeFiles/networking.dir/src/server/session.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/networking/src/server/session.cpp || cmake_object_order_depends_target_networking
-  DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\session.cpp.obj.d
-  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/my folder/programming/test/network-task-tracking/networking/include" -ID:/src/vcpkg/installed/x64-mingw-dynamic/include
-  OBJECT_DIR = Networking\CMakeFiles\networking.dir
-  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
-
-build Networking/CMakeFiles/networking.dir/src/server/user.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/networking/src/server/user.cpp || cmake_object_order_depends_target_networking
-  DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\user.cpp.obj.d
-  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/my folder/programming/test/network-task-tracking/networking/include" -ID:/src/vcpkg/installed/x64-mingw-dynamic/include
-  OBJECT_DIR = Networking\CMakeFiles\networking.dir
-  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
-
-build Networking/CMakeFiles/networking.dir/src/server/task.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/networking/src/server/task.cpp || cmake_object_order_depends_target_networking
-  DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\task.cpp.obj.d
-  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/my folder/programming/test/network-task-tracking/networking/include" -ID:/src/vcpkg/installed/x64-mingw-dynamic/include
-  OBJECT_DIR = Networking\CMakeFiles\networking.dir
-  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
-
-build Networking/CMakeFiles/networking.dir/src/server/session_authorization.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/networking/src/server/session_authorization.cpp || cmake_object_order_depends_target_networking
-  DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\session_authorization.cpp.obj.d
-  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/my folder/programming/test/network-task-tracking/networking/include" -ID:/src/vcpkg/installed/x64-mingw-dynamic/include
-  OBJECT_DIR = Networking\CMakeFiles\networking.dir
-  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
-
-build Networking/CMakeFiles/networking.dir/src/server/user_storage.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/networking/src/server/user_storage.cpp || cmake_object_order_depends_target_networking
-  DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\user_storage.cpp.obj.d
-  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/my folder/programming/test/network-task-tracking/networking/include" -ID:/src/vcpkg/installed/x64-mingw-dynamic/include
-  OBJECT_DIR = Networking\CMakeFiles\networking.dir
-  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
-
-build Networking/CMakeFiles/networking.dir/src/server/command_handler.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/networking/src/server/command_handler.cpp || cmake_object_order_depends_target_networking
-  DEFINES = -D_WIN32_WINNT=0x0601
-  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\command_handler.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/my folder/programming/test/network-task-tracking/networking/include" -ID:/src/vcpkg/installed/x64-mingw-dynamic/include
   OBJECT_DIR = Networking\CMakeFiles\networking.dir
@@ -181,6 +175,54 @@ build Networking/CMakeFiles/networking.dir/src/server/message_sender.cpp.obj: CX
   OBJECT_DIR = Networking\CMakeFiles\networking.dir
   OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
 
+build Networking/CMakeFiles/networking.dir/src/server/server.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/networking/src/server/server.cpp || cmake_object_order_depends_target_networking
+  DEFINES = -D_WIN32_WINNT=0x0601
+  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\server.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I"D:/my folder/programming/test/network-task-tracking/networking/include" -ID:/src/vcpkg/installed/x64-mingw-dynamic/include
+  OBJECT_DIR = Networking\CMakeFiles\networking.dir
+  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
+
+build Networking/CMakeFiles/networking.dir/src/server/session.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/networking/src/server/session.cpp || cmake_object_order_depends_target_networking
+  DEFINES = -D_WIN32_WINNT=0x0601
+  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\session.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I"D:/my folder/programming/test/network-task-tracking/networking/include" -ID:/src/vcpkg/installed/x64-mingw-dynamic/include
+  OBJECT_DIR = Networking\CMakeFiles\networking.dir
+  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
+
+build Networking/CMakeFiles/networking.dir/src/server/session_authorization.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/networking/src/server/session_authorization.cpp || cmake_object_order_depends_target_networking
+  DEFINES = -D_WIN32_WINNT=0x0601
+  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\session_authorization.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I"D:/my folder/programming/test/network-task-tracking/networking/include" -ID:/src/vcpkg/installed/x64-mingw-dynamic/include
+  OBJECT_DIR = Networking\CMakeFiles\networking.dir
+  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
+
+build Networking/CMakeFiles/networking.dir/src/server/task.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/networking/src/server/task.cpp || cmake_object_order_depends_target_networking
+  DEFINES = -D_WIN32_WINNT=0x0601
+  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\task.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I"D:/my folder/programming/test/network-task-tracking/networking/include" -ID:/src/vcpkg/installed/x64-mingw-dynamic/include
+  OBJECT_DIR = Networking\CMakeFiles\networking.dir
+  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
+
+build Networking/CMakeFiles/networking.dir/src/server/user.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/networking/src/server/user.cpp || cmake_object_order_depends_target_networking
+  DEFINES = -D_WIN32_WINNT=0x0601
+  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\user.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I"D:/my folder/programming/test/network-task-tracking/networking/include" -ID:/src/vcpkg/installed/x64-mingw-dynamic/include
+  OBJECT_DIR = Networking\CMakeFiles\networking.dir
+  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
+
+build Networking/CMakeFiles/networking.dir/src/server/user_storage.cpp.obj: CXX_COMPILER__networking_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/networking/src/server/user_storage.cpp || cmake_object_order_depends_target_networking
+  DEFINES = -D_WIN32_WINNT=0x0601
+  DEP_FILE = Networking\CMakeFiles\networking.dir\src\server\user_storage.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I"D:/my folder/programming/test/network-task-tracking/networking/include" -ID:/src/vcpkg/installed/x64-mingw-dynamic/include
+  OBJECT_DIR = Networking\CMakeFiles\networking.dir
+  OBJECT_FILE_DIR = Networking\CMakeFiles\networking.dir\src\server
+
 
 # =============================================================================
 # Link build statements for STATIC_LIBRARY target networking
@@ -189,7 +231,7 @@ build Networking/CMakeFiles/networking.dir/src/server/message_sender.cpp.obj: CX
 #############################################
 # Link the static library Networking\libnetworking.a
 
-build Networking/libnetworking.a: CXX_STATIC_LIBRARY_LINKER__networking_Debug Networking/CMakeFiles/networking.dir/src/server/server.cpp.obj Networking/CMakeFiles/networking.dir/src/server/connection.cpp.obj Networking/CMakeFiles/networking.dir/src/client/client.cpp.obj Networking/CMakeFiles/networking.dir/src/client/user_interface.cpp.obj Networking/CMakeFiles/networking.dir/src/client/application.cpp.obj Networking/CMakeFiles/networking.dir/src/server/event_handler.cpp.obj Networking/CMakeFiles/networking.dir/src/server/session.cpp.obj Networking/CMakeFiles/networking.dir/src/server/user.cpp.obj Networking/CMakeFiles/networking.dir/src/server/task.cpp.obj Networking/CMakeFiles/networking.dir/src/server/session_authorization.cpp.obj Networking/CMakeFiles/networking.dir/src/server/user_storage.cpp.obj Networking/CMakeFiles/networking.dir/src/server/command_handler.cpp.obj Networking/CMakeFiles/networking.dir/src/server/message_sender.cpp.obj
+build Networking/libnetworking.a: CXX_STATIC_LIBRARY_LINKER__networking_Debug Networking/CMakeFiles/networking.dir/src/client/application.cpp.obj Networking/CMakeFiles/networking.dir/src/client/client.cpp.obj Networking/CMakeFiles/networking.dir/src/client/user_interface.cpp.obj Networking/CMakeFiles/networking.dir/src/server/command_handler.cpp.obj Networking/CMakeFiles/networking.dir/src/server/connection.cpp.obj Networking/CMakeFiles/networking.dir/src/server/event_handler.cpp.obj Networking/CMakeFiles/networking.dir/src/server/message_sender.cpp.obj Networking/CMakeFiles/networking.dir/src/server/server.cpp.obj Networking/CMakeFiles/networking.dir/src/server/session.cpp.obj Networking/CMakeFiles/networking.dir/src/server/session_authorization.cpp.obj Networking/CMakeFiles/networking.dir/src/server/task.cpp.obj Networking/CMakeFiles/networking.dir/src/server/user.cpp.obj Networking/CMakeFiles/networking.dir/src/server/user_storage.cpp.obj
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = Networking\CMakeFiles\networking.dir
   POST_BUILD = cd .
@@ -219,6 +261,48 @@ build Networking/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
   restat = 1
 
 build Networking/rebuild_cache: phony Networking/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build Networking/list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build Networking/CMakeFiles/install.util: CUSTOM_COMMAND Networking/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\Networking" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build Networking/install: phony Networking/CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build Networking/CMakeFiles/install/local.util: CUSTOM_COMMAND Networking/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\Networking" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build Networking/install/local: phony Networking/CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build Networking/CMakeFiles/install/strip.util: CUSTOM_COMMAND Networking/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\Networking" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build Networking/install/strip: phony Networking/CMakeFiles/install/strip.util
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
@@ -282,6 +366,48 @@ build Client/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
 
 build Client/rebuild_cache: phony Client/CMakeFiles/rebuild_cache.util
 
+
+#############################################
+# Utility command for list_install_components
+
+build Client/list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build Client/CMakeFiles/install.util: CUSTOM_COMMAND Client/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\Client" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build Client/install: phony Client/CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build Client/CMakeFiles/install/local.util: CUSTOM_COMMAND Client/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\Client" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build Client/install/local: phony Client/CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build Client/CMakeFiles/install/strip.util: CUSTOM_COMMAND Client/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\Client" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build Client/install/strip: phony Client/CMakeFiles/install/strip.util
+
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
 # D:/my folder/programming/test/network-task-tracking/CMakeLists.txt
@@ -344,6 +470,490 @@ build Server/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
 
 build Server/rebuild_cache: phony Server/CMakeFiles/rebuild_cache.util
 
+
+#############################################
+# Utility command for list_install_components
+
+build Server/list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build Server/CMakeFiles/install.util: CUSTOM_COMMAND Server/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\Server" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build Server/install: phony Server/CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build Server/CMakeFiles/install/local.util: CUSTOM_COMMAND Server/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\Server" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build Server/install/local: phony Server/CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build Server/CMakeFiles/install/strip.util: CUSTOM_COMMAND Server/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\Server" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build Server/install/strip: phony Server/CMakeFiles/install/strip.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# D:/my folder/programming/test/network-task-tracking/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for EXECUTABLE target run_tests
+
+
+#############################################
+# Order-only phony target for run_tests
+
+build cmake_object_order_depends_target_run_tests: phony || cmake_object_order_depends_target_gtest cmake_object_order_depends_target_gtest_main cmake_object_order_depends_target_networking
+
+build test/CMakeFiles/run_tests.dir/command_handler_test.cpp.obj: CXX_COMPILER__run_tests_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/test/command_handler_test.cpp || cmake_object_order_depends_target_run_tests
+  DEP_FILE = test\CMakeFiles\run_tests.dir\command_handler_test.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I"D:/my folder/programming/test/network-task-tracking/test/networking" -I"D:/my folder/programming/test/network-task-tracking/networking/include" -ID:/src/vcpkg/installed/x64-mingw-dynamic/include -isystem "D:/my folder/programming/test/network-task-tracking/cmake-build-debug/_deps/googletest-src/googletest/include" -isystem "D:/my folder/programming/test/network-task-tracking/cmake-build-debug/_deps/googletest-src/googletest"
+  OBJECT_DIR = test\CMakeFiles\run_tests.dir
+  OBJECT_FILE_DIR = test\CMakeFiles\run_tests.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target run_tests
+
+
+#############################################
+# Link the executable test\run_tests.exe
+
+build test/run_tests.exe: CXX_EXECUTABLE_LINKER__run_tests_Debug test/CMakeFiles/run_tests.dir/command_handler_test.cpp.obj | Networking/libnetworking.a lib/libgtestd.a lib/libgtest_maind.a lib/libgtestd.a || Networking/libnetworking.a lib/libgtest_maind.a lib/libgtestd.a
+  FLAGS = -g
+  LINK_LIBRARIES = Networking/libnetworking.a  lib/libgtestd.a  lib/libgtest_maind.a  -lws2_32  -lwsock32  lib/libgtestd.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = test\CMakeFiles\run_tests.dir
+  POST_BUILD = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\test" && C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file D:/src/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary "D:/my folder/programming/test/network-task-tracking/cmake-build-debug/test/run_tests.exe" -installedDir D:/src/vcpkg/installed/x64-mingw-dynamic/debug/bin -OutVariable out"
+  PRE_LINK = cd .
+  TARGET_FILE = test\run_tests.exe
+  TARGET_IMPLIB = test\librun_tests.dll.a
+  TARGET_PDB = run_tests.exe.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build test/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\test" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build test/edit_cache: phony test/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build test/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\test" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S"D:\my folder\programming\test\network-task-tracking" -B"D:\my folder\programming\test\network-task-tracking\cmake-build-debug""
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build test/rebuild_cache: phony test/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build test/list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build test/CMakeFiles/install.util: CUSTOM_COMMAND test/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\test" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build test/install: phony test/CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build test/CMakeFiles/install/local.util: CUSTOM_COMMAND test/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\test" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build test/install/local: phony test/CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build test/CMakeFiles/install/strip.util: CUSTOM_COMMAND test/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\test" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build test/install/strip: phony test/CMakeFiles/install/strip.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# D:/my folder/programming/test/network-task-tracking/test/CMakeLists.txt
+# =============================================================================
+
+
+#############################################
+# Utility command for edit_cache
+
+build _deps/googletest-build/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\_deps\googletest-build" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build _deps/googletest-build/edit_cache: phony _deps/googletest-build/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build _deps/googletest-build/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\_deps\googletest-build" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S"D:\my folder\programming\test\network-task-tracking" -B"D:\my folder\programming\test\network-task-tracking\cmake-build-debug""
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build _deps/googletest-build/rebuild_cache: phony _deps/googletest-build/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build _deps/googletest-build/list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build _deps/googletest-build/CMakeFiles/install.util: CUSTOM_COMMAND _deps/googletest-build/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\_deps\googletest-build" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build _deps/googletest-build/install: phony _deps/googletest-build/CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build _deps/googletest-build/CMakeFiles/install/local.util: CUSTOM_COMMAND _deps/googletest-build/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\_deps\googletest-build" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build _deps/googletest-build/install/local: phony _deps/googletest-build/CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build _deps/googletest-build/CMakeFiles/install/strip.util: CUSTOM_COMMAND _deps/googletest-build/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\_deps\googletest-build" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build _deps/googletest-build/install/strip: phony _deps/googletest-build/CMakeFiles/install/strip.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# D:/my folder/programming/test/network-task-tracking/cmake-build-debug/_deps/googletest-src/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target gmock
+
+
+#############################################
+# Order-only phony target for gmock
+
+build cmake_object_order_depends_target_gmock: phony || cmake_object_order_depends_target_gtest
+
+build _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.obj: CXX_COMPILER__gmock_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/cmake-build-debug/_deps/googletest-src/googlemock/src/gmock-all.cc || cmake_object_order_depends_target_gmock
+  DEP_FILE = _deps\googletest-build\googlemock\CMakeFiles\gmock.dir\src\gmock-all.cc.obj.d
+  FLAGS = -g -std=c++20 -fdiagnostics-color=always -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
+  INCLUDES = -I"D:/my folder/programming/test/network-task-tracking/cmake-build-debug/_deps/googletest-src/googlemock/include" -I"D:/my folder/programming/test/network-task-tracking/cmake-build-debug/_deps/googletest-src/googlemock" -isystem "D:/my folder/programming/test/network-task-tracking/cmake-build-debug/_deps/googletest-src/googletest/include" -isystem "D:/my folder/programming/test/network-task-tracking/cmake-build-debug/_deps/googletest-src/googletest"
+  OBJECT_DIR = _deps\googletest-build\googlemock\CMakeFiles\gmock.dir
+  OBJECT_FILE_DIR = _deps\googletest-build\googlemock\CMakeFiles\gmock.dir\src
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target gmock
+
+
+#############################################
+# Link the static library lib\libgmockd.a
+
+build lib/libgmockd.a: CXX_STATIC_LIBRARY_LINKER__gmock_Debug _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.obj || lib/libgtestd.a
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = _deps\googletest-build\googlemock\CMakeFiles\gmock.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = lib\libgmockd.a
+  TARGET_PDB = gmockd.a.dbg
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target gmock_main
+
+
+#############################################
+# Order-only phony target for gmock_main
+
+build cmake_object_order_depends_target_gmock_main: phony || cmake_object_order_depends_target_gmock cmake_object_order_depends_target_gtest
+
+build _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.obj: CXX_COMPILER__gmock_main_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/cmake-build-debug/_deps/googletest-src/googlemock/src/gmock_main.cc || cmake_object_order_depends_target_gmock_main
+  DEP_FILE = _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir\src\gmock_main.cc.obj.d
+  FLAGS = -g -std=c++20 -fdiagnostics-color=always -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
+  INCLUDES = -isystem "D:/my folder/programming/test/network-task-tracking/cmake-build-debug/_deps/googletest-src/googlemock/include" -isystem "D:/my folder/programming/test/network-task-tracking/cmake-build-debug/_deps/googletest-src/googlemock" -isystem "D:/my folder/programming/test/network-task-tracking/cmake-build-debug/_deps/googletest-src/googletest/include" -isystem "D:/my folder/programming/test/network-task-tracking/cmake-build-debug/_deps/googletest-src/googletest"
+  OBJECT_DIR = _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir
+  OBJECT_FILE_DIR = _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir\src
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target gmock_main
+
+
+#############################################
+# Link the static library lib\libgmock_maind.a
+
+build lib/libgmock_maind.a: CXX_STATIC_LIBRARY_LINKER__gmock_main_Debug _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.obj || lib/libgmockd.a lib/libgtestd.a
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = lib\libgmock_maind.a
+  TARGET_PDB = gmock_maind.a.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build _deps/googletest-build/googlemock/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\_deps\googletest-build\googlemock" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build _deps/googletest-build/googlemock/edit_cache: phony _deps/googletest-build/googlemock/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build _deps/googletest-build/googlemock/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\_deps\googletest-build\googlemock" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S"D:\my folder\programming\test\network-task-tracking" -B"D:\my folder\programming\test\network-task-tracking\cmake-build-debug""
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build _deps/googletest-build/googlemock/rebuild_cache: phony _deps/googletest-build/googlemock/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build _deps/googletest-build/googlemock/list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build _deps/googletest-build/googlemock/CMakeFiles/install.util: CUSTOM_COMMAND _deps/googletest-build/googlemock/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\_deps\googletest-build\googlemock" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build _deps/googletest-build/googlemock/install: phony _deps/googletest-build/googlemock/CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build _deps/googletest-build/googlemock/CMakeFiles/install/local.util: CUSTOM_COMMAND _deps/googletest-build/googlemock/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\_deps\googletest-build\googlemock" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build _deps/googletest-build/googlemock/install/local: phony _deps/googletest-build/googlemock/CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build _deps/googletest-build/googlemock/CMakeFiles/install/strip.util: CUSTOM_COMMAND _deps/googletest-build/googlemock/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\_deps\googletest-build\googlemock" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build _deps/googletest-build/googlemock/install/strip: phony _deps/googletest-build/googlemock/CMakeFiles/install/strip.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# D:/my folder/programming/test/network-task-tracking/cmake-build-debug/_deps/googletest-src/googlemock/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target gtest
+
+
+#############################################
+# Order-only phony target for gtest
+
+build cmake_object_order_depends_target_gtest: phony || _deps/googletest-build/googletest/CMakeFiles/gtest.dir
+
+build _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj: CXX_COMPILER__gtest_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/cmake-build-debug/_deps/googletest-src/googletest/src/gtest-all.cc || cmake_object_order_depends_target_gtest
+  DEP_FILE = _deps\googletest-build\googletest\CMakeFiles\gtest.dir\src\gtest-all.cc.obj.d
+  FLAGS = -g -std=c++20 -fdiagnostics-color=always -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
+  INCLUDES = -I"D:/my folder/programming/test/network-task-tracking/cmake-build-debug/_deps/googletest-src/googletest/include" -I"D:/my folder/programming/test/network-task-tracking/cmake-build-debug/_deps/googletest-src/googletest"
+  OBJECT_DIR = _deps\googletest-build\googletest\CMakeFiles\gtest.dir
+  OBJECT_FILE_DIR = _deps\googletest-build\googletest\CMakeFiles\gtest.dir\src
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target gtest
+
+
+#############################################
+# Link the static library lib\libgtestd.a
+
+build lib/libgtestd.a: CXX_STATIC_LIBRARY_LINKER__gtest_Debug _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = _deps\googletest-build\googletest\CMakeFiles\gtest.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = lib\libgtestd.a
+  TARGET_PDB = gtestd.a.dbg
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target gtest_main
+
+
+#############################################
+# Order-only phony target for gtest_main
+
+build cmake_object_order_depends_target_gtest_main: phony || cmake_object_order_depends_target_gtest
+
+build _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj: CXX_COMPILER__gtest_main_unscanned_Debug D$:/my$ folder/programming/test/network-task-tracking/cmake-build-debug/_deps/googletest-src/googletest/src/gtest_main.cc || cmake_object_order_depends_target_gtest_main
+  DEP_FILE = _deps\googletest-build\googletest\CMakeFiles\gtest_main.dir\src\gtest_main.cc.obj.d
+  FLAGS = -g -std=c++20 -fdiagnostics-color=always -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
+  INCLUDES = -isystem "D:/my folder/programming/test/network-task-tracking/cmake-build-debug/_deps/googletest-src/googletest/include" -isystem "D:/my folder/programming/test/network-task-tracking/cmake-build-debug/_deps/googletest-src/googletest"
+  OBJECT_DIR = _deps\googletest-build\googletest\CMakeFiles\gtest_main.dir
+  OBJECT_FILE_DIR = _deps\googletest-build\googletest\CMakeFiles\gtest_main.dir\src
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target gtest_main
+
+
+#############################################
+# Link the static library lib\libgtest_maind.a
+
+build lib/libgtest_maind.a: CXX_STATIC_LIBRARY_LINKER__gtest_main_Debug _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj || lib/libgtestd.a
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = _deps\googletest-build\googletest\CMakeFiles\gtest_main.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = lib\libgtest_maind.a
+  TARGET_PDB = gtest_maind.a.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build _deps/googletest-build/googletest/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\_deps\googletest-build\googletest" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build _deps/googletest-build/googletest/edit_cache: phony _deps/googletest-build/googletest/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build _deps/googletest-build/googletest/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\_deps\googletest-build\googletest" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S"D:\my folder\programming\test\network-task-tracking" -B"D:\my folder\programming\test\network-task-tracking\cmake-build-debug""
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build _deps/googletest-build/googletest/rebuild_cache: phony _deps/googletest-build/googletest/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build _deps/googletest-build/googletest/list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build _deps/googletest-build/googletest/CMakeFiles/install.util: CUSTOM_COMMAND _deps/googletest-build/googletest/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\_deps\googletest-build\googletest" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build _deps/googletest-build/googletest/install: phony _deps/googletest-build/googletest/CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build _deps/googletest-build/googletest/CMakeFiles/install/local.util: CUSTOM_COMMAND _deps/googletest-build/googletest/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\_deps\googletest-build\googletest" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build _deps/googletest-build/googletest/install/local: phony _deps/googletest-build/googletest/CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build _deps/googletest-build/googletest/CMakeFiles/install/strip.util: CUSTOM_COMMAND _deps/googletest-build/googletest/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\my folder\programming\test\network-task-tracking\cmake-build-debug\_deps\googletest-build\googletest" && "D:\Programmes\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build _deps/googletest-build/googletest/install/strip: phony _deps/googletest-build/googletest/CMakeFiles/install/strip.util
+
 # =============================================================================
 # Target aliases.
 
@@ -351,9 +961,29 @@ build client: phony Client/client.exe
 
 build client.exe: phony Client/client.exe
 
+build gmock: phony lib/libgmockd.a
+
+build gmock_main: phony lib/libgmock_maind.a
+
+build gtest: phony lib/libgtestd.a
+
+build gtest_main: phony lib/libgtest_maind.a
+
+build libgmock_maind.a: phony lib/libgmock_maind.a
+
+build libgmockd.a: phony lib/libgmockd.a
+
+build libgtest_maind.a: phony lib/libgtest_maind.a
+
+build libgtestd.a: phony lib/libgtestd.a
+
 build libnetworking.a: phony Networking/libnetworking.a
 
 build networking: phony Networking/libnetworking.a
+
+build run_tests: phony test/run_tests.exe
+
+build run_tests.exe: phony test/run_tests.exe
 
 build server: phony Server/server.exe
 
@@ -367,7 +997,7 @@ build server.exe: phony Server/server.exe
 #############################################
 # Folder: D:/my folder/programming/test/network-task-tracking/cmake-build-debug
 
-build all: phony Networking/all Client/all Server/all
+build all: phony Networking/all Client/all Server/all test/all
 
 # =============================================================================
 
@@ -391,20 +1021,48 @@ build Networking/all: phony Networking/libnetworking.a
 build Server/all: phony Server/server.exe
 
 # =============================================================================
+
+#############################################
+# Folder: D:/my folder/programming/test/network-task-tracking/cmake-build-debug/_deps/googletest-build
+
+build _deps/googletest-build/all: phony _deps/googletest-build/googlemock/all
+
+# =============================================================================
+
+#############################################
+# Folder: D:/my folder/programming/test/network-task-tracking/cmake-build-debug/_deps/googletest-build/googlemock
+
+build _deps/googletest-build/googlemock/all: phony lib/libgmockd.a lib/libgmock_maind.a _deps/googletest-build/googletest/all
+
+# =============================================================================
+
+#############################################
+# Folder: D:/my folder/programming/test/network-task-tracking/cmake-build-debug/_deps/googletest-build/googletest
+
+build _deps/googletest-build/googletest/all: phony lib/libgtestd.a lib/libgtest_maind.a
+
+# =============================================================================
+
+#############################################
+# Folder: D:/my folder/programming/test/network-task-tracking/cmake-build-debug/test
+
+build test/all: phony test/run_tests.exe _deps/googletest-build/all
+
+# =============================================================================
 # Built-in targets
 
 
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | CMakeCache.txt CMakeFiles/3.28.1/CMakeCCompiler.cmake CMakeFiles/3.28.1/CMakeCXXCompiler.cmake CMakeFiles/3.28.1/CMakeRCCompiler.cmake CMakeFiles/3.28.1/CMakeSystem.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCInformation.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCXXInformation.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeDependentOption.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeGenericSystem.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeRCInformation.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-C.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/FindBoost.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/FindPackageMessage.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C-ABI.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-CXX-ABI.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-CXX.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-Initialize.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-windres.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/WindowsPaths.cmake D$:/my$ folder/programming/test/network-task-tracking/CMakeLists.txt D$:/my$ folder/programming/test/network-task-tracking/client/CMakeLists.txt D$:/my$ folder/programming/test/network-task-tracking/networking/CMakeLists.txt D$:/my$ folder/programming/test/network-task-tracking/server/CMakeLists.txt D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost/BoostConfig.cmake D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost/BoostConfigVersion.cmake D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost/vcpkg-cmake-wrapper.cmake D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost_headers/boost_headers-config-version.cmake D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost_headers/boost_headers-config.cmake D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost_headers/boost_headers-targets.cmake D$:/src/vcpkg/scripts/buildsystems/vcpkg.cmake
+build build.ninja: RERUN_CMAKE | CMakeCache.txt CMakeFiles/3.28.1/CMakeCCompiler.cmake CMakeFiles/3.28.1/CMakeCXXCompiler.cmake CMakeFiles/3.28.1/CMakeRCCompiler.cmake CMakeFiles/3.28.1/CMakeSystem.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCInformation.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCXXInformation.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeDependentOption.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeGenericSystem.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakePackageConfigHelpers.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeRCInformation.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-C.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/ExternalProject/shared_internal_commands.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/FetchContent.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/FetchContent/CMakeLists.cmake.in D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/FindBoost.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/FindGit.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/FindPackageMessage.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/FindPython.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/FindPython/Support.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/GNUInstallDirs.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C-ABI.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-CXX-ABI.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-CXX.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-Initialize.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-windres.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/WindowsPaths.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/WriteBasicConfigVersionFile.cmake D$:/my$ folder/programming/test/network-task-tracking/CMakeLists.txt D$:/my$ folder/programming/test/network-task-tracking/client/CMakeLists.txt D$:/my$ folder/programming/test/network-task-tracking/networking/CMakeLists.txt D$:/my$ folder/programming/test/network-task-tracking/server/CMakeLists.txt D$:/my$ folder/programming/test/network-task-tracking/test/CMakeLists.txt D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost/BoostConfig.cmake D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost/BoostConfigVersion.cmake D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost/vcpkg-cmake-wrapper.cmake D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost_headers/boost_headers-config-version.cmake D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost_headers/boost_headers-config.cmake D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost_headers/boost_headers-targets.cmake D$:/src/vcpkg/scripts/buildsystems/vcpkg.cmake _deps/googletest-src/CMakeLists.txt _deps/googletest-src/googlemock/CMakeLists.txt _deps/googletest-src/googlemock/cmake/gmock.pc.in _deps/googletest-src/googlemock/cmake/gmock_main.pc.in _deps/googletest-src/googletest/CMakeLists.txt _deps/googletest-src/googletest/cmake/Config.cmake.in _deps/googletest-src/googletest/cmake/gtest.pc.in _deps/googletest-src/googletest/cmake/gtest_main.pc.in _deps/googletest-src/googletest/cmake/internal_utils.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build CMakeCache.txt CMakeFiles/3.28.1/CMakeCCompiler.cmake CMakeFiles/3.28.1/CMakeCXXCompiler.cmake CMakeFiles/3.28.1/CMakeRCCompiler.cmake CMakeFiles/3.28.1/CMakeSystem.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCInformation.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCXXInformation.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeDependentOption.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeGenericSystem.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeRCInformation.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-C.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/FindBoost.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/FindPackageMessage.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C-ABI.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-CXX-ABI.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-CXX.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-Initialize.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-windres.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/WindowsPaths.cmake D$:/my$ folder/programming/test/network-task-tracking/CMakeLists.txt D$:/my$ folder/programming/test/network-task-tracking/client/CMakeLists.txt D$:/my$ folder/programming/test/network-task-tracking/networking/CMakeLists.txt D$:/my$ folder/programming/test/network-task-tracking/server/CMakeLists.txt D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost/BoostConfig.cmake D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost/BoostConfigVersion.cmake D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost/vcpkg-cmake-wrapper.cmake D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost_headers/boost_headers-config-version.cmake D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost_headers/boost_headers-config.cmake D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost_headers/boost_headers-targets.cmake D$:/src/vcpkg/scripts/buildsystems/vcpkg.cmake: phony
+build CMakeCache.txt CMakeFiles/3.28.1/CMakeCCompiler.cmake CMakeFiles/3.28.1/CMakeCXXCompiler.cmake CMakeFiles/3.28.1/CMakeRCCompiler.cmake CMakeFiles/3.28.1/CMakeSystem.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCInformation.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCXXInformation.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeDependentOption.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeGenericSystem.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakePackageConfigHelpers.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeRCInformation.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-C.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/ExternalProject/shared_internal_commands.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/FetchContent.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/FetchContent/CMakeLists.cmake.in D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/FindBoost.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/FindGit.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/FindPackageMessage.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/FindPython.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/FindPython/Support.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/GNUInstallDirs.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C-ABI.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-CXX-ABI.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-CXX.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-Initialize.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-windres.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/WindowsPaths.cmake D$:/Programmes/CLion$ 2024.1.4/bin/cmake/win/x64/share/cmake-3.28/Modules/WriteBasicConfigVersionFile.cmake D$:/my$ folder/programming/test/network-task-tracking/CMakeLists.txt D$:/my$ folder/programming/test/network-task-tracking/client/CMakeLists.txt D$:/my$ folder/programming/test/network-task-tracking/networking/CMakeLists.txt D$:/my$ folder/programming/test/network-task-tracking/server/CMakeLists.txt D$:/my$ folder/programming/test/network-task-tracking/test/CMakeLists.txt D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost/BoostConfig.cmake D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost/BoostConfigVersion.cmake D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost/vcpkg-cmake-wrapper.cmake D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost_headers/boost_headers-config-version.cmake D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost_headers/boost_headers-config.cmake D$:/src/vcpkg/installed/x64-mingw-dynamic/share/boost_headers/boost_headers-targets.cmake D$:/src/vcpkg/scripts/buildsystems/vcpkg.cmake _deps/googletest-src/CMakeLists.txt _deps/googletest-src/googlemock/CMakeLists.txt _deps/googletest-src/googlemock/cmake/gmock.pc.in _deps/googletest-src/googlemock/cmake/gmock_main.pc.in _deps/googletest-src/googletest/CMakeLists.txt _deps/googletest-src/googletest/cmake/Config.cmake.in _deps/googletest-src/googletest/cmake/gtest.pc.in _deps/googletest-src/googletest/cmake/gtest_main.pc.in _deps/googletest-src/googletest/cmake/internal_utils.cmake: phony
 
 
 #############################################

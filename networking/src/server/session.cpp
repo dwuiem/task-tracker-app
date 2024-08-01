@@ -35,8 +35,8 @@ void Session::display_commands() {
             command_handler.execute(command_line);
         } catch (const InvalidCommandException& e) {
             send(e.what(), MessageType::EXCEPTION);
-            display_commands();
         }
+        display_commands();
     };
 }
 

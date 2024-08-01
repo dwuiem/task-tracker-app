@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <string>
 
-#include <server/user.h>
+#include "user.h"
 
 class UserStorage {
 public:
