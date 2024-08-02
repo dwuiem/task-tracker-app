@@ -6,7 +6,9 @@ Session::Session(tcp::socket&& socket) :
 void Session::start() {
     on_connect = [this]() {
         EventHandler::on_connect(get_client_address());
-        send("You have successfully joined");
+        std::ostringstream out;
+        out << GREEN << "You have successfully joined" << RESET;
+        send(out.str());
     };
 
     on_disconnect = [this]() {

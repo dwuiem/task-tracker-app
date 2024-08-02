@@ -1,6 +1,11 @@
 #ifndef CLIENT_NETWORKING_INCLUDE_SERVER_CONNECTION_H_
 #define CLIENT_NETWORKING_INCLUDE_SERVER_CONNECTION_H_
 
+#define RESET   "\033[0m"
+#define GREEN   "\033[32m"
+#define RED     "\033[31m"
+#define YELLOW  "\033[33m"
+
 #include <boost/asio.hpp>
 
 #include <queue>
