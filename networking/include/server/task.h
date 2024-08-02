@@ -22,6 +22,7 @@ public:
 
     int get_id() const;
     std::string get_title() const;
+    time_t get_creation_time() const;
     std::optional<std::string> get_description() const;
     std::optional<time_t> get_deadline() const;
 
@@ -31,6 +32,7 @@ private:
     static inline int counter = 0;
     int id_;
     std::string title_;
+    time_t creation_time_;
     std::optional<std::string> description_;
     std::optional<time_t> deadline_;
 

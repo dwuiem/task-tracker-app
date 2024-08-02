@@ -84,7 +84,9 @@ void CommandHandler::create_task(const std::vector<std::string> &args) {
         notifier_->send_to_user(collaborator, "User \"" + user_->get_name() + "\" added a task for you");
     }
     user_->add_task(task);
-    notifier_->send("You have created task", MessageType::INFO);
+    std::ostringstream out;
+    out << GREEN << "You have created task" << RESET;
+    notifier_->send(out.str(), MessageType::INFO);
 }
 
 void CommandHandler::display(const std::vector<std::string> &args) const {
@@ -94,9 +96,9 @@ void CommandHandler::display(const std::vector<std::string> &args) const {
     }
     std::ostringstream out;
     out << GREEN << "Task list\n" << RESET;
-    out << "------------------";
+    out << "------------------\n";
     for (const auto& task : user_->get_all_tasks()) {
-        out << "### Task ID: " + std::to_string(task->get_id()) + "\n";
+        out << "### Task ID: " + std::to_string(task->get_id()) + ". Created " << YELLOW << time_to_string(task->get_creation_time()) << RESET << "\n";
         out << "### Title: " + task->get_title() + "\n";
         if (task->get_description().has_value()) out << "### Description: " + task->get_description().value() + "\n";
         if (task->get_deadline().has_value()) out << "### Deadline: " + time_to_string(task->get_deadline().value()) + "\n";
