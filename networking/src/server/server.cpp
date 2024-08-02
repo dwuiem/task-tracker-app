@@ -38,7 +38,6 @@ void TCP::Server::post_to_client(const std::shared_ptr<User>& user, const std::s
     for (const auto& session : sessions_) {
         if (session->get_user() == user) {
             session->send(message, MessageType::NOTIFY);
-            break;
         }
     }
 }

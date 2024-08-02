@@ -67,12 +67,12 @@ void CommandHandler::create_task(const std::vector<std::string> &args) {
     if (args[2] != "-") {
         deadline = parse_datetime(args[2]);
     }
-    std::vector<std::shared_ptr<User>> collaborators;
+    std::unordered_set<std::shared_ptr<User>> collaborators;
     for (size_t i = 3; i < args.size(); i++) {
         try {
             auto collaborator = UserStorage::get_user(args[i]);
             if (collaborator->get_id() == user_->get_id()) throw InvalidCommandException("You can't add yourself as a collaborator");
-            collaborators.push_back(collaborator);
+            collaborators.insert(collaborator);
         } catch (const UserNotFoundException&) {
             throw InvalidCommandException("User not found");
         }
