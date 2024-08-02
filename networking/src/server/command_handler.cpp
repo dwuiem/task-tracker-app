@@ -94,6 +94,7 @@ void CommandHandler::display(const std::vector<std::string> &args) const {
     }
     std::ostringstream out;
     out << GREEN << "Task list\n" << RESET;
+    out << "------------------";
     for (const auto& task : user_->get_all_tasks()) {
         out << "### Task ID: " + std::to_string(task->get_id()) + "\n";
         out << "### Title: " + task->get_title() + "\n";

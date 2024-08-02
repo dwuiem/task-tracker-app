@@ -75,7 +75,6 @@ void TCP::Connection::send(const std::string& message, MessageType message_type)
                 << std::setw(2) << std::setfill('0') << localTime->tm_sec << " | INFO]";
             break;
         case MessageType::NOTIFY:
-            text << "\n";
             text << YELLOW << "[" << std::setw(2) << std::setfill('0') << localTime->tm_hour << ":"
                 << std::setw(2) << std::setfill('0') << localTime->tm_min << ":"
                 << std::setw(2) << std::setfill('0') << localTime->tm_sec << " | NOTIFY]" << RESET;

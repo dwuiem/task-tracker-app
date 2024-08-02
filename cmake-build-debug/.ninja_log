@@ -65,3 +65,8 @@
 45	10317	7443339544620325	Networking/CMakeFiles/networking.dir/src/server/command_handler.cpp.obj	ac252757c97326c9
 10318	11250	7443339647350045	Networking/libnetworking.a	de8571218a3e42b8
 11250	13833	7443339656673013	Server/server.exe	fc2c1fd9efa90578
+42	7904	7443346908229129	Networking/CMakeFiles/networking.dir/src/server/connection.cpp.obj	a8194d62c0e6f87e
+47	9914	7443346908278085	Networking/CMakeFiles/networking.dir/src/server/session.cpp.obj	c568d92b568870f2
+37	11398	7443346908178666	Networking/CMakeFiles/networking.dir/src/server/command_handler.cpp.obj	ac252757c97326c9
+11399	12230	7443347021789973	Networking/libnetworking.a	de8571218a3e42b8
+12230	14935	7443347030115329	Server/server.exe	fc2c1fd9efa90578

@@ -21,6 +21,12 @@ void Session::start() {
     on_read = [this](const std::string& username) {
         try {
             authorize_user(username);
+            std::ostringstream guide;
+            guide << GREEN << "You are successfully authorized\n" << RESET;
+            guide << YELLOW << "Available commands:\n";
+            guide << "-> create \"title\" \"description\" \"date\" [usernames of collaborators ...]\n";
+            guide << "-> display" << RESET;
+            send(guide.str());
             display_commands();
         } catch (const InvalidUsernameException& e) {
             send(e.what(), MessageType::EXCEPTION);
