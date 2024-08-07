@@ -25,7 +25,7 @@ public:
     time_t get_creation_time() const;
     std::optional<std::string> get_description() const;
     std::optional<time_t> get_deadline() const;
-
+    bool is_completed() const;
     std::shared_ptr<User> get_creator() const;
     std::unordered_set<std::shared_ptr<User>> get_collaborators() const;
 private:
@@ -35,7 +35,7 @@ private:
     time_t creation_time_;
     std::optional<std::string> description_;
     std::optional<time_t> deadline_;
-
+    bool is_completed_;
     std::shared_ptr<User> creator_;
     std::unordered_set<std::shared_ptr<User>> collaborators_;
 

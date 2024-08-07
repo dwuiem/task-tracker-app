@@ -89,7 +89,12 @@ void CommandHandler::create_task(const std::vector<std::string> &args) {
     notifier_->send(out.str(), MessageType::INFO);
 }
 
-void CommandHandler::display(const std::vector<std::string> &args) const {
+void CommandHandler::select_task(const std::vector<std::string> &args) {
+    if (args.empty()) throw InvalidCommandException("Specify task ID");
+
+}
+
+void CommandHandler::list(const std::vector<std::string> &args) const {
     if (user_->get_all_tasks().empty()) {
         notifier_->send("There are no any tasks in your list", MessageType::INFO);
         return;
@@ -102,6 +107,7 @@ void CommandHandler::display(const std::vector<std::string> &args) const {
         out << "### Title: " + task->get_title() + "\n";
         if (task->get_description().has_value()) out << "### Description: " + task->get_description().value() + "\n";
         if (task->get_deadline().has_value()) out << "### Deadline: " + time_to_string(task->get_deadline().value()) + "\n";
+        if (task->is_completed()) out << "(!) Status:" << GREEN << "COMPLETED\n" << RESET;
         out << "(*) Creator: " + (task->get_creator() == user_ ? "[YOU]" : task->get_creator()->get_name()) + "\n";
         if (!task->get_collaborators().empty()) {
             out << "(*) Collaborators: ";

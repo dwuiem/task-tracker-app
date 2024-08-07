@@ -5,6 +5,8 @@ set(CMAKE_CXX_STANDARD 20)
 
 find_package(Boost 1.85.0 REQUIRED)
 
+find_package(libpqxx CONFIG REQUIRED)
+
 file(GLOB SOURCES
         src/server/*.cpp
         src/client/*.cpp
@@ -23,7 +25,9 @@ target_link_libraries(${PROJECT_NAME}
         ${Boost_LIBRARIES}
 )
 
-target_link_libraries(${PROJECT_NAME} ws2_32)
-target_link_libraries(${PROJECT_NAME} wsock32)
+target_link_libraries(${PROJECT_NAME} PRIVATE ws2_32)
+target_link_libraries(${PROJECT_NAME} PRIVATE wsock32)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE libpqxx::pqxx)
 
 add_definitions(-D_WIN32_WINNT=0x0601)

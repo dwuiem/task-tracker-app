@@ -22,24 +22,28 @@ public:
     void execute(const std::string& command_line);
 private:
     void create_task(const std::vector<std::string>& args);
-    void display(const std::vector<std::string>& args) const;
+    void select_task(const std::vector<std::string>& args);
+    void list(const std::vector<std::string>& args) const;
 
     static boost::gregorian::date parse_date(const std::string &input);
     static boost::posix_time::time_duration parse_time(const std::string& input);
 
     static std::string time_to_string(boost::posix_time::ptime time);
 
-    static inline const boost::regex command_pattern{R"((?:[^\s"]+|"[^"]*")+)"};
-    static inline const boost::regex full_date_pattern{R"((\d{2})[./](\d{2})[./](\d{2,4}))"};
-    static inline const boost::regex month_date_pattern{R"((\d{2})[./](\d{2}))"};
-    static inline const boost::regex time_pattern{R"((\d{1,2}):(\d{2}))"};
+    inline static const boost::regex command_pattern{R"((?:[^\s"]+|"[^"]*")+)"};
+    inline static const boost::regex full_date_pattern{R"((\d{2})[./](\d{2})[./](\d{2,4}))"};
+    inline static const boost::regex month_date_pattern{R"((\d{2})[./](\d{2}))"};
+    inline static const boost::regex time_pattern{R"((\d{1,2}):(\d{2}))"};
 
     std::unordered_map<std::string, std::function<void(const std::vector<std::string>&)>> commands = {
         {"create", [this](const std::vector<std::string>& args) {
             create_task(args);
         }},
-        {"display", [this](const std::vector<std::string>& args) {
-            display(args);
+        {"list", [this](const std::vector<std::string>& args) {
+            list(args);
+        }},
+        {"select", [this](const std::vector<std::string>& args) {
+            select_task(args);
         }}
     };
 

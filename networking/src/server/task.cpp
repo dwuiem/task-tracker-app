@@ -9,6 +9,7 @@ Task::Task(std::string title, std::optional<std::string> description, std::optio
                                                                                deadline_(deadline),
                                                                                creator_(std::move(creator)) {
     creation_time_ = boost::posix_time::second_clock::local_time();
+    is_completed_ = true;
 }
 
 void Task::set_title(const std::string& title) {
@@ -40,6 +41,10 @@ std::optional<std::string> Task::get_description() const {
 
 std::optional<Task::time_t> Task::get_deadline() const {
     return deadline_;
+}
+
+bool Task::is_completed() const {
+    return is_completed_;
 }
 
 std::shared_ptr<User> Task::get_creator() const {
