@@ -10,11 +10,12 @@ This project is a TCP/IP application written in C++ using the Boost.Asio library
 - **Asynchronous I/O operations** using Boost.Asio.
 - **High performance** with low latency.
 - **Console UI** to interact with app
-- **CRUD operations** using database
+- **CRUD operations** using postgreSQL database
 
 ## Requirements
 - C++20 (or higher)
 - Boost library (version 1.85.0 or higher)
+- `libpqxx` for postgreSQL
 - CMake (version 3.10 or higher)
 - A compatible C++ compiler (GCC, Clang, MSVC, etc.)
 
@@ -28,6 +29,7 @@ cd network-task-tracking
 
 ### Step 2
 Download a boost library from https://www.boost.org/users/download/ or use `vcpkg` package manager
+Also add `libpqxx` using `vcpkg`
 
 ### Step 3
 Use CMake to build project
