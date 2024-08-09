@@ -1,4 +1,4 @@
-# Network Task-manager application on C++
+# Network task tracker application on C++
 
 ## Pay attention
 Now this project is still under active development. Please check back regularly for updates.
