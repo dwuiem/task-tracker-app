@@ -1,9 +1,9 @@
 #ifndef COMMAND_EXECUTOR_H
 #define COMMAND_EXECUTOR_H
 
-#include "user_storage.h"
 #include "message_sender.h"
 #include "connection.h"
+#include "database.h"
 
 #include <boost/regex.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
@@ -13,7 +13,7 @@
 
 class CommandHandler {
 public:
-    explicit CommandHandler(const std::shared_ptr<User>& user, const std::shared_ptr<MessageSender>& notifier);
+    explicit CommandHandler(const User& user, const std::shared_ptr<MessageSender>& notifier);
 
     static boost::posix_time::ptime parse_datetime(const std::string& input);
 
@@ -47,7 +47,8 @@ private:
         }}
     };
 
-    std::shared_ptr<User> user_;
+    Database& db_;
+    User user_;
     std::shared_ptr<MessageSender> notifier_;
 };
 

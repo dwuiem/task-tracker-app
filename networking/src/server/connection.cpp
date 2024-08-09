@@ -1,6 +1,10 @@
 #include <server/connection.h>
 
-TCP::Connection::Connection(boost::asio::ip::tcp::socket&& socket) : socket_(std::move(socket)){
+#include <utility>
+
+TCP::Connection::Connection(boost::asio::ip::tcp::socket&& socket, std::function<void(const User& user, const std::string& message)> notifier) :
+socket_(std::move(socket)),
+MessageSender(std::move(notifier)) {
     try {
         std::stringstream address;
         address << socket_.remote_endpoint();
@@ -90,10 +94,6 @@ void TCP::Connection::send(const std::string& message, MessageType message_type)
     if (queueIdle) {
         async_write();
     }
-}
-
-void TCP::Connection::send_to_user(std::shared_ptr<User> user, const std::string &message) {
-    post_to_user(user, message);
 }
 
 void TCP::Connection::close() {

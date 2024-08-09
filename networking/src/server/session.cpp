@@ -1,7 +1,7 @@
 #include "server/session.h"
 
-Session::Session(tcp::socket&& socket) :
-    TCP::Connection(std::move(socket)) {}
+Session::Session(tcp::socket&& socket, const std::function<void(const User& user, const std::string& message)>& notifier) :
+    TCP::Connection(std::move(socket), notifier) {}
 
 void Session::start() {
     on_connect = [this]() {
@@ -25,13 +25,17 @@ void Session::start() {
             guide << GREEN << "You are successfully authorized\n" << RESET;
             guide << YELLOW << "Available commands:\n";
             guide << "-> create \"title\" \"description\" \"date\" [usernames of collaborators ...]\n";
-            guide << "-> display" << RESET;
+            guide << "-> list" << RESET;
             send(guide.str());
             display_commands();
         } catch (const InvalidUsernameException& e) {
             send(e.what(), MessageType::EXCEPTION);
         }
     };
+}
+
+User Session::get_user() const {
+    return user;
 }
 
 void Session::display_commands() {
@@ -47,8 +51,3 @@ void Session::display_commands() {
         display_commands();
     };
 }
-
-std::shared_ptr<User> Session::get_user() const {
-    return user;
-}
-

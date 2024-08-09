@@ -4,6 +4,7 @@
 #include <boost/asio.hpp>
 
 #include "server/session.h"
+#include "server/database.h"
 
 #include <unordered_set>
 
@@ -23,10 +24,9 @@ namespace TCP {
 
         int run();
 
-        static inline std::unordered_map<std::shared_ptr<Session>, std::shared_ptr<User>> authorized_user_map{};
     private:
         void accept();
-        void post_to_client(const std::shared_ptr<User>& user, const std::string& message);
+        void post_to_client(const User& user, const std::string& message);
 
         IPV ip_version_;
         int port_;

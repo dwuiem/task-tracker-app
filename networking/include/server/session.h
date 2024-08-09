@@ -14,17 +14,14 @@ class Session : public std::enable_shared_from_this<Session>, public TCP::Connec
 public:
     using session_ptr = std::shared_ptr<Session>;
     using tcp = boost::asio::ip::tcp;
-    static session_ptr create(tcp::socket&& socket) {
-        return session_ptr(new Session(std::move(socket)));
+    static session_ptr create(tcp::socket&& socket, const std::function<void(const User& user, const std::string& message)>& notifier) {
+        return session_ptr(new Session(std::move(socket), notifier));
     }
-
     void start();
 
-    std::shared_ptr<User> get_user() const;
+    User get_user() const;
 private:
-
-    explicit Session(tcp::socket&& socket);
-
+    explicit Session(tcp::socket&& socket, const std::function<void(const User& user, const std::string& message)>& notifier);
     void display_commands();
 };
 

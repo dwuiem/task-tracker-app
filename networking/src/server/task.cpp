@@ -2,30 +2,17 @@
 
 #include "server/task.h"
 
-Task::Task(std::string title, std::optional<std::string> description, std::optional<time_t> deadline, std::shared_ptr<User> creator) :
-                                                                               id_(counter++),
-                                                                               title_(std::move(title)),
-                                                                               description_(std::move(description)),
-                                                                               deadline_(deadline),
-                                                                               creator_(std::move(creator)) {
-    creation_time_ = boost::posix_time::second_clock::local_time();
-    is_completed_ = true;
-}
-
-void Task::set_title(const std::string& title) {
-    title_ = title;
-}
-void Task::set_description(const std::string& description) {
-    description_ = description;
-}
-
-void Task::add_collaborator(const std::shared_ptr<User>& collaborator) {
-    collaborators_.insert(collaborator);
-}
-
-int Task::get_id() const {
-    return id_;
-}
+Task::Task(int id, std::string title,
+    std::optional<std::string> description,
+    std::optional<time_t> deadline,
+    time_t creation_time,
+    int creator_id) :
+        id_(id),
+        title_(std::move(title)),
+        description_(std::move(description)),
+        deadline_(deadline),
+        creation_time_(creation_time),
+        creator_id_(creator_id) {}
 
 std::string Task::get_title() const {
     return title_;
@@ -43,14 +30,10 @@ std::optional<Task::time_t> Task::get_deadline() const {
     return deadline_;
 }
 
-bool Task::is_completed() const {
-    return is_completed_;
+int Task::get_creator_id() const {
+    return creator_id_;
 }
 
-std::shared_ptr<User> Task::get_creator() const {
-    return creator_;
-}
-
-std::unordered_set<std::shared_ptr<User>> Task::get_collaborators() const {
-    return collaborators_;
+int Task::get_id() const {
+    return id_;
 }

@@ -15,17 +15,16 @@
 
 namespace TCP {
 
-const uint16_t MAX_BUFFER_SIZE = 65535;
+constexpr uint16_t MAX_BUFFER_SIZE = 65535;
 
 namespace io = boost::asio;
 
 class Connection : public MessageSender {
 public:
-    explicit Connection(io::ip::tcp::socket&& socket);
+    explicit Connection(io::ip::tcp::socket&& socket, std::function<void(const User& user, const std::string& message)> notifier);
 
     void connect();
     void send(const std::string& message, MessageType message_type = MessageType::INFO) override;
-    void send_to_user(std::shared_ptr<User> user, const std::string &message) override;
 
     std::string get_client_address() const noexcept;
 

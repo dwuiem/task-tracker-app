@@ -19,24 +19,21 @@ int TCP::Server::run() {
 }
 void TCP::Server::accept() {
     socket_.emplace(io_context_);
-
-    // Asynchronously accepting client
-
     acceptor_.async_accept(*socket_, [this] (const boost::system::error_code ec) {
         if (!ec) {
-            session_ptr session = Session::create(std::move(*socket_));
-            sessions_.emplace(session);
-            session->post_to_user = [this] (const std::shared_ptr<User>& user, const std::string& message) {
+            session_ptr session = Session::create(std::move(*socket_),
+                [this] (const User& user, const std::string& message) {
                 post_to_client(user, message);
-            };
+            });
+            sessions_.emplace(session);
             session->start();
         }
         accept();
     });
 }
-void TCP::Server::post_to_client(const std::shared_ptr<User>& user, const std::string& message) {
+void TCP::Server::post_to_client(const User& user, const std::string& message) {
     for (const auto& session : sessions_) {
-        if (session->get_user() == user) {
+        if (session->get_user().get_id() == user.get_id()) {
             session->send(message, MessageType::NOTIFY);
         }
     }

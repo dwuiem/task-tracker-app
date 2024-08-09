@@ -1,7 +1,7 @@
 #ifndef MESSAGE_SENDER_H
 #define MESSAGE_SENDER_H
 
-#include <memory>
+#include <functional>
 #include <string>
 
 #include "user.h"
@@ -14,10 +14,11 @@ enum class MessageType {
 
 class MessageSender {
 public:
+    explicit MessageSender(std::function<void(const User& user, const std::string& message)> notifier);
     virtual ~MessageSender() = default;
 
     virtual void send(const std::string& message, MessageType message_type) = 0;
-    virtual void send_to_user(std::shared_ptr<User> user, const std::string& message) = 0;
+    std::function<void(const User& user, const std::string& message)> notify_user;
 };
 
 #endif //MESSAGE_SENDER_H

@@ -1,8 +1,9 @@
 #include <server/command_handler.h>
 
-CommandHandler::CommandHandler(const std::shared_ptr<User>& user, const std::shared_ptr<MessageSender>& notifier) :
+CommandHandler::CommandHandler(const User& user, const std::shared_ptr<MessageSender>& notifier) :
     user_(user),
-    notifier_(notifier) {}
+    notifier_(notifier),
+    db_(Database::get_instance()){}
 
 boost::posix_time::ptime CommandHandler::parse_datetime(const std::string &input) {
     std::istringstream iss(input);
@@ -67,23 +68,21 @@ void CommandHandler::create_task(const std::vector<std::string> &args) {
     if (args[2] != "-") {
         deadline = parse_datetime(args[2]);
     }
-    std::unordered_set<std::shared_ptr<User>> collaborators;
+    std::set<int> collaborators_id;
     for (size_t i = 3; i < args.size(); i++) {
-        try {
-            auto collaborator = UserStorage::get_user(args[i]);
-            if (collaborator->get_id() == user_->get_id()) throw InvalidCommandException("You can't add yourself as a collaborator");
-            collaborators.insert(collaborator);
-        } catch (const UserNotFoundException&) {
-            throw InvalidCommandException("User not found");
-        }
+        if (!db_.user_exists(args[i])) throw InvalidCommandException("Collaborator " + args[i] + " doesn't exist");
+        if (args[i] == user_.get_name()) throw InvalidCommandException("You can't add yourself as a collaborator");
+        User collaborator = db_.get_user_by_name(args[i]);
+        collaborators_id.insert(collaborator.get_id());
     }
-    std::shared_ptr<Task> task = std::make_shared<Task>(title, description, deadline, user_);
-    for (const auto& collaborator : collaborators) {
-        task->add_collaborator(collaborator);
-        collaborator->add_task(task);
-        notifier_->send_to_user(collaborator, "User \"" + user_->get_name() + "\" added a task for you");
-    }
-    user_->add_task(task);
+    std::for_each(collaborators_id.begin(), collaborators_id.end(), [this] (const auto& id) {
+        User collaborator = db_.get_user_by_id(id);
+        notifier_->notify_user(collaborator, "User [" + user_.get_name() + "] added a common task with you");
+    });
+    boost::posix_time::ptime creation_time = boost::posix_time::second_clock::local_time();
+    auto task = Task(0, title, description, deadline, creation_time, user_.get_id());
+    db_.add_task(task, collaborators_id);
+
     std::ostringstream out;
     out << GREEN << "You have created task" << RESET;
     notifier_->send(out.str(), MessageType::INFO);
@@ -95,27 +94,33 @@ void CommandHandler::select_task(const std::vector<std::string> &args) {
 }
 
 void CommandHandler::list(const std::vector<std::string> &args) const {
-    if (user_->get_all_tasks().empty()) {
+    std::vector<Task> user_tasks = db_.get_tasks_for_user(user_.get_id());
+    if (user_tasks.empty()) {
         notifier_->send("There are no any tasks in your list", MessageType::INFO);
         return;
     }
     std::ostringstream out;
     out << GREEN << "Task list\n" << RESET;
     out << "------------------\n";
-    for (const auto& task : user_->get_all_tasks()) {
-        out << "### Task ID: " + std::to_string(task->get_id()) + ". Created " << YELLOW << time_to_string(task->get_creation_time()) << RESET << "\n";
-        out << "### Title: " + task->get_title() + "\n";
-        if (task->get_description().has_value()) out << "### Description: " + task->get_description().value() + "\n";
-        if (task->get_deadline().has_value()) out << "### Deadline: " + time_to_string(task->get_deadline().value()) + "\n";
-        if (task->is_completed()) out << "(!) Status:" << GREEN << "COMPLETED\n" << RESET;
-        out << "(*) Creator: " + (task->get_creator() == user_ ? "[YOU]" : task->get_creator()->get_name()) + "\n";
-        if (!task->get_collaborators().empty()) {
+    for (const auto& task : user_tasks) {
+
+        User creator = db_.get_user_by_id(task.get_creator_id());
+        std::vector<User> collaborators = db_.get_collaborators_for_task(task.get_id());
+
+        out << "### Task ID: " + std::to_string(task.get_id()) + ". Created " << YELLOW << time_to_string(task.get_creation_time()) << RESET << "\n";
+        out << "### Title: " + task.get_title() + "\n";
+        if (task.get_description().has_value()) out << "### Description: " + task.get_description().value() + "\n";
+        if (task.get_deadline().has_value()) out << "### Deadline: " + time_to_string(task.get_deadline().value()) + "\n";
+        // if (task.is_completed()) out << "(!) Status:" << GREEN << "COMPLETED\n" << RESET;
+        out << "(*) Creator: " + (creator.get_id() == user_.get_id() ? "[YOU]" : creator.get_name()) + "\n";
+
+        if (!collaborators.empty()) {
             out << "(*) Collaborators: ";
-            for (const auto& collaborator : task->get_collaborators()) {
-                if (collaborator == user_) {
+            for (const auto& collaborator : collaborators) {
+                if (collaborator.get_id() == user_.get_id()) {
                     out << "[YOU] ";
                 } else {
-                    out << collaborator->get_name() + " ";
+                    out << collaborator.get_name() + " ";
                 }
             }
             out << "\n";
