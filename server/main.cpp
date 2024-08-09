@@ -1,7 +1,3 @@
-#include <iostream>
-
-#include <boost/asio.hpp>
-
 #include "server/server.h"
 
 constexpr int SERVER_PORT = 1337;

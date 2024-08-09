@@ -168,7 +168,7 @@ boost::gregorian::date CommandHandler::parse_date(const std::string &input) {
         throw InvalidCommandException("Date format incorrect");
     }
     try {
-        result = {year, month, day};
+        result = {static_cast<uint16_t>(year), static_cast<uint16_t>(month), static_cast<uint16_t>(day)};
     } catch (...) {
         throw InvalidCommandException("Date doesn't exist");
     }
