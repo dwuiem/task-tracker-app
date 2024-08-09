@@ -40,7 +40,7 @@ cmake ..
 make
 ```
 ## Usage
-After building project you will have two executable files in `/Server` and in `/Client`
+After building project you will have two executable files in `/server` and in `/client`
 
 ## Project Structure
 ``` graphql
