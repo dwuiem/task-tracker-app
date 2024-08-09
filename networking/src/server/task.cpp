@@ -6,13 +6,15 @@ Task::Task(int id, std::string title,
     std::optional<std::string> description,
     std::optional<time_t> deadline,
     time_t creation_time,
-    int creator_id) :
+    int creator_id,
+    bool completed) :
         id_(id),
         title_(std::move(title)),
         description_(std::move(description)),
         deadline_(deadline),
         creation_time_(creation_time),
-        creator_id_(creator_id) {}
+        creator_id_(creator_id),
+        completed_(completed){}
 
 std::string Task::get_title() const {
     return title_;
@@ -36,4 +38,8 @@ int Task::get_creator_id() const {
 
 int Task::get_id() const {
     return id_;
+}
+
+bool Task::is_completed() const {
+    return completed_;
 }

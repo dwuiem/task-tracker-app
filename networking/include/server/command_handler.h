@@ -25,6 +25,8 @@ private:
     void select_task(const std::vector<std::string>& args);
     void list(const std::vector<std::string>& args) const;
 
+    std::string get_task_info(const Task &task) const;
+
     static boost::gregorian::date parse_date(const std::string &input);
     static boost::posix_time::time_duration parse_time(const std::string& input);
 

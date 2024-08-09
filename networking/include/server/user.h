@@ -5,7 +5,6 @@
 
 class User {
 public:
-    User() = default;
     explicit User(int id, std::string name);
     std::string get_name() const;
     int get_id() const;

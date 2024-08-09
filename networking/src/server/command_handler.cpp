@@ -90,7 +90,13 @@ void CommandHandler::create_task(const std::vector<std::string> &args) {
 
 void CommandHandler::select_task(const std::vector<std::string> &args) {
     if (args.empty()) throw InvalidCommandException("Specify task ID");
-
+    try {
+        Task task = db_.get_task_by_id(std::stoi(args[0]));
+        notifier_->send("Selected task:\n", MessageType::INFO);
+        notifier_->send(get_task_info(task), MessageType::INFO);
+    } catch (const std::exception& e) {
+        throw InvalidCommandException("ID must be a number");
+    }
 }
 
 void CommandHandler::list(const std::vector<std::string> &args) const {
@@ -103,32 +109,42 @@ void CommandHandler::list(const std::vector<std::string> &args) const {
     out << GREEN << "Task list\n" << RESET;
     out << "------------------\n";
     for (const auto& task : user_tasks) {
-
-        User creator = db_.get_user_by_id(task.get_creator_id());
-        std::vector<User> collaborators = db_.get_collaborators_for_task(task.get_id());
-
-        out << "### Task ID: " + std::to_string(task.get_id()) + ". Created " << YELLOW << time_to_string(task.get_creation_time()) << RESET << "\n";
-        out << "### Title: " + task.get_title() + "\n";
-        if (task.get_description().has_value()) out << "### Description: " + task.get_description().value() + "\n";
-        if (task.get_deadline().has_value()) out << "### Deadline: " + time_to_string(task.get_deadline().value()) + "\n";
-        // if (task.is_completed()) out << "(!) Status:" << GREEN << "COMPLETED\n" << RESET;
-        out << "(*) Creator: " + (creator.get_id() == user_.get_id() ? "[YOU]" : creator.get_name()) + "\n";
-
-        if (!collaborators.empty()) {
-            out << "(*) Collaborators: ";
-            for (const auto& collaborator : collaborators) {
-                if (collaborator.get_id() == user_.get_id()) {
-                    out << "[YOU] ";
-                } else {
-                    out << collaborator.get_name() + " ";
-                }
-            }
-            out << "\n";
-        }
+        out << get_task_info(task);
         out << "------------------";
         out << "\n";
     }
     notifier_->send(out.str(), MessageType::INFO);
+}
+
+std::string CommandHandler::get_task_info(const Task &task) const {
+    User creator = db_.get_user_by_id(task.get_creator_id());
+    std::vector<User> collaborators = db_.get_collaborators_for_task(task.get_id());
+    std::ostringstream out;
+    out << "### Task ID: " + std::to_string(task.get_id()) + ". Created " << YELLOW << time_to_string(task.get_creation_time()) << RESET << "\n";
+    out << "### Title: " + task.get_title() + "\n";
+    if (task.get_description().has_value()) out << "### Description: " + task.get_description().value() + "\n";
+    if (task.get_deadline().has_value()) out << "### Deadline: " + time_to_string(task.get_deadline().value()) + "\n";
+    out << "(!) Status: ";
+    if (task.is_completed()) {
+        out << GREEN << "COMPLETED\n" << RESET;
+    } else {
+        out << "UNCOMPLETED\n";
+    }
+    out << "(*) Creator: " + (creator.get_id() == user_.get_id() ? "[YOU]" : creator.get_name()) + "\n";
+
+    if (!collaborators.empty()) {
+        out << "(*) Collaborators: ";
+        for (const auto& collaborator : collaborators) {
+            if (collaborator.get_id() == user_.get_id()) {
+                out << "[YOU] ";
+            } else {
+                out << collaborator.get_name() + " ";
+            }
+        }
+        out << "\n";
+    }
+
+    return out.str();
 }
 
 boost::gregorian::date CommandHandler::parse_date(const std::string &input) {

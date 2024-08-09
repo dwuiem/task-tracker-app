@@ -1,7 +1,7 @@
 #include "server/session.h"
 
 Session::Session(tcp::socket&& socket, const std::function<void(const User& user, const std::string& message)>& notifier) :
-    TCP::Connection(std::move(socket), notifier) {}
+    TCP::Connection(std::move(socket), notifier), SessionAuthorization() {}
 
 void Session::start() {
     on_connect = [this]() {
@@ -34,15 +34,15 @@ void Session::start() {
     };
 }
 
-User Session::get_user() const {
-    return user;
+std::optional<User> Session::get_user() const {
+    return user.value();
 }
 
 void Session::display_commands() {
     send("Enter a command");
     on_read = [this](const std::string& command_line) {
         auto self = shared_from_this();
-        CommandHandler command_handler(user, self);
+        CommandHandler command_handler(user.value(), self);
         try {
             command_handler.execute(command_line);
         } catch (const InvalidCommandException& e) {

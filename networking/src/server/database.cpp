@@ -4,23 +4,24 @@ Database::Database() :
 connection_data("dbname=postgres user=postgres password=root hostaddr=127.0.0.1 port=5432") {}
 
 void Database::load_tables() {
-    std::string create_users_query = R"(
+    const std::string create_users_query = R"(
         CREATE TABLE IF NOT EXISTS users (
              id SERIAL PRIMARY KEY,
              name VARCHAR(15) NOT NULL
         );
     )";
-    std::string create_tasks_query = R"(
-       CREATE TABLE IF NOT EXISTS tasks (
+    const std::string create_tasks_query = R"(
+        CREATE TABLE IF NOT EXISTS tasks (
             id SERIAL PRIMARY KEY,
             title VARCHAR(100) NOT NULL,
             description TEXT,
             deadline_time TIMESTAMP,
             creation_time TIMESTAMP NOT NULL,
-            creator_id INTEGER REFERENCES users(id)
-       );
+            creator_id INTEGER REFERENCES users(id),
+            is_completed BOOLEAN NOT NULL DEFAULT FALSE
+        );
     )";
-    std::string create_user_tasks_query = R"(
+    const std::string create_user_tasks_query = R"(
         CREATE TABLE IF NOT EXISTS user_tasks (
             user_id INTEGER REFERENCES users(id),
             task_id INTEGER REFERENCES tasks(id),
@@ -37,6 +38,7 @@ void Database::load_tables() {
         std::cout << "Table has been loaded" << std::endl;
     } catch (const std::exception& e) {
         std::cerr << "Error creating table: " << e.what() << std::endl;
+        throw;
     }
 }
 
@@ -50,6 +52,7 @@ void Database::add_user(const std::string& username) {
         w.commit();
     } catch (const std::exception &e) {
         std::cerr << "Error adding user: " << e.what() << std::endl;
+        throw;
     }
 }
 
@@ -72,20 +75,20 @@ void Database::add_task(const Task& task, const std::set<int>& collaborators_id)
         assign_users_to_task(task_id, task.get_creator_id(), collaborators_id);
     } catch (const std::exception &e) {
         std::cerr << "Error adding task: " << e.what() << std::endl;
+        throw;
     }
 }
 
 void Database::assign_users_to_task(int task_id, int creator_id, const std::set<int> &collaborators_id) {
-    try {
-        pqxx::work w(*connection_);
-
-        std::string assign_creator_query = "INSERT INTO user_tasks (user_id, task_id, role) VALUES (" +
+    const std::string assign_creator_query = "INSERT INTO user_tasks (user_id, task_id, role) VALUES (" +
                                            std::to_string(creator_id) + ", " +
                                            std::to_string(task_id) + ", 'creator');";
+    try {
+        pqxx::work w(*connection_);
         w.exec(assign_creator_query);
 
         for (const auto& collaborator_id : collaborators_id) {
-            std::string assign_collaborator_query = "INSERT INTO user_tasks (user_id, task_id, role) VALUES (" +
+            const std::string assign_collaborator_query = "INSERT INTO user_tasks (user_id, task_id, role) VALUES (" +
                                                     std::to_string(collaborator_id) + ", " +
                                                     std::to_string(task_id) + ", 'collaborator');";
             w.exec(assign_collaborator_query);
@@ -95,13 +98,13 @@ void Database::assign_users_to_task(int task_id, int creator_id, const std::set<
         std::cout << "Users assigned to task ID: " << task_id << std::endl;
     } catch (const std::exception &e) {
         std::cerr << "Error assigning users to task: " << e.what() << std::endl;
+        throw;
     }
 }
 
 std::vector<Task> Database::get_tasks_for_user(int user_id) {
     std::string query = R"(
-        SELECT tasks.id, tasks.title, tasks.description, tasks.deadline_time, tasks.creation_time, tasks.creator_id
-        FROM tasks
+        SELECT * FROM tasks
         JOIN user_tasks ON tasks.id = user_tasks.task_id
         WHERE user_tasks.user_id =
     )" + std::to_string(user_id) + ";";
@@ -110,31 +113,57 @@ std::vector<Task> Database::get_tasks_for_user(int user_id) {
 
     try {
         pqxx::work w(*connection_);
-        pqxx::result result = w.exec(query);
+        const pqxx::result result = w.exec(query);
 
         for (const auto& row : result) {
-            int task_id = row["id"].as<int>();
-            auto title = row["title"].as<std::string>();
-            std::optional<std::string> description = row["description"].is_null() ?
-                std::nullopt : std::optional<std::string>(row["description"].as<std::string>());
-            std::optional<boost::posix_time::ptime> deadline = row["deadline_time"].is_null() ?
-                std::nullopt : std::optional<boost::posix_time::ptime>(boost::posix_time::time_from_string(row["deadline_time"].as<std::string>()));
-            boost::posix_time::ptime creation_time = boost::posix_time::time_from_string(row["creation_time"].as<std::string>());
-            int creator_id = row["creator_id"].as<int>();
-
-            tasks.emplace_back(task_id, title, description, deadline, creation_time, creator_id);
+            const int task_id = row["id"].as<int>();
+            const auto title = row["title"].as<std::string>();
+            const std::optional<std::string> description = row["description"].is_null() ?
+                std::nullopt : std::optional(row["description"].as<std::string>());
+            const std::optional<boost::posix_time::ptime> deadline = row["deadline_time"].is_null() ?
+                std::nullopt : std::optional(boost::posix_time::time_from_string(row["deadline_time"].as<std::string>()));
+            const boost::posix_time::ptime creation_time = boost::posix_time::time_from_string(row["creation_time"].as<std::string>());
+            const int creator_id = row["creator_id"].as<int>();
+            const bool is_completed = row["is_completed"].as<bool>();
+            tasks.emplace_back(task_id, title, description, deadline, creation_time, creator_id, is_completed);
         }
     } catch (const std::exception& e) {
         std::cerr << "Error retrieving tasks by user: " << e.what() << std::endl;
+        throw;
     }
 
     return tasks;
 }
 
+Task Database::get_task_by_id(int task_id) {
+    std::string query = "SELECT * FROM tasks WHERE id = " + std::to_string(task_id) + ";";
+
+    try {
+        pqxx::work w(*connection_);
+        const pqxx::result result = w.exec(query);
+        const pqxx::row row = result[0];
+
+        const int id = row["id"].as<int>();
+        const auto title = row["title"].as<std::string>();
+        const std::optional<std::string> description = row["description"].is_null() ?
+                    std::nullopt : std::optional(row["description"].as<std::string>());
+        const std::optional<boost::posix_time::ptime> deadline = row["deadline_time"].is_null() ?
+            std::nullopt : std::optional(boost::posix_time::time_from_string(row["deadline_time"].as<std::string>()));
+        const boost::posix_time::ptime creation_time = boost::posix_time::time_from_string(row["creation_time"].as<std::string>());
+        const int creator_id = row["creator_id"].as<int>();
+        const bool is_completed = row["is_completed"].as<bool>();
+
+        w.commit();
+        return Task{id, title, description, deadline, creation_time, creator_id, is_completed};
+    } catch (const std::exception& e) {
+        std::cerr << "Error retrieving tasks by id: " << e.what() << std::endl;
+        throw;
+    }
+}
+
 std::vector<User> Database::get_collaborators_for_task(int task_id) {
-    std::string query = R"(
-        SELECT users.id, users.name
-        FROM users
+    const std::string query = R"(
+        SELECT * FROM users
         JOIN user_tasks ON users.id = user_tasks.user_id
         WHERE user_tasks.task_id =
     )" + std::to_string(task_id) + R"( AND user_tasks.role = 'collaborator';)";
@@ -143,49 +172,62 @@ std::vector<User> Database::get_collaborators_for_task(int task_id) {
 
     try {
         pqxx::work w(*connection_);
-        pqxx::result result = w.exec(query);
+        const pqxx::result result = w.exec(query);
 
         for (const auto& row : result) {
-            int user_id = row["id"].as<int>();
-            std::string name = row["name"].as<std::string>();
-
+            const int user_id = row["id"].as<int>();
+            const auto name = row["name"].as<std::string>();
             collaborators.emplace_back(user_id, name);
         }
     } catch (const std::exception &e) {
         std::cerr << "Error retrieving collaborators for task ID " << task_id << ": " << e.what() << std::endl;
+        throw;
     }
 
     return collaborators;
 }
 
 User Database::get_user_by_name(const std::string &username) {
-    std::string query = "SELECT id, name FROM users WHERE name = " + connection_->quote(username) + ";";
-    pqxx::work w(*connection_);
-    pqxx::result result = w.exec(query);
-    int id = result[0]["id"].as<int>();
-    auto name = result[0]["name"].as<std::string>();
-    User user(id, name);
-    w.commit();
-    return user;
+    std::string query = "SELECT * FROM users WHERE name = " + connection_->quote(username) + ";";
+    try {
+        pqxx::work w(*connection_);
+        const pqxx::result result = w.exec(query);
+
+        const int id = result[0]["id"].as<int>();
+        const auto name = result[0]["name"].as<std::string>();
+
+        w.commit();
+        return User{id, name};
+    } catch (const std::exception& e) {
+        std::cerr << "Error retrieving user by name " << username << ": " << e.what() << std::endl;
+        throw;
+    }
 }
 
 User Database::get_user_by_id(int user_id) {
-    std::string query = "SELECT id, name FROM users WHERE id = " + std::to_string(user_id) + ";";
-    pqxx::work w(*connection_);
-    pqxx::result result = w.exec(query);
-    int id = result[0]["id"].as<int>();
-    auto name = result[0]["name"].as<std::string>();
-    User user(id, name);
-    w.commit();
-    return user;
+    const std::string query = "SELECT * FROM users WHERE id = " + std::to_string(user_id) + ";";
+
+    try {
+        pqxx::work w(*connection_);
+        const pqxx::result result = w.exec(query);
+
+        const int id = result[0]["id"].as<int>();
+        const auto name = result[0]["name"].as<std::string>();
+
+        w.commit();
+        return User{id, name};
+    } catch (const std::exception& e) {
+        std::cerr << "Error retrieving user by id " << user_id << ": " << e.what() << std::endl;
+        throw;
+    }
 }
 
 bool Database::user_exists(const std::string &username) {
-    std::string query = "SELECT 1 FROM users WHERE name = " +
+    const std::string query = "SELECT 1 FROM users WHERE name = " +
         connection_->quote(username) + " LIMIT 1;";
     try {
         pqxx::work w(*connection_);
-        pqxx::result result = w.exec(query);
+        const pqxx::result result = w.exec(query);
         return !result.empty();
     } catch (const std::exception &e) {
         std::cerr << "Error checking if user exists: " << e.what() << std::endl;

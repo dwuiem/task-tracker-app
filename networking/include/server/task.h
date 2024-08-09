@@ -2,14 +2,9 @@
 #define CLIENT_NETWORKING_INCLUDE_SERVER_TASK_H_
 
 #include <string>
-#include <unordered_set>
 #include <optional>
 
 #include <boost/date_time/posix_time/posix_time.hpp>
-
-#include "user.h"
-
-class User;
 
 class Task {
     using time_t = boost::posix_time::ptime;
@@ -18,7 +13,8 @@ public:
         std::optional<std::string> description,
         std::optional<time_t> deadline,
         time_t creation_time,
-        int creator_id);
+        int creator_id,
+        bool completed = false);
 
     std::string get_title() const;
     time_t get_creation_time() const;
@@ -26,6 +22,7 @@ public:
     std::optional<time_t> get_deadline() const;
     int get_creator_id() const;
     int get_id() const;
+    bool is_completed() const;
 private:
     int id_;
     std::string title_;
@@ -33,6 +30,7 @@ private:
     std::optional<std::string> description_;
     std::optional<time_t> deadline_;
     int creator_id_;
+    bool completed_;
 };
 
 #endif //CLIENT_NETWORKING_INCLUDE_SERVER_TASK_H_

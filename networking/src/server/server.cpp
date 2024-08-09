@@ -33,7 +33,7 @@ void TCP::Server::accept() {
 }
 void TCP::Server::post_to_client(const User& user, const std::string& message) {
     for (const auto& session : sessions_) {
-        if (session->get_user().get_id() == user.get_id()) {
+        if (session->get_user() && session->get_user().value().get_id() == user.get_id()) {
             session->send(message, MessageType::NOTIFY);
         }
     }

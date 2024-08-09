@@ -14,7 +14,7 @@ public:
     SessionAuthorization() = default;
 protected:
     void authorize_user(const std::string& username);
-    User user;
+    std::optional<User> user;
 private:
     static inline const boost::regex username_pattern_{"^[a-zA-Z][a-zA-Z0-9_.]{2,15}$"};
 };

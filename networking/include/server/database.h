@@ -21,6 +21,8 @@ public:
     void assign_users_to_task(int task_id, int creator_id, const std::set<int>& collaborators_id);
 
     std::vector<Task> get_tasks_for_user(int user_id);
+    Task get_task_by_id(int task_id);
+
     std::vector<User> get_collaborators_for_task(int task_id);
     User get_user_by_name(const std::string& username);
     User get_user_by_id(int user_id);
