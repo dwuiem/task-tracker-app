@@ -11,6 +11,7 @@ This project is a TCP/IP application written in C++ using the Boost.Asio library
 - **High performance** with low latency.
 - **Console UI** to interact with app
 - **CRUD operations** using postgreSQL database
+- **snake_case** code style
 
 ## Requirements
 - C++20 (or higher)
