@@ -16,6 +16,10 @@ public:
         int creator_id,
         bool completed = false);
 
+    void set_title(const std::string& title);
+    void set_description(const std::string& description);
+    void set_deadline_time(const time_t& time);
+
     std::string get_title() const;
     time_t get_creation_time() const;
     std::optional<std::string> get_description() const;

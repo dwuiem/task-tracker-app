@@ -21,13 +21,22 @@ void Session::start() {
     on_read = [this](const std::string& username) {
         try {
             authorize_user(username);
+
             std::ostringstream guide;
             guide << GREEN << "You are successfully authorized\n" << RESET;
             guide << YELLOW << "Available commands:\n";
             guide << "-> create \"title\" \"description\" \"date\" [usernames of collaborators ...]\n";
-            guide << "-> list" << RESET;
+            guide << "-> list\n";
+            guide << "-> select <id>\n";
+            guide << "  |-> edit [title/description/deadline] \"new value\"\n";
+            guide << "  |-> complete\n";
+            guide << "-> remove <id>" << RESET;
             send(guide.str());
-            display_commands();
+
+            const auto message_sender = static_cast<std::shared_ptr<MessageSender>>(shared_from_this());
+            command_handler_ = CommandHandler(user.value(), message_sender);
+
+            main();
         } catch (const InvalidUsernameException& e) {
             send(e.what(), MessageType::EXCEPTION);
         }
@@ -38,16 +47,14 @@ std::optional<User> Session::get_user() const {
     return user.value();
 }
 
-void Session::display_commands() {
+void Session::main() {
     send("Enter a command");
     on_read = [this](const std::string& command_line) {
-        auto self = shared_from_this();
-        CommandHandler command_handler(user.value(), self);
         try {
-            command_handler.execute(command_line);
+            command_handler_.value().execute(command_line);
         } catch (const InvalidCommandException& e) {
             send(e.what(), MessageType::EXCEPTION);
         }
-        display_commands();
+        main();
     };
 }

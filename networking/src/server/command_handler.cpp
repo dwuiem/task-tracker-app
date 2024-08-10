@@ -1,9 +1,11 @@
+#include <complex>
 #include <server/command_handler.h>
 
-CommandHandler::CommandHandler(const User& user, const std::shared_ptr<MessageSender>& notifier) :
-    user_(user),
-    notifier_(notifier),
-    db_(Database::get_instance()){}
+#include <utility>
+
+CommandHandler::CommandHandler(User user, const std::shared_ptr<MessageSender>& notifier) :
+    user_(std::move(user)),
+    notifier_(notifier) {}
 
 boost::posix_time::ptime CommandHandler::parse_datetime(const std::string &input) {
     std::istringstream iss(input);
@@ -23,13 +25,10 @@ boost::posix_time::ptime CommandHandler::parse_datetime(const std::string &input
     return {boost::gregorian::day_clock::local_day(), parse_time(first)};
 }
 
-std::pair<std::string, std::vector<std::string>> CommandHandler::parse_command(const std::string &input) {
+std::pair<Command, std::vector<std::string>> CommandHandler::parse_command(const std::string &input) {
     if (input.empty()) throw InvalidCommandException("Command line is empty");
     size_t quote_count = std::count(input.begin(), input.end(), '"');
     if (quote_count % 2 != 0) throw InvalidCommandException("Quotes were not closed");
-
-    std::string command;
-    std::vector<std::string> args;
 
     std::vector<std::string> tokens;
     boost::sregex_iterator it(input.begin(), input.end(), command_pattern);
@@ -42,23 +41,48 @@ std::pair<std::string, std::vector<std::string>> CommandHandler::parse_command(c
         tokens.push_back(match);
     }
 
-    command = tokens.front();
+    std::string command = tokens.front();
     tokens.erase(tokens.begin());
-    args = tokens;
-    return {command, args};
+    std::vector<std::string> args = tokens;
+    return {commands.at(command), args};
+}
+
+User CommandHandler::get_user() const {
+    return user_;
+}
+
+std::shared_ptr<MessageSender> CommandHandler::get_notifier() const {
+    return notifier_;
 }
 
 void CommandHandler::execute(const std::string &command_line) {
-    const auto& [command, args] = parse_command(command_line);
     try {
-        commands.at(command)(args);
-    } catch (const std::out_of_range&) {
+        switch (const auto& [command, args] = parse_command(command_line); command) {
+            case Command::CREATE:
+                create_task(args);
+                selected_task_ = std::nullopt;
+                break;
+            case Command::LIST:
+                list(args);
+                selected_task_ = std::nullopt;
+                break;
+            case Command::SELECT:
+                select_task(args);
+                break;
+            case Command::EDIT:
+                if (!selected_task_.has_value()) throw InvalidCommandException("You didn't select task");
+                edit(args);
+                break;
+        }
+    } catch (const std::out_of_range& e) {
         throw InvalidCommandException("Command doesn't exist");
     }
 }
 
 void CommandHandler::create_task(const std::vector<std::string> &args) {
+    Database& database = Database::get_instance();
     if (args.size() < 3) throw InvalidCommandException("Too few arguments");
+
     const std::string& title = args[0];
     std::optional<std::string> description = std::nullopt;
     if (args[1] != "-") {
@@ -68,20 +92,24 @@ void CommandHandler::create_task(const std::vector<std::string> &args) {
     if (args[2] != "-") {
         deadline = parse_datetime(args[2]);
     }
+
     std::set<int> collaborators_id;
+
     for (size_t i = 3; i < args.size(); i++) {
-        if (!db_.user_exists(args[i])) throw InvalidCommandException("Collaborator " + args[i] + " doesn't exist");
+        if (!database.user_exists(args[i])) throw InvalidCommandException("Collaborator " + args[i] + " doesn't exist");
         if (args[i] == user_.get_name()) throw InvalidCommandException("You can't add yourself as a collaborator");
-        User collaborator = db_.get_user_by_name(args[i]);
+        User collaborator = database.get_user_by_name(args[i]);
         collaborators_id.insert(collaborator.get_id());
     }
-    std::for_each(collaborators_id.begin(), collaborators_id.end(), [this] (const auto& id) {
-        User collaborator = db_.get_user_by_id(id);
+
+    for (int id : collaborators_id) {
+        User collaborator = database.get_user_by_id(id);
         notifier_->notify_user(collaborator, "User [" + user_.get_name() + "] added a common task with you");
-    });
+    }
+
     boost::posix_time::ptime creation_time = boost::posix_time::second_clock::local_time();
     auto task = Task(0, title, description, deadline, creation_time, user_.get_id());
-    db_.add_task(task, collaborators_id);
+    database.add_task(task, collaborators_id);
 
     std::ostringstream out;
     out << GREEN << "You have created task" << RESET;
@@ -89,36 +117,82 @@ void CommandHandler::create_task(const std::vector<std::string> &args) {
 }
 
 void CommandHandler::select_task(const std::vector<std::string> &args) {
+    Database& database = Database::get_instance();
     if (args.empty()) throw InvalidCommandException("Specify task ID");
     try {
-        Task task = db_.get_task_by_id(std::stoi(args[0]));
-        notifier_->send("Selected task:\n", MessageType::INFO);
-        notifier_->send(get_task_info(task), MessageType::INFO);
+        Task task = database.get_task_by_id(std::stoi(args[0]));
+        if (!database.is_user_collaborator(user_, task)) throw InvalidCommandException("Task is not for you");
+        selected_task_ = task;
+        notifier_->send("Selected task:"
+                        "\n------------------\n" +
+                        get_task_info(task) +
+                        "\n------------------", MessageType::INFO);
+        std::ostringstream guide;
+        guide << YELLOW << "You can edit (if you are creator) or complete this task" << RESET;
+        notifier_->send(guide.str());
     } catch (const std::exception& e) {
-        throw InvalidCommandException("ID must be a number");
+        throw InvalidCommandException("Such task doesn't exist");
     }
 }
 
 void CommandHandler::list(const std::vector<std::string> &args) const {
-    std::vector<Task> user_tasks = db_.get_tasks_for_user(user_.get_id());
+    Database& database = Database::get_instance();
+    std::vector<Task> user_tasks = database.get_tasks_for_user(user_.get_id());
     if (user_tasks.empty()) {
         notifier_->send("There are no any tasks in your list", MessageType::INFO);
         return;
     }
     std::ostringstream out;
     out << GREEN << "Task list\n" << RESET;
-    out << "------------------\n";
+    out << "------------------";
     for (const auto& task : user_tasks) {
-        out << get_task_info(task);
-        out << "------------------";
         out << "\n";
+        out << get_task_info(task);
+        out << "\n";
+        out << "------------------";
     }
     notifier_->send(out.str(), MessageType::INFO);
 }
 
+// TODO: add notify for collaborators
+
+void CommandHandler::edit(const std::vector<std::string> &args) {
+    Database& database = Database::get_instance();
+    Task task = selected_task_.value();
+    if (user_.get_id() != task.get_creator_id()) throw InvalidCommandException("You are not allowed to edit this task");
+    if (args.size() < 2) throw InvalidCommandException("Too few arguments");
+    try {
+        switch (EditingAttribute attribute = editing_attributes.at(args[0]); attribute) {
+            case EditingAttribute::TITLE:
+                task.set_title(args[1]);
+                break;
+            case EditingAttribute::DESCRIPTION:
+                task.set_description(args[1]);
+                break;
+            case EditingAttribute::DEADLINE_TIME:
+                const boost::posix_time::ptime time = parse_datetime(args[1]);
+                task.set_deadline_time(time);
+                break;
+        }
+    } catch (const std::out_of_range&) {
+        throw InvalidCommandException("You can edit only 'title', 'description' and 'deadline");
+    }
+    database.update_task(task);
+}
+
+void CommandHandler::complete() {
+    Task task = selected_task_.value();
+    if (user_.get_id() == task.get_creator_id()) {
+        // TODO: Check is all collaborators completed task
+    } else {
+        // TODO: Complete as collaborator
+    }
+}
+
 std::string CommandHandler::get_task_info(const Task &task) const {
-    User creator = db_.get_user_by_id(task.get_creator_id());
-    std::vector<User> collaborators = db_.get_collaborators_for_task(task.get_id());
+    Database& database = Database::get_instance();
+    const User creator = database.get_user_by_id(task.get_creator_id());
+    const std::vector<User> collaborators = database.get_collaborators_for_task(task.get_id());
     std::ostringstream out;
     out << "### Task ID: " + std::to_string(task.get_id()) + ". Created " << YELLOW << time_to_string(task.get_creation_time()) << RESET << "\n";
     out << "### Title: " + task.get_title() + "\n";
@@ -130,18 +204,24 @@ std::string CommandHandler::get_task_info(const Task &task) const {
     } else {
         out << "UNCOMPLETED\n";
     }
-    out << "(*) Creator: " + (creator.get_id() == user_.get_id() ? "[YOU]" : creator.get_name()) + "\n";
-
+    out << "(*) Creator: " << (creator.get_id() == user_.get_id() ? "[YOU]" : creator.get_name());
     if (!collaborators.empty()) {
+        out << "\n";
         out << "(*) Collaborators: ";
         for (const auto& collaborator : collaborators) {
+            bool task_completed = database.get_task_completed(collaborator, task);
             if (collaborator.get_id() == user_.get_id()) {
-                out << "[YOU] ";
+                out << "[YOU]" << " ";
             } else {
-                out << collaborator.get_name() + " ";
+                out << collaborator.get_name() << " ";
             }
+            if (task_completed) {
+                out << "(" << GREEN << "+" << RESET << ")";
+            } else {
+                out << "(" << RED << "-" << RESET << ")";
+            }
+            out << " ";
         }
-        out << "\n";
     }
 
     return out.str();

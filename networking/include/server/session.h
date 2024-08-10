@@ -22,7 +22,9 @@ public:
     std::optional<User> get_user() const;
 private:
     explicit Session(tcp::socket&& socket, const std::function<void(const User& user, const std::string& message)>& notifier);
-    void display_commands();
+    void main();
+
+    std::optional<CommandHandler> command_handler_;
 };
 
 #endif //CLIENT_NETWORKING_INCLUDE_SERVER_CLIENT_SESSION_H_

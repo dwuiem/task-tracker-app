@@ -25,7 +25,7 @@ void Database::load_tables() {
         CREATE TABLE IF NOT EXISTS user_tasks (
             user_id INTEGER REFERENCES users(id),
             task_id INTEGER REFERENCES tasks(id),
-            role VARCHAR(20) NOT NULL,
+            task_completed BOOLEAN NOT NULL DEFAULT FALSE,
             PRIMARY KEY(user_id, task_id)
         );
     )";
@@ -57,20 +57,24 @@ void Database::add_user(const std::string& username) {
 }
 
 void Database::add_task(const Task& task, const std::set<int>& collaborators_id) {
-    std::string creation_time = boost::posix_time::to_simple_string(task.get_creation_time());
-    std::string dueDateStr = task.get_deadline() ? boost::posix_time::to_simple_string(task.get_deadline().value()) : "NULL";
+    const std::string id = std::to_string(task.get_creator_id());
+    const std::string description = task.get_description() ? connection_->quote(task.get_description().value()) : "NULL";
+    const std::string creation_time = connection_->quote(boost::posix_time::to_simple_string(task.get_creation_time()));
+    const std::string deadline_time = task.get_deadline() ? connection_->quote(boost::posix_time::to_simple_string(task.get_deadline().value())) : "NULL";
 
-    std::string query = "INSERT INTO tasks (title, description, deadline_time, creation_time, creator_id) VALUES (" +
-        connection_->quote(task.get_title()) + ", " +
-              (task.get_description() ? connection_->quote(task.get_description().value()) : "NULL") + ", " +
-              (task.get_deadline() ? connection_->quote(dueDateStr) : "NULL") + ", " +
-              connection_->quote(creation_time) + ", " +
-              std::to_string(task.get_creator_id()) +
-        ") RETURNING id;";
+    const std::string query =
+            "INSERT INTO tasks (title, description, deadline_time, creation_time, creator_id) VALUES (" +
+            connection_->quote(task.get_title()) + ", " +
+            description + ", " +
+            deadline_time + ", " +
+            creation_time + ", " +
+            id +
+            ") RETURNING id;";
     try {
         pqxx::work w(*connection_);
-        pqxx::result result = w.exec(query);
-        int task_id = result[0]["id"].as<int>();
+        const pqxx::result result = w.exec(query);
+        const pqxx::row row = result[0];
+        const int task_id = row["id"].as<int>();
         w.commit();
         assign_users_to_task(task_id, task.get_creator_id(), collaborators_id);
     } catch (const std::exception &e) {
@@ -80,17 +84,13 @@ void Database::add_task(const Task& task, const std::set<int>& collaborators_id)
 }
 
 void Database::assign_users_to_task(int task_id, int creator_id, const std::set<int> &collaborators_id) {
-    const std::string assign_creator_query = "INSERT INTO user_tasks (user_id, task_id, role) VALUES (" +
-                                           std::to_string(creator_id) + ", " +
-                                           std::to_string(task_id) + ", 'creator');";
     try {
         pqxx::work w(*connection_);
-        w.exec(assign_creator_query);
 
         for (const auto& collaborator_id : collaborators_id) {
-            const std::string assign_collaborator_query = "INSERT INTO user_tasks (user_id, task_id, role) VALUES (" +
+            const std::string assign_collaborator_query = "INSERT INTO user_tasks (user_id, task_id) VALUES (" +
                                                     std::to_string(collaborator_id) + ", " +
-                                                    std::to_string(task_id) + ", 'collaborator');";
+                                                    std::to_string(task_id) + ");";
             w.exec(assign_collaborator_query);
         }
 
@@ -102,12 +102,37 @@ void Database::assign_users_to_task(int task_id, int creator_id, const std::set<
     }
 }
 
+void Database::update_task(const Task &task) {
+    const std::string id = std::to_string(task.get_id());
+    const std::string title = connection_->quote(task.get_title());
+    const std::string description = task.get_description() ? connection_->quote(task.get_description().value()) : "NULL";
+    const std::string deadline_time = task.get_deadline() ? connection_->quote(boost::posix_time::to_simple_string(task.get_deadline().value())) : "NULL";
+    const std::string is_completed = task.is_completed() ? "TRUE" : "FALSE";
+
+    const std::string query = "UPDATE tasks "
+                              "SET title = " + title + ", "
+                              "description = " + description + ", "
+                              "deadline_time = " + deadline_time + ", "
+                              "is_completed = " + is_completed + " "
+                              "WHERE id = " + id + ";";
+
+    try {
+        pqxx::work w(*connection_);
+        w.exec(query);
+        w.commit();
+    } catch (const std::exception& e) {
+        std::cerr << "Error updating task " + id + ": " + e.what() << std::endl;
+        throw;
+    }
+}
+
 std::vector<Task> Database::get_tasks_for_user(int user_id) {
-    std::string query = R"(
-        SELECT * FROM tasks
-        JOIN user_tasks ON tasks.id = user_tasks.task_id
-        WHERE user_tasks.user_id =
-    )" + std::to_string(user_id) + ";";
+    const std::string query = R"(
+        SELECT DISTINCT * FROM tasks
+        WHERE creator_id = )" + std::to_string(user_id) + " "
+                              "OR tasks.id IN (SELECT task_id FROM user_tasks WHERE user_id = " + std::to_string(
+                                  user_id) + ")";
+
 
     std::vector<Task> tasks;
 
@@ -166,7 +191,7 @@ std::vector<User> Database::get_collaborators_for_task(int task_id) {
         SELECT * FROM users
         JOIN user_tasks ON users.id = user_tasks.user_id
         WHERE user_tasks.task_id =
-    )" + std::to_string(task_id) + R"( AND user_tasks.role = 'collaborator';)";
+    )" + std::to_string(task_id) + ";";
 
     std::vector<User> collaborators;
 
@@ -229,9 +254,39 @@ bool Database::user_exists(const std::string &username) {
         pqxx::work w(*connection_);
         const pqxx::result result = w.exec(query);
         return !result.empty();
-    } catch (const std::exception &e) {
+    } catch (const std::exception& e) {
         std::cerr << "Error checking if user exists: " << e.what() << std::endl;
         return false;
+    }
+}
+
+bool Database::is_user_collaborator(const User& user, const Task& task) {
+    const std::string user_id = connection_->quote(user.get_id());
+    const std::string task_id = connection_->quote(task.get_id());
+    const std::string query = "SELECT 1 FROM user_tasks WHERE user_id = " + user_id + " AND task_id = " + task_id + ";";
+    try {
+        pqxx::work w(*connection_);
+        const pqxx::result result = w.exec(query);
+        w.commit();
+        return !result.empty();
+    } catch (const std::exception& e) {
+        std::cerr << "Error checking relation between user " << user_id << " and task " << task_id << ": " << e.what() << std::endl;
+        throw;
+    }
+}
+
+bool Database::get_task_completed(const User &user, const Task &task) {
+    const std::string query = "SELECT task_completed FROM user_tasks"
+                              " WHERE user_id = " + std::to_string(user.get_id()) +
+                              " AND task_id = " + std::to_string(task.get_id()) + ";";
+    try {
+        pqxx::work w(*connection_);
+        const pqxx::result result = w.exec(query);
+        w.commit();
+        return result[0]["task_completed"].as<bool>();
+    } catch (const std::exception& e) {
+        std::cerr << "Error check task completed:" << e.what() << std::endl;
+        throw;
     }
 }
 
