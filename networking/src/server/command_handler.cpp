@@ -74,12 +74,14 @@ void CommandHandler::execute(const std::string &command_line) {
                 select_task(args);
                 break;
             case Command::EDIT:
-                if (!selected_task_.has_value()) throw InvalidCommandException("You didn't select task");
                 edit(args);
                 break;
             case Command::COMPLETE:
-                if (!selected_task_.has_value()) throw InvalidCommandException("You didn't select task");
                 complete();
+                break;
+            case Command::REMOVE:
+                remove();
+                selected_task_ = std::nullopt;
                 break;
             default:
                 break;
@@ -135,7 +137,7 @@ void CommandHandler::select_task(const std::vector<std::string> &args) {
                         get_task_info(task) +
                         "\n------------------", MessageType::INFO);
         std::ostringstream guide;
-        guide << YELLOW << "Available actions: edit, complete" << RESET;
+        guide << YELLOW << "Available actions: edit, complete, remove" << RESET;
         notifier_->send(guide.str());
     } catch (const InvalidCommandException&) {
         throw;
@@ -163,9 +165,22 @@ void CommandHandler::list(const std::vector<std::string> &args) const {
     notifier_->send(out.str(), MessageType::INFO);
 }
 
+void CommandHandler::remove() {
+    if (!selected_task_.has_value()) throw InvalidCommandException("You didn't select task");
+    Database& database = Database::get_instance();
+    Task task = selected_task_.value();
+    if (user_.get_id() != task.get_creator_id()) throw InvalidCommandException("You can't remove it as collaborator");
+    database.delete_task(task);
+    const std::vector<User> collaborators = database.get_collaborators_for_task(task.get_id());
+    for (const auto& collaborator : collaborators) {
+        notifier_->notify_user(collaborator, "User [" + user_.get_name() + "] deleted a task [ID = " + std::to_string(task.get_id()) + "]");
+    }
+}
+
 // TODO: add notify for collaborators
 
 void CommandHandler::edit(const std::vector<std::string> &args) {
+    if (!selected_task_.has_value()) throw InvalidCommandException("You didn't select task");
     Database& database = Database::get_instance();
     Task task = selected_task_.value();
     if (user_.get_id() != task.get_creator_id()) throw InvalidCommandException("You are not allowed to edit this task");
@@ -192,22 +207,35 @@ void CommandHandler::edit(const std::vector<std::string> &args) {
     } catch (const std::out_of_range&) {
         throw InvalidCommandException("You can edit only 'title', 'description' and 'deadline");
     }
+    const std::vector<User> collaborators = database.get_collaborators_for_task(task.get_id());
+    for (const auto& collaborator : collaborators) {
+        notifier_->notify_user(collaborator, "Creator [" + user_.get_name() + "] edited a task [ID = " + std::to_string(task.get_id()) + "]");
+    }
     database.update_task(task);
     selected_task_ = task;
 }
 
 void CommandHandler::complete() {
+    if (!selected_task_.has_value()) throw InvalidCommandException("You didn't select task");
     Database& database = Database::get_instance();
     Task task = selected_task_.value();
+    const std::vector<User> collaborators = database.get_collaborators_for_task(task.get_id());
     if (user_.get_id() == task.get_creator_id()) {
-        std::vector<User> collaborators = database.get_collaborators_for_task(task.get_id());
         for (const User& collaborator : collaborators) {
             if (!database.get_task_completed(collaborator, task)) throw InvalidCommandException("Not all collaborators have completed task");
         }
         task.complete();
         database.update_task(task);
+        for (const auto& collaborator : collaborators) {
+            notifier_->notify_user(collaborator, "Creator [" + user_.get_name() + "] completed a task [ID = " + std::to_string(task.get_id()) + "]");
+        }
     } else {
         database.complete_collaborator_task(user_, task);
+        for (const auto& collaborator : collaborators) {
+            notifier_->notify_user(collaborator, "Collaborator [" + user_.get_name() + "] did a task [ID = " + std::to_string(task.get_id()) + "]");
+        }
+        User creator = database.get_user_by_id(task.get_creator_id());
+        notifier_->notify_user(creator, "Collaborator [" + user_.get_name() + "] did a task [ID = " + std::to_string(task.get_id()) + "]");
     }
     selected_task_ = task;
 }

@@ -121,8 +121,21 @@ void Database::update_task(const Task &task) {
         w.exec(query);
         w.commit();
     } catch (const std::exception& e) {
-        std::cerr << "Error updating task " + id + ": " + e.what() << std::endl;
+        std::cerr << "Error updating task " << id + ": " << e.what() << std::endl;
         throw;
+    }
+}
+
+void Database::delete_task(const Task &task) {
+    const std::string delete_from_tasks_query = "DELETE FROM tasks WHERE id = " + std::to_string(task.get_id()) + ";";
+    const std::string delete_from_user_tasks_query = "DELETE FROM user_tasks WHERE task_id = " + std::to_string(task.get_id()) + ";";
+    try {
+        pqxx::work w(*connection_);
+        w.exec(delete_from_tasks_query);
+        w.exec(delete_from_user_tasks_query);
+        w.commit();
+    } catch (const std::exception& e) {
+        std::cerr << "Error deleting task " << std::to_string(task.get_id()) << ": " << e.what() << std::endl;
     }
 }
 

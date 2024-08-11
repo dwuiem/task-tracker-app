@@ -30,7 +30,7 @@ void Session::start() {
             guide << "-> select <id>\n";
             guide << "  |-> edit [title/description/deadline] \"new value\"\n";
             guide << "  |-> complete\n";
-            guide << "-> remove <id>" << RESET;
+            guide << "  |-> remove" << RESET;
             send(guide.str());
 
             const auto message_sender = static_cast<std::shared_ptr<MessageSender>>(shared_from_this());

@@ -43,6 +43,8 @@ private:
     void create_task(const std::vector<std::string>& args);
     void select_task(const std::vector<std::string>& args);
     void list(const std::vector<std::string>& args) const;
+
+    void remove();
     void edit(const std::vector<std::string>& args);
     void complete();
 

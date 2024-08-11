@@ -19,6 +19,7 @@ public:
     void add_task(const Task& task, const std::set<int>& collaborators_id);
     void assign_users_to_task(int task_id, int creator_id, const std::set<int>& collaborators_id);
     void update_task(const Task& task);
+    void delete_task(const Task& task);
     void complete_collaborator_task(const User& user, const Task& task);
 
     std::vector<Task> get_tasks_for_user(int user_id);
