@@ -44,7 +44,7 @@ void TCP::Client::reset() {
 void TCP::Client::async_write() {
     io::async_write(socket_,
         io::buffer(outgoing_messages_.front() + "\n"),
-        [this](boost::system::error_code ec, size_t bytesTransferred){
+        [this](boost::system::error_code ec, size_t){
             if (ec) {
                 return;
             }
@@ -55,10 +55,9 @@ void TCP::Client::async_write() {
     });
 }
 void TCP::Client::async_read() {
-    io::async_read_until(socket_, stream_buffer_, "\n", [this](boost::system::error_code ec, size_t bytesTransferred) {
+    io::async_read_until(socket_, stream_buffer_, "\n", [this](boost::system::error_code ec, size_t) {
         if (ec) {
             throw LostConnection("Connection has lost. Press enter to restart");
-            return;
         }
         on_read_handler();
         stream_buffer_.consume(stream_buffer_.size());

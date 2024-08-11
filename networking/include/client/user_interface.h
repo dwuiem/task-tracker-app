@@ -3,8 +3,8 @@
 
 #include <utility>
 
-const std::string JOIN = "join";
-const std::string QUIT = "\\q";
+constexpr std::string JOIN = "join";
+constexpr std::string EXIT = "exit";
 
 class IncorrectCommand : public std::exception {
 public:

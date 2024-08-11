@@ -32,9 +32,7 @@ void Application::run() {
 
 void Application::reading_messages() {
     std::string message = UserInterface::read_line();
-    if (message == QUIT) {
-        return;
-    }
+    if (message == EXIT) return;
     client_.send(message);
     reading_messages();
 }
