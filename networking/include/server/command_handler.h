@@ -35,6 +35,7 @@ public:
     static std::pair<Command, std::vector<std::string>> parse_command(const std::string& input);
 
     User get_user() const;
+    std::optional<Task> get_selected_task() const;
     std::shared_ptr<MessageSender> get_notifier() const;
 
     void execute(const std::string& command_line);
@@ -57,6 +58,7 @@ private:
         {"list", Command::LIST},
         {"select", Command::SELECT},
         {"edit", Command::EDIT},
+        {"complete", Command::COMPLETE},
         {"remove", Command::REMOVE},
     };
 

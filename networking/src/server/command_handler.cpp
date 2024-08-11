@@ -51,6 +51,10 @@ User CommandHandler::get_user() const {
     return user_;
 }
 
+std::optional<Task> CommandHandler::get_selected_task() const {
+    return selected_task_;
+}
+
 std::shared_ptr<MessageSender> CommandHandler::get_notifier() const {
     return notifier_;
 }
@@ -73,6 +77,12 @@ void CommandHandler::execute(const std::string &command_line) {
                 if (!selected_task_.has_value()) throw InvalidCommandException("You didn't select task");
                 edit(args);
                 break;
+            case Command::COMPLETE:
+                if (!selected_task_.has_value()) throw InvalidCommandException("You didn't select task");
+                complete();
+                break;
+            default:
+                break;
         }
     } catch (const std::out_of_range& e) {
         throw InvalidCommandException("Command doesn't exist");
@@ -84,14 +94,11 @@ void CommandHandler::create_task(const std::vector<std::string> &args) {
     if (args.size() < 3) throw InvalidCommandException("Too few arguments");
 
     const std::string& title = args[0];
-    std::optional<std::string> description = std::nullopt;
-    if (args[1] != "-") {
-        description = args[1];
-    }
-    std::optional<boost::posix_time::ptime> deadline = std::nullopt;
-    if (args[2] != "-") {
-        deadline = parse_datetime(args[2]);
-    }
+
+    const std::optional<std::string> description = args[1] == "-" ?
+        std::nullopt : static_cast<std::optional<std::string>>(args[1]);
+    const std::optional<boost::posix_time::ptime> deadline = args[2] == "-" ?
+        std::nullopt : static_cast<std::optional<boost::posix_time::ptime>>(parse_datetime(args[2]));
 
     std::set<int> collaborators_id;
 
@@ -121,15 +128,17 @@ void CommandHandler::select_task(const std::vector<std::string> &args) {
     if (args.empty()) throw InvalidCommandException("Specify task ID");
     try {
         Task task = database.get_task_by_id(std::stoi(args[0]));
-        if (!database.is_user_collaborator(user_, task)) throw InvalidCommandException("Task is not for you");
+        if (!database.is_user_collaborator(user_, task) && user_.get_id() != task.get_creator_id()) throw InvalidCommandException("Task is not for you");
         selected_task_ = task;
         notifier_->send("Selected task:"
                         "\n------------------\n" +
                         get_task_info(task) +
                         "\n------------------", MessageType::INFO);
         std::ostringstream guide;
-        guide << YELLOW << "You can edit (if you are creator) or complete this task" << RESET;
+        guide << YELLOW << "Available actions: edit, complete" << RESET;
         notifier_->send(guide.str());
+    } catch (const InvalidCommandException&) {
+        throw;
     } catch (const std::exception& e) {
         throw InvalidCommandException("Such task doesn't exist");
     }
@@ -163,30 +172,44 @@ void CommandHandler::edit(const std::vector<std::string> &args) {
     if (args.size() < 2) throw InvalidCommandException("Too few arguments");
     try {
         switch (EditingAttribute attribute = editing_attributes.at(args[0]); attribute) {
-            case EditingAttribute::TITLE:
+            case EditingAttribute::TITLE: {
                 task.set_title(args[1]);
+                break;   
+            }
+            case EditingAttribute::DESCRIPTION: {
+                const std::optional<std::string> description = args[1] == "-" ?
+                    std::nullopt : static_cast<std::optional<std::string>>(args[1]);
+                task.set_description(description);
                 break;
-            case EditingAttribute::DESCRIPTION:
-                task.set_description(args[1]);
-                break;
-            case EditingAttribute::DEADLINE_TIME:
-                const boost::posix_time::ptime time = parse_datetime(args[1]);
+            }
+            case EditingAttribute::DEADLINE_TIME: {
+                const std::optional<boost::posix_time::ptime> time = args[1] == "-" ?
+                    std::nullopt : static_cast<std::optional<boost::posix_time::ptime>>(parse_datetime(args[1]));
                 task.set_deadline_time(time);
                 break;
+            }
         }
     } catch (const std::out_of_range&) {
         throw InvalidCommandException("You can edit only 'title', 'description' and 'deadline");
     }
     database.update_task(task);
+    selected_task_ = task;
 }
 
 void CommandHandler::complete() {
+    Database& database = Database::get_instance();
     Task task = selected_task_.value();
     if (user_.get_id() == task.get_creator_id()) {
-        // TODO: Check is all collaborators completed task
+        std::vector<User> collaborators = database.get_collaborators_for_task(task.get_id());
+        for (const User& collaborator : collaborators) {
+            if (!database.get_task_completed(collaborator, task)) throw InvalidCommandException("Not all collaborators have completed task");
+        }
+        task.complete();
+        database.update_task(task);
     } else {
-        // TODO: Complete as collaborator
+        database.complete_collaborator_task(user_, task);
     }
+    selected_task_ = task;
 }
 
 std::string CommandHandler::get_task_info(const Task &task) const {

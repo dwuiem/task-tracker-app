@@ -20,12 +20,16 @@ void Task::set_title(const std::string &title) {
     title_ = title;
 }
 
-void Task::set_description(const std::string &description) {
+void Task::set_description(const std::optional<std::string>& description) {
     description_ = description;
 }
 
-void Task::set_deadline_time(const time_t &time) {
+void Task::set_deadline_time(const std::optional<time_t>& time) {
     deadline_ = time;
+}
+
+void Task::complete() {
+    completed_ = true;
 }
 
 std::string Task::get_title() const {

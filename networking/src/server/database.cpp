@@ -126,6 +126,21 @@ void Database::update_task(const Task &task) {
     }
 }
 
+void Database::complete_collaborator_task(const User &user, const Task &task) {
+    const std::string query = "UPDATE user_tasks "
+                              "SET task_completed = TRUE "
+                              "WHERE user_id = " + std::to_string(user.get_id()) + " "
+                              "AND task_id = " + std::to_string(task.get_id()) + ";";
+    try {
+        pqxx::work w(*connection_);
+        w.exec(query);
+        w.commit();
+    } catch (const std::exception& e) {
+        std::cerr << "Error completing task " + std::to_string(task.get_id()) + ": " + e.what() << std::endl;
+        throw;
+    }
+}
+
 std::vector<Task> Database::get_tasks_for_user(int user_id) {
     const std::string query = R"(
         SELECT DISTINCT * FROM tasks

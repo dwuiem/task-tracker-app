@@ -48,7 +48,13 @@ std::optional<User> Session::get_user() const {
 }
 
 void Session::main() {
-    send("Enter a command");
+    std::ostringstream guide;
+    guide << "Write a command ";
+    if (command_handler_->get_selected_task()) {
+        Task task = command_handler_->get_selected_task().value();
+        guide << YELLOW << "[Selected task ID: " + std::to_string(task.get_id()) + "]" << RESET;
+    }
+    send(guide.str());
     on_read = [this](const std::string& command_line) {
         try {
             command_handler_.value().execute(command_line);
