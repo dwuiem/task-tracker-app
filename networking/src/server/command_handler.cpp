@@ -171,6 +171,9 @@ void CommandHandler::remove() {
     Task task = selected_task_.value();
     if (user_.get_id() != task.get_creator_id()) throw InvalidCommandException("You can't remove it as collaborator");
     database.delete_task(task);
+    std::ostringstream out;
+    out << GREEN << "You have deleted task [ID: " << std::to_string(task.get_id()) << "]" << RESET;
+    notifier_->send(out.str(), MessageType::INFO);
     const std::vector<User> collaborators = database.get_collaborators_for_task(task.get_id());
     for (const auto& collaborator : collaborators) {
         notifier_->notify_user(collaborator, "User [" + user_.get_name() + "] deleted a task [ID = " + std::to_string(task.get_id()) + "]");
@@ -207,6 +210,9 @@ void CommandHandler::edit(const std::vector<std::string> &args) {
     } catch (const std::out_of_range&) {
         throw InvalidCommandException("You can edit only 'title', 'description' and 'deadline");
     }
+    std::ostringstream out;
+    out << GREEN << "You have updated task [ID: " << std::to_string(task.get_id()) << "]" << RESET;
+    notifier_->send(out.str(), MessageType::INFO);
     const std::vector<User> collaborators = database.get_collaborators_for_task(task.get_id());
     for (const auto& collaborator : collaborators) {
         notifier_->notify_user(collaborator, "Creator [" + user_.get_name() + "] edited a task [ID = " + std::to_string(task.get_id()) + "]");
@@ -232,7 +238,9 @@ void CommandHandler::complete() {
     } else {
         database.complete_collaborator_task(user_, task);
         for (const auto& collaborator : collaborators) {
-            notifier_->notify_user(collaborator, "Collaborator [" + user_.get_name() + "] did a task [ID = " + std::to_string(task.get_id()) + "]");
+            if (collaborator.get_id() != user_.get_id()) {
+                notifier_->notify_user(collaborator, "Collaborator [" + user_.get_name() + "] did a task [ID = " + std::to_string(task.get_id()) + "]");
+            }
         }
         User creator = database.get_user_by_id(task.get_creator_id());
         notifier_->notify_user(creator, "Collaborator [" + user_.get_name() + "] did a task [ID = " + std::to_string(task.get_id()) + "]");
