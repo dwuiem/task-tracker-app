@@ -1,4 +1,4 @@
-# Network task tracker application on C++
+# Network task tracker CLI-application on C++
 
 ## Introduction
 This project is a TCP/IP application written in C++ using the Boost.Asio library. App is designed to provide effective networking Task tracking between remote users.
@@ -6,7 +6,7 @@ This project is a TCP/IP application written in C++ using the Boost.Asio library
 ## Features
 - **Asynchronous I/O operations** using Boost.Asio.
 - **High performance** with low latency.
-- **Console UI** to interact with app
+- **Command Line Interface** to interact with app
   - All clients can authorize as user with username
   - User can create or edit task with following attributes: title, description, deadline date and participants (users)
   - `list` command display a list of all tasks
